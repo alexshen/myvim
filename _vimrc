@@ -161,7 +161,7 @@ let g:proj_window_width = 45
 " taglist
 let Tlist_WinWidth = 45
 " show only the current file
-" let Tlist_Show_One_File = 1
+let Tlist_Show_One_File = 1
 " let Tlist_Use_Right_Window = 1
 
 " Force all shell scripts to be recognized as bash scripts
