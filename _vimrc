@@ -123,7 +123,7 @@ let OmniCpp_ShowAccess          = 1 "show access in pop-up
 let OmniCpp_SelectFirstItem     = 1 "select first item in pop-up
 let OmniCpp_DefaultNamespaces=["std"] 
 let OmniCpp_DefaultNamespaces=["std", "_GLIBCXX_STD"]
-let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 let g:SuperTabLongestEnhanced = 1
 
 " 1. search tags in the directory where the current file is
