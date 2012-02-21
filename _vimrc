@@ -18,7 +18,7 @@
 " set the X11 font to use
 " set guifont=-misc-fixed-medium-r-normal--14-130-75-75-c-70-iso8859-1
 
-set ch=1		" Make command line two lines high
+set ch=1		" Make command line one line high
 
 set mousehide		" Hide the mouse when typing text
 
@@ -125,6 +125,41 @@ let OmniCpp_DefaultNamespaces=["std"]
 let OmniCpp_DefaultNamespaces=["std", "_GLIBCXX_STD"]
 let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 let g:SuperTabLongestEnhanced = 1
+
+" Initialize completion type for current buffer
+function InitSuperTabCompletionType()
+    if !exists("b:SuperTabCompletionType")
+        if exists("g:SuperTabDefaultCompletionType")
+            let b:SuperTabCompletionType = g:SuperTabDefaultCompletionType
+        else
+            let b:SuperTabCompletionType = "<c-x><c-n>"
+        endif
+    endif
+endfunction
+
+" Set default completion and update the current buffer completion setting
+function SetSuperTabDefaultCompletionType(type)
+    let g:SuperTabDefaultCompletionType = type
+    call SuperTabSetDefaultCompletionType(g:SuperTabDefaultCompletionType)
+endfunction
+
+function CycleSuperTabCompletionType()
+    if b:SuperTabCompletionType == "<c-x><c-o>"
+        let b:SuperTabCompletionType = "<c-x><c-n>"
+    elseif b:SuperTabCompletionType == "<c-x><c-n>"
+        let b:SuperTabCompletionType = "<c-x><c-o>"
+    endif
+    call RestoreSuperTabCompletion()
+endfunction
+
+" Restore super tab completion for current buffer
+function RestoreSuperTabCompletion()
+    call InitSuperTabCompletionType()
+    call SuperTabSetDefaultCompletionType(b:SuperTabCompletionType)
+endfunction
+
+au BufRead,BufNew,BufEnter * call RestoreSuperTabCompletion()
+nmap <C-N> :call CycleSuperTabCompletionType()<CR>
 
 " 1. search tags in the directory where the current file is
 " 2. search in the current working directory
