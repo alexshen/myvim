@@ -123,7 +123,7 @@ let OmniCpp_ShowAccess          = 1 "show access in pop-up
 let OmniCpp_SelectFirstItem     = 1 "select first item in pop-up
 let OmniCpp_DefaultNamespaces=["std"] 
 let OmniCpp_DefaultNamespaces=["std", "_GLIBCXX_STD"]
-let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+let g:SuperTabDefaultCompletionType = "<c-x><c-n>"
 let g:SuperTabLongestEnhanced = 1
 
 " Initialize completion type for current buffer
