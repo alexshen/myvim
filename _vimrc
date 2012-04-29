@@ -63,7 +63,7 @@ endif
 " Set locale to C, see :lang
 language C
 
-if has('win32')
+if has('gui_win32')
     " au GUIEnter * simalt ~x
     " full screen
     map <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
@@ -71,6 +71,9 @@ if has('win32')
     set guifont=Consolas:h10
 elseif has('unix') || has('macunix')
     set ffs=unix
+    if has('gui_gtk2')
+        set guifont=Consolas\ 11
+    endif
 endif
 
 if has('gui_running')
