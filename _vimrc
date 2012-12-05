@@ -60,6 +60,20 @@ if version >= 500
 
 endif
 
+" Check if a font is available
+function HasFontInstalled(font)
+    if executable('fc-list') != 1
+        return 0
+    endif
+
+    let l:fcList = system('fc-list')
+    if match(l:fcList, '\(^\|\n\)' . a:font . ':') != -1
+        return 1
+    endif
+
+    return 0
+endfunction
+
 " Set locale to C, see :lang
 language C
 
@@ -72,7 +86,11 @@ if has('gui_win32')
 elseif has('unix') || has('macunix')
     set ffs=unix
     if has('gui_gtk2')
-        set guifont=Consolas\ 11
+        if HasFontInstalled('Ubuntu Mono')
+            set guifont=Ubuntu\ Mono\ 11
+        elseif HasFontInstalled('Consolas')
+            set guifont=Consolas\ 11
+        endif
     endif
 endif
 
@@ -142,7 +160,7 @@ endfunction
 
 " Set default completion and update the current buffer completion setting
 function SetSuperTabDefaultCompletionType(type)
-    let g:SuperTabDefaultCompletionType = type
+    let g:SuperTabDefaultCompletionType = a:type
     call SuperTabSetDefaultCompletionType(g:SuperTabDefaultCompletionType)
 endfunction
 
