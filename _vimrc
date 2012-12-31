@@ -111,6 +111,7 @@ colorscheme mydesert
 "set guifont=Triskweline:h10
 "set guifont=ProggyCleanSZ:h11
 
+set noerrorbells visualbell t_vb=
 set ignorecase smartcase
 set smarttab
 set fileencodings=ucs-bom,utf-8,utf-16,cp936,gb18030,big5,euc-jp,euc-kr,latin1 
