@@ -223,3 +223,4 @@ let Tlist_Show_One_File = 1
 
 " Force all shell scripts to be recognized as bash scripts
 let g:is_bash = 1
+let g:miniBufExplMapCTabSwitchBufs = 1
