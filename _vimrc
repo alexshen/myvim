@@ -227,7 +227,5 @@ let g:is_bash = 1
 " Minibuf
 " Enable <c-tab>
 let g:miniBufExplMapCTabSwitchBufs = 1
-" make sure that syntax color is enabled after deleting a buffer via :bd
-let g:miniBufExplForceSyntaxEnable = 1
 " Enable <c-h,j,k,l> to navigate among windows
 let g:miniBufExplMapWindowNavVim = 1 
