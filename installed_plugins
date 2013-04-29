@@ -9,7 +9,6 @@ bexec - execute script in buffer
 bufexplorer - buffer explorer
 ceutil - ???
 cscope_maps - key maps for cscope
-indexer - auto generate tags for project files
 minibufexplorer - Elegant buffer explorer - takes very little screen space
     - https://github.com/fholgado/minibufexpl.vim
 nerdcommenter - easy commenting for source files
