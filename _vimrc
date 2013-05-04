@@ -67,7 +67,7 @@ function HasFontInstalled(font)
     endif
 
     let l:fcList = system('fc-list')
-    if match(l:fcList, '\(^\|\n\)' . a:font . ':') != -1
+    if match(l:fcList, '\<' . a:font . ':') != -1
         return 1
     endif
 
@@ -87,9 +87,11 @@ elseif has('unix') || has('macunix')
     set ffs=unix
     if has('gui_gtk2')
         if HasFontInstalled('Ubuntu Mono')
-            set guifont=Ubuntu\ Mono\ 11
+            set guifont=Ubuntu\ Mono\ 10
         elseif HasFontInstalled('Consolas')
             set guifont=Consolas\ 11
+        else
+            echoerr 'gui_gtk2'
         endif
     endif
 endif
