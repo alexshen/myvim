@@ -90,8 +90,6 @@ elseif has('unix') || has('macunix')
             set guifont=Ubuntu\ Mono\ 10
         elseif HasFontInstalled('Consolas')
             set guifont=Consolas\ 11
-        else
-            echoerr 'gui_gtk2'
         endif
     endif
 endif
