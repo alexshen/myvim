@@ -94,9 +94,9 @@ elseif has('unix') || has('macunix')
     endif
 endif
 
-if has('gui_running')
-    set lines=58 columns=150
-endif
+"if has('gui_running')
+"    set lines=58 columns=150
+"endif
 
 set tabstop=4
 set softtabstop=4
@@ -114,7 +114,7 @@ colorscheme mydesert
 set noerrorbells visualbell t_vb=
 set ignorecase smartcase
 set smarttab
-set fileencodings=ucs-bom,utf-8,utf-16,cp936,gb18030,big5,euc-jp,euc-kr,latin1 
+set fileencodings=utf-8,utf-16,ucs-bom,cp936,gb18030,big5,euc-jp,euc-kr,latin1 
 set backspace=indent,eol,start
 set number
 set guioptions-=T " no tool bar
