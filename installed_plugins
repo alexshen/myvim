@@ -19,3 +19,4 @@ vtreeexplorer - tree based file explorer - the original
 vimprj - Plugin for managing options for different projects
 DfrankUtil - Just a library for some scripts
 clewn - gdb debugger plugin
+tagbar - class viewer

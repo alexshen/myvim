@@ -1,0 +1,1 @@
+t-agbar.vmb: call delete('/home/ashen/.vim/README.md')|call delete('/home/ashen/.vim/autoload/tagbar.vim')|call delete('/home/ashen/.vim/doc/tagbar.txt')|call delete('/home/ashen/.vim/plugin/tagbar.vim')|call delete('/home/ashen/.vim/syntax/tagbar.vim')
