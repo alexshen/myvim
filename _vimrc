@@ -229,3 +229,8 @@ let g:is_bash = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
 " Enable <c-h,j,k,l> to navigate among windows
 let g:miniBufExplMapWindowNavVim = 1 
+
+" Tagbar
+" make it appear on the left by default
+let g:tagbar_left = 1
+nnoremap <silent> <A-9> :TagbarToggle<CR>
