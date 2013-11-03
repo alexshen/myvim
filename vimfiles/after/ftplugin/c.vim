@@ -1,2 +1,4 @@
-" OmniCppComplete initialization
-call omni#cpp#complete#Init()
+if !g:DisableOmniCppComplete
+    " OmniCppComplete initialization
+    call omni#cpp#complete#Init()
+endif

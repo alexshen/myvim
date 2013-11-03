@@ -133,19 +133,35 @@ set mps+=<:>
 filetype plugin on
 filetype indent on
 
-" ominicpp
 set completeopt=menuone,menu,longest
-set omnifunc=syntaxcomplete#Complete " override built-in C omnicomplete with C++ OmniCppComplete plugin
-let OmniCpp_GlobalScopeSearch   = 1
-let OmniCpp_NamespaceSearch     = 1
-let OmniCpp_DisplayMode         = 1
-let OmniCpp_ShowScopeInAbbr     = 0 "do not show namespace in pop-up
-let OmniCpp_ShowPrototypeInAbbr = 1 "show prototype in pop-up
-let OmniCpp_ShowAccess          = 1 "show access in pop-up
-let OmniCpp_SelectFirstItem     = 1 "select first item in pop-up
-let OmniCpp_DefaultNamespaces=["std"] 
-let OmniCpp_DefaultNamespaces=["std", "_GLIBCXX_STD"]
-let g:SuperTabDefaultCompletionType = "<c-x><c-n>"
+if executable('clang++') || executable('clang')
+    " super tab, user defined completion
+    let g:SuperTabDefaultCompletionType = "<c-x><c-u>"
+    " disable omni complete, as it conflict with clang_complete
+    let g:DisableOmniCppComplete = 1
+    " always use c++11 features
+    let g:clang_user_options = '-std=c++11'
+    let g:clang_complete_macros = 1
+    " select the first match in the popup window
+    let g:clang_auto_select = 1
+    " use libclang
+    let g:clang_use_library = 1
+else
+    " super tab, omnicomplete
+    let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+    " ominicpp
+    set omnifunc=syntaxcomplete#Complete " override built-in C omnicomplete with C++ OmniCppComplete plugin
+    let g:OmniCpp_GlobalScopeSearch   = 1
+    let g:OmniCpp_NamespaceSearch     = 1
+    let g:OmniCpp_DisplayMode         = 1
+    let g:OmniCpp_ShowScopeInAbbr     = 0 "do not show namespace in pop-up
+    let g:OmniCpp_ShowPrototypeInAbbr = 1 "show prototype in pop-up
+    let g:OmniCpp_ShowAccess          = 1 "show access in pop-up
+    let g:OmniCpp_SelectFirstItem     = 1 "select first item in pop-up
+    let g:OmniCpp_DefaultNamespaces=["std"] 
+    let g:OmniCpp_DefaultNamespaces=["std", "_GLIBCXX_STD"]
+endif
+
 let g:SuperTabLongestEnhanced = 1
 
 " Initialize completion type for current buffer
