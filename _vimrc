@@ -133,12 +133,12 @@ set mps+=<:>
 filetype plugin on
 filetype indent on
 
+" super tab, user defined completion
+let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabLongestEnhanced = 1
+
 set completeopt=menuone,menu,longest
-" ominicpp
-set omnifunc=syntaxcomplete#Complete " override built-in C omnicomplete with C++ OmniCppComplete plugin
 if executable('clang++') || executable('clang')
-    " super tab, user defined completion
-    let g:SuperTabDefaultCompletionType = "<c-x><c-u>"
     " disable omni complete, as it conflict with clang_complete
     let g:DisableOmniCppComplete = 1
     " always use c++11 features
@@ -149,8 +149,8 @@ if executable('clang++') || executable('clang')
     " use libclang
     let g:clang_use_library = 1
 else
-    " super tab, omnicomplete
-    let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+    " ominicpp
+    set omnifunc=syntaxcomplete#Complete " override built-in C omnicomplete with C++ OmniCppComplete plugin
     let g:OmniCpp_GlobalScopeSearch   = 1
     let g:OmniCpp_NamespaceSearch     = 1
     let g:OmniCpp_DisplayMode         = 1
@@ -161,53 +161,6 @@ else
     let g:OmniCpp_DefaultNamespaces=["std"] 
     let g:OmniCpp_DefaultNamespaces=["std", "_GLIBCXX_STD"]
 endif
-
-let g:SuperTabLongestEnhanced = 1
-
-" Initialize completion type for current buffer
-function InitSuperTabCompletionType()
-    if !exists("b:SuperTabCompletionType")
-        if exists("g:SuperTabDefaultCompletionType")
-            let b:SuperTabCompletionType = g:SuperTabDefaultCompletionType
-        else
-            let b:SuperTabCompletionType = "<c-x><c-n>"
-        endif
-    endif
-endfunction
-
-" Set default completion and update the current buffer completion setting
-function SetSuperTabDefaultCompletionType(type)
-    let g:SuperTabDefaultCompletionType = a:type
-    call SuperTabSetDefaultCompletionType(g:SuperTabDefaultCompletionType)
-endfunction
-
-function CycleSuperTabCompletionType()
-    if b:SuperTabCompletionType == "<c-x><c-o>"
-        let b:SuperTabCompletionType = "<c-x><c-n>"
-        echo "supertab forward complete"
-    elseif b:SuperTabCompletionType == "<c-x><c-n>"
-        let b:SuperTabCompletionType = "<c-x><c-u>"
-        echo "supertab user complete"
-    elseif b:SuperTabCompletionType == "<c-x><c-u>"
-        if g:DisableOmniCppComplete
-            let b:SuperTabCompletionType = "<c-x><c-n>"
-            echo "supertab forward complete"
-        else
-            let b:SuperTabCompletionType = "<c-x><c-o>"
-            echo "supertab omni complete"
-        end
-    endif
-    call RestoreSuperTabCompletion()
-endfunction
-
-" Restore super tab completion for current buffer
-function RestoreSuperTabCompletion()
-call InitSuperTabCompletionType()
-call SuperTabSetDefaultCompletionType(b:SuperTabCompletionType)
-endfunction
-
-au BufRead,BufNew,BufEnter * call RestoreSuperTabCompletion()
-nmap <C-N> :call CycleSuperTabCompletionType()<CR>
 
 " 1. search tags in the directory where the current file is
 " 2. search in the current working directory
