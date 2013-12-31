@@ -213,3 +213,11 @@ let g:miniBufExplMapWindowNavVim = 1
 " make it appear on the left by default
 let g:tagbar_left = 1
 nnoremap <silent> <A-9> :TagbarToggle<CR>
+
+" CtrlP
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+" mimic Visual Assist
+" alt+shift+O
+noremap <silent> Ø :CtrlP<CR>
+" alt+shift+S
+noremap <silent> Í :CtrlPTag<CR>
