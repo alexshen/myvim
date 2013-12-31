@@ -218,6 +218,6 @@ nnoremap <silent> <A-9> :TagbarToggle<CR>
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 " mimic Visual Assist
 " alt+shift+O
-noremap <silent> <A-O> :CtrlP<CR>
+noremap <silent> <leader>so :CtrlP<CR>
 " alt+shift+S
-noremap <silent> <A-S> :CtrlPTag<CR>
+noremap <silent> <leader>ss :CtrlPTag<CR>
