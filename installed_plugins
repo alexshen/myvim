@@ -20,6 +20,5 @@ vimprj - Plugin for managing options for different projects
 DfrankUtil - Just a library for some scripts
 clewn - gdb debugger plugin
 tagbar - class viewer
-comment-t
 clang_complete
 ctrlp
