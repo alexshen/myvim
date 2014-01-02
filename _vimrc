@@ -215,9 +215,11 @@ let g:tagbar_left = 1
 nnoremap <silent> <A-9> :TagbarToggle<CR>
 
 " CtrlP
+let g:ctrlp_lazy_update = 1
+let g:ctrlp_use_caching = 1
+let g:ctrlp_open_new_file = 'v'
+let g:ctrlp_match_window = 'results:99'
+let g:ctrlp_working_path_mode = 'rc'
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-" mimic Visual Assist
-" alt+shift+O
-noremap <silent> <leader>so :CtrlP<CR>
-" alt+shift+S
+noremap <silent> <leader>ff :CtrlP<CR>
 noremap <silent> <leader>ss :CtrlPTag<CR>
