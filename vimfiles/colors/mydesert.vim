@@ -105,5 +105,7 @@ hi Ignore	cterm=bold ctermfg=7
 hi Ignore	ctermfg=darkgrey
 hi Error	cterm=bold ctermfg=7 ctermbg=1
 
+hi Pmenu guibg=#1f1f1f guifg=#5fdf00
+hi PmenuSel gui=bold guifg=#ffff00 guibg=#6f6f6f
 
 "vim: sw=4
