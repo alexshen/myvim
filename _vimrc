@@ -31,6 +31,7 @@ Plugin 'The-NERD-Commenter'
 Plugin 'The-NERD-tree'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'ctrlp.vim'
+Plugin 'ervandew/supertab'
 Plugin 'fholgado/minibufexpl.vim'
 Plugin 'gmarik/Vundle.vim'
 Plugin 'taglist.vim'
@@ -180,12 +181,6 @@ hi def link TextJump Comment
 " set the height of the output window 
 let bexec_winheight = 5
 map <F7> <ESC>:Bexec()<CR>
-
-" python syntax highlight
-let python_highlight_numbers = 1
-let python_highlight_builtins = 1
-let python_highlight_exceptions = 1
-let python_highlight_space_errors = 0
 
 " project
 " let g:proj_window_width = 45
