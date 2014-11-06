@@ -18,6 +18,27 @@
 " set the X11 font to use
 " set guifont=-misc-fixed-medium-r-normal--14-130-75-75-c-70-iso8859-1
 
+set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/Vundle.vim
+
+let g:ycm_server_keep_logfiles = 1
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'Align'
+Plugin 'fholgado/minibufexpl.vim'
+Plugin 'The-NERD-Commenter'
+Plugin 'The-NERD-tree'
+Plugin 'Tagbar'
+Plugin 'ctrlp.vim'
+Plugin 'taglist.vim'
+
+call vundle#end()
+filetype plugin indent on
+
 set ch=1		" Make command line one line high
 
 set mousehide		" Hide the mouse when typing text
@@ -136,31 +157,7 @@ filetype indent on
 " super tab, user defined completion
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabLongestEnhanced = 1
-
 set completeopt=menuone,menu,longest
-if executable('clang++') || executable('clang')
-    " disable omni complete, as it conflict with clang_complete
-    let g:DisableOmniCppComplete = 1
-    " always use c++11 features
-    let g:clang_user_options = '-std=c++11'
-    let g:clang_complete_macros = 1
-    " select the first match in the popup window
-    let g:clang_auto_select = 1
-    " use libclang
-    let g:clang_use_library = 1
-else
-    " ominicpp
-    set omnifunc=syntaxcomplete#Complete " override built-in C omnicomplete with C++ OmniCppComplete plugin
-    let g:OmniCpp_GlobalScopeSearch   = 1
-    let g:OmniCpp_NamespaceSearch     = 1
-    let g:OmniCpp_DisplayMode         = 1
-    let g:OmniCpp_ShowScopeInAbbr     = 0 "do not show namespace in pop-up
-    let g:OmniCpp_ShowPrototypeInAbbr = 1 "show prototype in pop-up
-    let g:OmniCpp_ShowAccess          = 1 "show access in pop-up
-    let g:OmniCpp_SelectFirstItem     = 1 "select first item in pop-up
-    let g:OmniCpp_DefaultNamespaces=["std"] 
-    let g:OmniCpp_DefaultNamespaces=["std", "_GLIBCXX_STD"]
-endif
 
 " 1. search tags in the directory where the current file is
 " 2. search in the current working directory
@@ -192,7 +189,7 @@ let python_highlight_exceptions = 1
 let python_highlight_space_errors = 0
 
 " project
-let g:proj_window_width = 45
+" let g:proj_window_width = 45
 
 " taglist
 let Tlist_WinWidth = 45

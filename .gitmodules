@@ -1,0 +1,36 @@
+[submodule "vimfiles/bundle/Align"]
+	path = vimfiles/bundle/Align
+	url = https://github.com/vim-scripts/Align.git
+    ignore = dirty
+[submodule "vimfiles/bundle/ctrlp.vim"]
+	path = vimfiles/bundle/ctrlp.vim
+	url = https://github.com/vim-scripts/ctrlp.vim.git
+    ignore = dirty
+[submodule "vimfiles/bundle/minibufexpl.vim"]
+	path = vimfiles/bundle/minibufexpl.vim
+	url = https://github.com/fholgado/minibufexpl.vim.git
+    ignore = dirty
+[submodule "vimfiles/bundle/Tagbar"]
+	path = vimfiles/bundle/Tagbar
+	url = https://github.com/vim-scripts/Tagbar.git
+    ignore = dirty
+[submodule "vimfiles/bundle/taglist.vim"]
+	path = vimfiles/bundle/taglist.vim
+	url = https://github.com/vim-scripts/taglist.vim.git
+    ignore = dirty
+[submodule "vimfiles/bundle/The-NERD-Commenter"]
+	path = vimfiles/bundle/The-NERD-Commenter
+	url = https://github.com/vim-scripts/The-NERD-Commenter.git
+    ignore = dirty
+[submodule "vimfiles/bundle/The-NERD-tree"]
+	path = vimfiles/bundle/The-NERD-tree
+	url = https://github.com/vim-scripts/The-NERD-tree.git
+    ignore = dirty
+[submodule "vimfiles/bundle/Vundle.vim"]
+	path = vimfiles/bundle/Vundle.vim
+	url = https://github.com/gmarik/Vundle.vim.git
+    ignore = dirty
+[submodule "vimfiles/bundle/YouCompleteMe"]
+	path = vimfiles/bundle/YouCompleteMe
+	url = https://github.com/Valloric/YouCompleteMe.git
+    ignore = dirty

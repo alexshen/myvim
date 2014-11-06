@@ -1,24 +1,12 @@
 omnicppcomplete - auto completion for c/c++
-tlib - utility function
-vst - vim restruted text
 Align - alignment
-genutils - general utility function
-pythoncomplete - auto completion for python
-viki - personal wiki for vim
 bexec - execute script in buffer
 bufexplorer - buffer explorer
-ceutil - ???
-cscope_maps - key maps for cscope
 minibufexplorer - Elegant buffer explorer - takes very little screen space
     - https://github.com/fholgado/minibufexpl.vim
 nerdcommenter - easy commenting for source files
 nerdtree - A tree explorer plugin for navigating the filesystem 
-project - Organize/Navigate projects of files
 taglist - Source code browser
-vtreeexplorer - tree based file explorer - the original 
-vimprj - Plugin for managing options for different projects
-DfrankUtil - Just a library for some scripts
 clewn - gdb debugger plugin
 tagbar - class viewer
-clang_complete
 ctrlp
