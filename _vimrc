@@ -23,17 +23,16 @@ filetype off
 
 set rtp+=~/.vim/bundle/Vundle.vim
 
-let g:ycm_server_keep_logfiles = 1
 call vundle#begin()
 
-Plugin 'gmarik/Vundle.vim'
-Plugin 'Valloric/YouCompleteMe'
 Plugin 'Align'
-Plugin 'fholgado/minibufexpl.vim'
+Plugin 'Tagbar'
 Plugin 'The-NERD-Commenter'
 Plugin 'The-NERD-tree'
-Plugin 'Tagbar'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'ctrlp.vim'
+Plugin 'fholgado/minibufexpl.vim'
+Plugin 'gmarik/Vundle.vim'
 Plugin 'taglist.vim'
 
 call vundle#end()
@@ -220,3 +219,8 @@ let g:ctrlp_working_path_mode = 'rc'
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 noremap <silent> <leader>ff :CtrlP<CR>
 noremap <silent> <leader>ss :CtrlPTag<CR>
+
+" Ycm
+let g:ycm_server_keep_logfiles = 1
+let g:ycm_server_use_vim_stdout = 1
+"let g:ycm_server_log_level = 'debug'
