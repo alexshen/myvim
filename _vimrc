@@ -29,7 +29,12 @@ Plugin 'Align'
 Plugin 'Tagbar'
 Plugin 'The-NERD-Commenter'
 Plugin 'The-NERD-tree'
-Plugin 'Valloric/YouCompleteMe'
+if has('win32')
+    " local plugin
+    Plugin 'ycm-win', {'pinned': 1}
+else
+    Plugin 'Valloric/YouCompleteMe.git'
+endif
 Plugin 'ctrlp.vim'
 Plugin 'ervandew/supertab'
 Plugin 'fholgado/minibufexpl.vim'
