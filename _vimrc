@@ -25,6 +25,8 @@ set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
 
+Plugin 'gmarik/Vundle.vim'
+
 Plugin 'Align'
 Plugin 'Tagbar'
 Plugin 'The-NERD-Commenter'
@@ -38,7 +40,13 @@ endif
 Plugin 'ctrlp.vim'
 Plugin 'ervandew/supertab'
 Plugin 'fholgado/minibufexpl.vim'
-Plugin 'gmarik/Vundle.vim'
+
+" snip mate plugin and dependencies
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+
+Plugin 'honza/vim-snippets'
 Plugin 'taglist.vim'
 
 call vundle#end()
