@@ -209,9 +209,13 @@ let g:is_bash = 1
 
 " Minibuf
 " Enable <c-tab>
-let g:miniBufExplMapCTabSwitchBufs = 1
+noremap <C-TAB>   :MBEbf<CR>
+noremap <C-S-TAB> :MBEbb<CR>
 " Enable <c-h,j,k,l> to navigate among windows
-let g:miniBufExplMapWindowNavVim = 1 
+noremap <C-J>     <C-W>j
+noremap <C-K>     <C-W>k
+noremap <C-H>     <C-W>h
+noremap <C-L>     <C-W>l
 
 " Tagbar
 " make it appear on the left by default
@@ -227,8 +231,13 @@ let g:ctrlp_working_path_mode = 'rc'
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 noremap <silent> <leader>ff :CtrlP<CR>
 noremap <silent> <leader>ss :CtrlPTag<CR>
+noremap <silent> <leader>rr :CtrlPClearCache<CR>
 
 " Ycm
 let g:ycm_server_keep_logfiles = 1
-let g:ycm_server_use_vim_stdout = 1
+"let g:ycm_server_use_vim_stdout = 1
 "let g:ycm_server_log_level = 'debug'
+
+" SnipMate
+imap <leader>a <Plug>snipMateNextOrTrigger
+smap <leader>a <Plug>snipMateNextOrTrigger
