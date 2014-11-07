@@ -149,7 +149,7 @@ colorscheme mydesert
 set noerrorbells visualbell t_vb=
 set ignorecase smartcase
 set smarttab
-set fileencodings=utf-8,utf-16,ucs-bom,cp936,gb18030,big5,euc-jp,euc-kr,latin1 
+set encoding=utf-8
 set backspace=indent,eol,start
 set number
 set guioptions-=T " no tool bar
