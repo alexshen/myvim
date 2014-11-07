@@ -48,6 +48,7 @@ Plugin 'garbas/vim-snipmate'
 
 Plugin 'honza/vim-snippets'
 Plugin 'taglist.vim'
+Plugin 'LaTeX-Suite-aka-Vim-LaTeX'
 
 call vundle#end()
 filetype plugin indent on
