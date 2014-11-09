@@ -240,5 +240,9 @@ let g:ycm_server_keep_logfiles = 1
 "let g:ycm_server_log_level = 'debug'
 
 " SnipMate
-imap <leader>a <Plug>snipMateNextOrTrigger
-smap <leader>a <Plug>snipMateNextOrTrigger
+imap <C-J> <Plug>snipMateNextOrTrigger
+smap <C-J> <Plug>snipMateNextOrTrigger
+
+nmap <C-N> <Plug>IMAP_JumpForward
+vmap <C-N> <Plug>IMAP_JumpForward
+imap <C-N> <Plug>IMAP_JumpForward
