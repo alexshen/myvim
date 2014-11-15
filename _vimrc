@@ -111,6 +111,7 @@ endfunction
 
 " Set locale to C, see :lang
 language C
+set langmenu=en_US
 
 if has('gui_win32')
     " au GUIEnter * simalt ~x
@@ -227,9 +228,9 @@ nnoremap <silent> <A-9> :TagbarToggle<CR>
 let g:ctrlp_lazy_update = 1
 let g:ctrlp_use_caching = 1
 let g:ctrlp_open_new_file = 'v'
-let g:ctrlp_match_window = 'results:99'
 let g:ctrlp_working_path_mode = 'rc'
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_max_files = 0
 noremap <silent> <leader>ff :CtrlP<CR>
 noremap <silent> <leader>ss :CtrlPTag<CR>
 noremap <silent> <leader>rr :CtrlPClearCache<CR>
