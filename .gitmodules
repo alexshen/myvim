@@ -57,3 +57,7 @@
 	path = vimfiles/bundle/LaTeX-Suite-aka-Vim-LaTeX
 	url = https://github.com/vim-scripts/LaTeX-Suite-aka-Vim-LaTeX
     ignore = dirty
+[submodule "vimfiles/bundle/cscope_macros.vim"]
+	path = vimfiles/bundle/cscope_macros.vim
+	url = https://github.com/vim-scripts/cscope_macros.vim
+    ignore = dirty
