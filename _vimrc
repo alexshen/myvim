@@ -96,7 +96,7 @@ if version >= 500
 endif
 
 " Check if a font is available
-function HasFontInstalled(font)
+function! HasFontInstalled(font)
     if executable('fc-list') != 1
         return 0
     endif
