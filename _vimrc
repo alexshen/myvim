@@ -50,6 +50,9 @@ Plugin 'honza/vim-snippets'
 Plugin 'taglist.vim'
 Plugin 'LaTeX-Suite-aka-Vim-LaTeX'
 Plugin 'cscope_macros.vim'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-colorscheme-switcher'
+Plugin 'flazz/vim-colorschemes'
 
 call vundle#end()
 filetype plugin indent on

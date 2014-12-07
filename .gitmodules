@@ -61,3 +61,15 @@
 	path = vimfiles/bundle/cscope_macros.vim
 	url = https://github.com/vim-scripts/cscope_macros.vim
     ignore = dirty
+[submodule "vimfiles/bundle/vim-colorschemes"]
+	path = vimfiles/bundle/vim-colorschemes
+	url = https://github.com/flazz/vim-colorschemes
+    ignore = dirty
+[submodule "vimfiles/bundle/vim-misc"]
+	path = vimfiles/bundle/vim-misc
+	url = https://github.com/xolox/vim-misc
+    ignore = dirty
+[submodule "vimfiles/bundle/vim-colorscheme-switcher"]
+	path = vimfiles/bundle/vim-colorscheme-switcher
+	url = https://github.com/xolox/vim-colorscheme-switcher
+    ignore = dirty
