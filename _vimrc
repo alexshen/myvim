@@ -251,3 +251,8 @@ smap <C-J> <Plug>snipMateNextOrTrigger
 nmap <C-N> <Plug>IMAP_JumpForward
 vmap <C-N> <Plug>IMAP_JumpForward
 imap <C-N> <Plug>IMAP_JumpForward
+
+" Latex-Suite
+let g:Tex_DefaultTargetFormat = 'pdf'
+let g:Tex_CompileRule_pdf = 'xelatex -synctex=1 -interaction=nonstopmode -shell-escape $*'
+let g:Tex_ViewRule_pdf = 'mupdf'
