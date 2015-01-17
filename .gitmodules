@@ -81,3 +81,7 @@
 	path = vimfiles/bundle/vim-projectroot
 	url = https://github.com/dbakker/vim-projectroot
     ignore = dirty
+[submodule "vimfiles/bundle/vim-cpp-enhanced-highlight"]
+	path = vimfiles/bundle/vim-cpp-enhanced-highlight
+	url = https://github.com/octol/vim-cpp-enhanced-highlight
+    ignore = dirty
