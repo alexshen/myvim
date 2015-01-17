@@ -21,7 +21,7 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.vim/bundle/Vundle.vim,~/.vim/bundle/vim-projectroot
 
 call vundle#begin()
 
@@ -31,12 +31,20 @@ Plugin 'Align'
 Plugin 'Tagbar'
 Plugin 'The-NERD-Commenter'
 Plugin 'The-NERD-tree'
-if has('win32')
-    " local plugin
-    Plugin 'ycm-win', {'pinned': 1}
+
+if filereadable(projectroot#guess() . '/.clang_complete')
+    Plugin 'Rip-Rip/clang_complete'
 else
-    Plugin 'Valloric/YouCompleteMe.git'
+    " do not load clang_complete
+    let g:clang_complete_loaded = 0
+    if has('win32')
+        " local plugin
+        Plugin 'ycm-win', {'pinned': 1}
+    else
+        Plugin 'Valloric/YouCompleteMe.git'
+    endif
 endif
+
 Plugin 'ctrlp.vim'
 Plugin 'ervandew/supertab'
 Plugin 'fholgado/minibufexpl.vim'
@@ -53,6 +61,7 @@ Plugin 'cscope_macros.vim'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-colorscheme-switcher'
 Plugin 'flazz/vim-colorschemes'
+Plugin 'dbakker/vim-projectroot'
 
 call vundle#end()
 filetype plugin indent on
@@ -256,3 +265,6 @@ imap <C-N> <Plug>IMAP_JumpForward
 let g:Tex_DefaultTargetFormat = 'pdf'
 let g:Tex_CompileRule_pdf = 'xelatex -synctex=1 -interaction=nonstopmode -shell-escape $*'
 let g:Tex_ViewRule_pdf = 'mupdf'
+
+" clang_complete
+let g:clang_snippets = 1
