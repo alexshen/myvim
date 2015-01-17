@@ -219,7 +219,7 @@ map <F7> <ESC>:Bexec()<CR>
 " let g:proj_window_width = 45
 
 " taglist
-let Tlist_WinWidth = 45
+let Tlist_WinWidth = 64
 " show only the current file
 let Tlist_Show_One_File = 1
 " let Tlist_Use_Right_Window = 1
@@ -252,6 +252,9 @@ let g:ctrlp_max_files = 0
 noremap <silent> <leader>ff :CtrlP<CR>
 noremap <silent> <leader>ss :CtrlPTag<CR>
 noremap <silent> <leader>rr :CtrlPClearCache<CR>
+" visual assist style map
+noremap <silent> <A-S-o> :CtrlP<CR>
+noremap <silent> <A-S-s> :CtrlPTag<CR>
 
 " Ycm
 let g:ycm_server_keep_logfiles = 1
