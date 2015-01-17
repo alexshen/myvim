@@ -34,6 +34,9 @@ Plugin 'The-NERD-tree'
 
 if filereadable(projectroot#guess() . '/.clang_complete')
     Plugin 'Rip-Rip/clang_complete'
+    if has('win32') || has('win64')
+        let g:clang_library_path = glob('~') . '/.vim/bundle/ycm-win/python'
+    end
 else
     " do not load clang_complete
     let g:clang_complete_loaded = 0
