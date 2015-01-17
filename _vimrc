@@ -66,6 +66,7 @@ Plugin 'xolox/vim-colorscheme-switcher'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'dbakker/vim-projectroot'
 Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'a.vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -276,3 +277,7 @@ let g:clang_snippets = 1
 " enhanced cpp highlight
 let g:cpp_class_scope_highlight = 1
 let g:cpp_experimental_template_highlight = 1
+
+" a.vim
+nmap <silent> <A-o> :A<CR>
+imap <silent> <A-o> :A<CR>
