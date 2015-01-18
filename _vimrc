@@ -4,7 +4,7 @@
 " Maintainer:	Bram Moolenaar <Bram@vim.org>
 " Last changed by:
 " 	Shen Alex
-" 	2012-1-25
+" 	01/18/2015 Sun 
 "
 " To use it, copy it to
 "     for Unix and OS/2:  ~/.gvimrc
@@ -25,7 +25,7 @@ set rtp+=~/.vim/bundle/Vundle.vim,~/.vim/bundle/vim-projectroot
 
 call vundle#begin()
 
-Plugin 'gmarik/Vundle.vim'
+"Plugin 'gmarik/Vundle.vim'
 
 Plugin 'Align'
 Plugin 'Tagbar'
@@ -65,8 +65,10 @@ Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-colorscheme-switcher'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'dbakker/vim-projectroot'
-Plugin 'octol/vim-cpp-enhanced-highlight'
+"Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'a.vim'
+Plugin 'bling/vim-airline'
+Plugin 'tpope/vim-surround'
 
 call vundle#end()
 filetype plugin indent on

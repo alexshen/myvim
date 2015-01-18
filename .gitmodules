@@ -89,3 +89,11 @@
 	path = vimfiles/bundle/a.vim
 	url = https://github.com/vim-scripts/a.vim
     ignore = dirty
+[submodule "vimfiles/bundle/vim-airline"]
+	path = vimfiles/bundle/vim-airline
+	url = https://github.com/bling/vim-airline
+    ignore = dirty
+[submodule "vimfiles/bundle/vim-surround"]
+	path = vimfiles/bundle/vim-surround
+    url = https://github.com/tpope/vim-surround
+    ignore = dirty
