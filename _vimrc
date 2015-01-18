@@ -34,7 +34,7 @@ Plugin 'The-NERD-tree'
 
 if filereadable(projectroot#guess() . '/.clang_complete')
     Plugin 'Rip-Rip/clang_complete'
-    if has('win32') || has('win64')
+    if has('win32')
         let g:clang_library_path = glob('~') . '/.vim/bundle/ycm-win/python'
     end
 else
@@ -65,7 +65,7 @@ Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-colorscheme-switcher'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'dbakker/vim-projectroot'
-"Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'a.vim'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-surround'
@@ -94,25 +94,6 @@ if version >= 500
 
   " Switch on search pattern highlighting.
   set hlsearch
-
-  " For Win32 version, have "K" lookup the keyword in a help file
-  "if has("win32")
-  "  let winhelpfile='windows.hlp'
-  "  map K :execute "!start winhlp32 -k <cword> " . winhelpfile <CR>
-  "endif
-
-  " Set nice colors
-  " background for normal text is light grey
-  " Text below the last line is darker grey
-  " Cursor is green, Cyan when ":lmap" mappings are active
-  " Constants are not underlined but have a slightly lighter background
-  highlight Normal guibg=grey90
-  highlight Cursor guibg=Green guifg=NONE
-  highlight lCursor guibg=Cyan guifg=NONE
-  highlight NonText guibg=grey80
-  highlight Constant gui=NONE guibg=grey95
-  highlight Special gui=NONE guibg=grey95
-
 endif
 
 " Check if a font is available
@@ -129,9 +110,10 @@ function! HasFontInstalled(font)
     return 0
 endfunction
 
-" Set locale to C, see :lang
-language C
 set langmenu=en_US
+let $LANG='en_US'
+source $VIMRUNTIME/delmenu.vim
+source $VIMRUNTIME/menu.vim
 
 if has('gui_win32')
     " au GUIEnter * simalt ~x
@@ -249,7 +231,10 @@ let g:ctrlp_lazy_update = 1
 let g:ctrlp_use_caching = 1
 let g:ctrlp_open_new_file = 'v'
 let g:ctrlp_working_path_mode = 'rc'
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_custom_ignore = {
+    \ 'dir': '\v[\/]\.(git|hg|svn)|obj$',
+    \ 'file': '\v\.(exe|so|obj|swp|ii|user|suo)',
+    \ }
 let g:ctrlp_max_files = 0
 noremap <silent> <leader>ff :CtrlP<CR>
 noremap <silent> <leader>ss :CtrlPTag<CR>
@@ -281,7 +266,7 @@ let g:clang_snippets = 1
 
 " enhanced cpp highlight
 let g:cpp_class_scope_highlight = 1
-let g:cpp_experimental_template_highlight = 1
+" let g:cpp_experimental_template_highlight = 1
 
 " a.vim
 nmap <silent> <A-o> :A<CR>
