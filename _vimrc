@@ -69,6 +69,7 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'a.vim'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-fugitive'
 
 call vundle#end()
 filetype plugin indent on

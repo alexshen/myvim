@@ -97,3 +97,7 @@
 	path = vimfiles/bundle/vim-surround
     url = https://github.com/tpope/vim-surround
     ignore = dirty
+[submodule "vimfiles/bundle/vim-fugitive"]
+	path = vimfiles/bundle/vim-fugitive
+    url = https://github.com/tpope/vim-fugitive
+    ignore = dirty
