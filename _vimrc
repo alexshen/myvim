@@ -141,7 +141,7 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
-colorscheme mydesert
+colorscheme desertEx
 "colorscheme mrdark
 "set guifont=courier_new:h10
 "set guifont=Lucida_Console:h10
@@ -272,3 +272,10 @@ let g:cpp_class_scope_highlight = 1
 " a.vim
 nmap <silent> <A-o> :A<CR>
 imap <silent> <A-o> :A<CR>
+
+" airline
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+" This is slow, so disable it
+let g:airline#extensions#tagbar#enabled = 0
+" make sure airline is always visible
+set laststatus=2
