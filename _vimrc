@@ -1,16 +1,16 @@
 " An example for a gvimrc file.
 " The commands in this are executed when the GUI is started.
 "
-" Maintainer:	Bram Moolenaar <Bram@vim.org>
+" Maintainer:   Bram Moolenaar <Bram@vim.org>
 " Last changed by:
-" 	Shen Alex
-" 	01/18/2015 Sun 
+"   Shen Alex
+"   01/18/2015 Sun 
 "
 " To use it, copy it to
 "     for Unix and OS/2:  ~/.gvimrc
-"	      for Amiga:  s:.gvimrc
+"         for Amiga:  s:.gvimrc
 "  for MS-DOS and Win32:  $VIM\_gvimrc
-"	    for OpenVMS:  sys$login:.gvimrc
+"       for OpenVMS:  sys$login:.gvimrc
 
 " Make external commands work through a pipe instead of a pseudo-tty
 "set noguipty
@@ -74,9 +74,10 @@ Plugin 'tpope/vim-fugitive'
 call vundle#end()
 filetype plugin indent on
 
-set ch=1		" Make command line one line high
+" cmd height 2
+set ch=2
 
-set mousehide		" Hide the mouse when typing text
+set mousehide       " Hide the mouse when typing text
 
 " Make shift-insert work like in Xterm
 map <S-Insert> <MiddleMouse>
