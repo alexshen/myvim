@@ -190,6 +190,7 @@ imap <C-DEL> <ESC>lcw
 nmap \t :retab<CR>
 " Press Space to turn off highlighting and clear any message already displayed.
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+noremap ; :
 
 autocmd FileType text syn match TextTag "\*[^* \t]\+\*"
 autocmd FileType text syn match TextJump "|[^* \t]\+|"
@@ -205,7 +206,7 @@ map <F7> <ESC>:Bexec()<CR>
 " let g:proj_window_width = 45
 
 " taglist
-let Tlist_WinWidth = 64
+let Tlist_WinWidth = 56 
 " show only the current file
 let Tlist_Show_One_File = 1
 " let Tlist_Use_Right_Window = 1
@@ -247,6 +248,7 @@ noremap <silent> <A-S-s> :CtrlPTag<CR>
 
 " Ycm
 let g:ycm_server_keep_logfiles = 1
+let g:ycm_confirm_extra_conf = 0
 "let g:ycm_server_use_vim_stdout = 1
 "let g:ycm_server_log_level = 'debug'
 
