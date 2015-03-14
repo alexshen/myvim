@@ -251,6 +251,8 @@ let g:ycm_server_keep_logfiles = 1
 let g:ycm_confirm_extra_conf = 0
 "let g:ycm_server_use_vim_stdout = 1
 "let g:ycm_server_log_level = 'debug'
+"let g:ycm_filetype_blacklist = { 'tex' : 1 }
+let g:ycm_filetype_specific_completion_to_disable = { 'tex' : 1 }
 
 " SnipMate
 imap <C-J> <Plug>snipMateNextOrTrigger
