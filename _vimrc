@@ -282,6 +282,3 @@ let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tagbar#enabled = 0
 " make sure airline is always visible
 set laststatus=2
-
-let g:tex_fold_enabled = 1
-let g:tex_fast = "bcmMprsSvV"
