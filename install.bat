@@ -16,14 +16,14 @@ mklink %HOME%\.gvimrc "%~dp0\_gvimrc"
 del %HOME%\.vim
 mklink /D %HOME%\.vim "%~dp0\vimfiles"
 
-set ycm_python=%~dp0\vimfiles\bundle\ycm-win\python
-set ycm_bin_ver=%ycm_python%\%version%
+set ycmd=%~dp0\vimfiles\bundle\ycm-win\third_party\ycmd
+set ycm_bin_ver=%ycmd%\%version%
 
-del "%ycm_python%\libclang.dll"
-mklink "%ycm_python%\libclang.dll" "%ycm_bin_ver%\libclang.dll"
+del "%ycmd%\libclang.dll"
+mklink "%ycmd%\libclang.dll" "%ycm_bin_ver%\libclang.dll"
 
-del "%ycm_python%\ycm_client_support.pyd"
-mklink "%ycm_python%\ycm_client_support.pyd" "%ycm_bin_ver%\ycm_client_support.pyd"
+del "%ycmd%\ycm_client_support.pyd"
+mklink "%ycmd%\ycm_client_support.pyd" "%ycm_bin_ver%\ycm_client_support.pyd"
 
-del "%ycm_python%\ycm_core.pyd"
-mklink "%ycm_python%\ycm_core.pyd" "%ycm_bin_ver%\ycm_core.pyd"
+del "%ycmd%\ycm_core.pyd"
+mklink "%ycmd%\ycm_core.pyd" "%ycm_bin_ver%\ycm_core.pyd"

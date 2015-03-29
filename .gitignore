@@ -2,3 +2,6 @@
 *.swp
 *.pyc
 vimfiles/bundle/**/doc/tags
+vimfiles/bundle/ycm-win/third_party/ycmd/libclang.dll
+vimfiles/bundle/ycm-win/third_party/ycmd/ycm_client_support.pyd
+vimfiles/bundle/ycm-win/third_party/ycmd/ycm_core.pyd
