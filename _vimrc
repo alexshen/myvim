@@ -73,6 +73,9 @@ Plugin 'tpope/vim-fugitive'
 
 call vundle#end()
 filetype plugin indent on
+set modeline
+" breaking for characters greater than 255, such as Chinese
+set fo+=m
 
 " cmd height 2
 set ch=2
@@ -176,7 +179,7 @@ filetype indent on
 " super tab, user defined completion
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabLongestEnhanced = 1
-set completeopt=menuone,menu,longest
+set completeopt=longest,menuone
 
 " 1. search tags in the directory where the current file is
 " 2. search in the current working directory
@@ -250,9 +253,11 @@ noremap <silent> <A-S-s> :CtrlPTag<CR>
 let g:ycm_server_keep_logfiles = 1
 let g:ycm_confirm_extra_conf = 0
 "let g:ycm_server_use_vim_stdout = 1
-"let g:ycm_server_log_level = 'debug'
-"let g:ycm_filetype_blacklist = { 'tex' : 1 }
-let g:ycm_filetype_specific_completion_to_disable = { 'tex' : 1 }
+let g:ycm_server_log_level = 'debug'
+let g:ycm_filetype_blacklist = { 'tex' : 1 }
+"let g:ycm_filetype_specific_completion_to_disable = { 'tex' : 1 }
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_key_invoke_completion = '<S-Space>'
 
 " SnipMate
 imap <C-J> <Plug>snipMateNextOrTrigger
