@@ -70,6 +70,7 @@ Plugin 'a.vim'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
+Plugin 'elzr/vim-json'
 
 call vundle#end()
 filetype plugin indent on

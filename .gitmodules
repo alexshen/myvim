@@ -101,3 +101,7 @@
 	path = vimfiles/bundle/vim-fugitive
     url = https://github.com/tpope/vim-fugitive
     ignore = dirty
+[submodule "vimfiles/bundle/vim-json"]
+	path = vimfiles/bundle/vim-json
+    url = https://github.com/elzr/vim-json
+    ignore = dirty
