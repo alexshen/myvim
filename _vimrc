@@ -255,7 +255,7 @@ let g:ycm_server_keep_logfiles = 1
 let g:ycm_confirm_extra_conf = 0
 "let g:ycm_server_use_vim_stdout = 1
 let g:ycm_server_log_level = 'debug'
-let g:ycm_filetype_blacklist = { 'tex' : 1 }
+let g:ycm_filetype_blacklist = { 'tex' : 1, 'json' : 1 }
 "let g:ycm_filetype_specific_completion_to_disable = { 'tex' : 1 }
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_key_invoke_completion = '<S-Space>'
@@ -283,6 +283,8 @@ let g:cpp_class_scope_highlight = 1
 " a.vim
 nmap <silent> <A-o> :A<CR>
 imap <silent> <A-o> :A<CR>
+let g:alternateExtensions_h = "cpp,cxx,cc,CC,c"
+let g:alternateExtensions_H = "CPP,CXX,CC,C"
 
 " airline
 let g:airline#extensions#tabline#buffer_idx_mode = 1
