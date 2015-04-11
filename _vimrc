@@ -174,6 +174,9 @@ set cindent cino+=g0,:0,l1,t0,(0
 "match xml or html tags
 set mps+=<:>
 
+" disable win alt keys
+set wak=no
+
 filetype plugin on
 filetype indent on
 
