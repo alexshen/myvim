@@ -71,6 +71,7 @@ Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
 Plugin 'elzr/vim-json'
+Plugin 'marijnh/tern_for_vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -295,3 +296,6 @@ let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tagbar#enabled = 0
 " make sure airline is always visible
 set laststatus=2
+
+" tern
+let g:tern_show_signature_in_pum = 1
