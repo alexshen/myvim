@@ -72,6 +72,8 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
 Plugin 'elzr/vim-json'
 Plugin 'marijnh/tern_for_vim'
+Plugin 'maksimr/vim-jsbeautify'
+Plugin 'einars/js-beautify'
 
 call vundle#end()
 filetype plugin indent on
@@ -247,9 +249,13 @@ let g:ctrlp_custom_ignore = {
     \ 'file': '\v\.(exe|so|obj|swp|ii|user|suo)',
     \ }
 let g:ctrlp_max_files = 0
-noremap <silent> <leader>ff :CtrlP<CR>
-noremap <silent> <leader>ss :CtrlPTag<CR>
-noremap <silent> <leader>rr :CtrlPClearCache<CR>
+let g:ctrlp_clear_cache_on_exit = 0
+
+noremap <silent> ,f :CtrlP<CR>
+noremap <silent> ,s :CtrlPTag<CR>
+noremap <silent> ,m :CtrlPMRU<CR>
+noremap <silent> ,b :CtrlPBuffer<CR>
+noremap <silent> ,r :CtrlPClearCache<CR>
 " visual assist style map
 noremap <silent> <A-S-o> :CtrlP<CR>
 noremap <silent> <A-S-s> :CtrlPTag<CR>
