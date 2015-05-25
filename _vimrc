@@ -305,3 +305,7 @@ set laststatus=2
 
 " tern
 let g:tern_show_signature_in_pum = 1
+
+" vim-jsbeautify
+autocmd FileType javascript noremap <buffer>  <c-s-f> :call JsBeautify()<cr>
+autocmd FileType javascript vnoremap <buffer> <c-s-f> :call RangeJsBeautify()<cr>
