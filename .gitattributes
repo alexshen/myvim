@@ -1,0 +1,6 @@
+*.vim eol=lf
+_vimrc eol=lf
+_gvimrc eol=lf
+*.sh eol=lf
+*.bat eol=crlf
+*.reg
