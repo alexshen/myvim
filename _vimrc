@@ -27,10 +27,10 @@ call vundle#begin()
 
 "Plugin 'gmarik/Vundle.vim'
 
-Plugin 'Align'
 Plugin 'Tagbar'
-Plugin 'The-NERD-Commenter'
-Plugin 'The-NERD-tree'
+Plugin 'junegunn/vim-easy-align'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
 
 if filereadable(projectroot#guess() . '/.clang_complete')
     Plugin 'Rip-Rip/clang_complete'
@@ -48,7 +48,7 @@ else
     endif
 endif
 
-Plugin 'ctrlp.vim'
+Plugin 'kien/ctrlp.vim'
 Plugin 'ervandew/supertab'
 Plugin 'fholgado/minibufexpl.vim'
 
@@ -182,6 +182,7 @@ set wak=no
 
 filetype plugin on
 filetype indent on
+let mapleader = ','
 
 " super tab, user defined completion
 let g:SuperTabDefaultCompletionType = "context"
@@ -207,10 +208,6 @@ autocmd FileType text syn match TextJump "|[^* \t]\+|"
 
 hi def link TextTag String
 hi def link TextJump Comment
-
-" set the height of the output window 
-let bexec_winheight = 5
-map <F7> <ESC>:Bexec()<CR>
 
 " project
 " let g:proj_window_width = 45
@@ -251,11 +248,11 @@ let g:ctrlp_custom_ignore = {
 let g:ctrlp_max_files = 0
 let g:ctrlp_clear_cache_on_exit = 0
 
-noremap <silent> ,f :CtrlP<CR>
-noremap <silent> ,s :CtrlPTag<CR>
-noremap <silent> ,m :CtrlPMRU<CR>
-noremap <silent> ,b :CtrlPBuffer<CR>
-noremap <silent> ,r :CtrlPClearCache<CR>
+noremap <silent> <Leader>f :CtrlP<CR>
+noremap <silent> <Leader>t :CtrlPTag<CR>
+noremap <silent> <Leader>m :CtrlPMRU<CR>
+noremap <silent> <Leader>b :CtrlPBuffer<CR>
+noremap <silent> <Leader>r :CtrlPClearCache<CR>
 " visual assist style map
 noremap <silent> <A-S-o> :CtrlP<CR>
 noremap <silent> <A-S-s> :CtrlPTag<CR>
@@ -311,3 +308,7 @@ let g:tern_show_signature_in_pum = 1
 " vim-jsbeautify
 autocmd FileType javascript noremap <buffer>  <c-s-f> :call JsBeautify()<cr>
 autocmd FileType javascript vnoremap <buffer> <c-s-f> :call RangeJsBeautify()<cr>
+
+" nerd tree
+nnoremap <silent> <Leader>nd :NERDTree<CR>
+nnoremap <silent> <Leader>nf :NERDTreeFind<CR>
