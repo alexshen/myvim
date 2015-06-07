@@ -1,6 +1,6 @@
 #! /bin/bash
 
-vim_dir=$(dirname "$0")
+vim_dir=$(cd $(dirname "$0") && pwd)
 
 pushd ~
 

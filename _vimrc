@@ -1,4 +1,5 @@
 set nocompatible
+set t_ut=
 filetype off
 
 set rtp+=~/.vim/bundle/Vundle.vim,~/.vim/bundle/vim-projectroot
