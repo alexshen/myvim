@@ -1,23 +1,3 @@
-" An example for a gvimrc file.
-" The commands in this are executed when the GUI is started.
-"
-" Maintainer:   Bram Moolenaar <Bram@vim.org>
-" Last changed by:
-"   Shen Alex
-"   01/18/2015 Sun 
-"
-" To use it, copy it to
-"     for Unix and OS/2:  ~/.gvimrc
-"         for Amiga:  s:.gvimrc
-"  for MS-DOS and Win32:  $VIM\_gvimrc
-"       for OpenVMS:  sys$login:.gvimrc
-
-" Make external commands work through a pipe instead of a pseudo-tty
-"set noguipty
-
-" set the X11 font to use
-" set guifont=-misc-fixed-medium-r-normal--14-130-75-75-c-70-iso8859-1
-
 set nocompatible
 filetype off
 
@@ -312,3 +292,6 @@ autocmd FileType javascript vnoremap <buffer> <c-s-f> :call RangeJsBeautify()<cr
 " nerd tree
 nnoremap <silent> <Leader>nd :NERDTree<CR>
 nnoremap <silent> <Leader>nf :NERDTreeFind<CR>
+
+" easy align
+vmap <CR> <Plug>(EasyAlign)
