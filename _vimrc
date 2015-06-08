@@ -55,6 +55,7 @@ Plugin 'elzr/vim-json'
 Plugin 'marijnh/tern_for_vim'
 Plugin 'maksimr/vim-jsbeautify'
 Plugin 'einars/js-beautify'
+Plugin 'szw/vim-ctrlspace'
 
 call vundle#end()
 filetype plugin indent on
@@ -296,3 +297,8 @@ nnoremap <silent> <Leader>nf :NERDTreeFind<CR>
 
 " easy align
 vmap <CR> <Plug>(EasyAlign)
+
+" ctrlspace
+set hidden
+let g:airline_exclude_preview = 1
+let g:ctrlspace_default_mapping_key = '<A-Space>'
