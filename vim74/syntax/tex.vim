@@ -477,26 +477,26 @@ if !exists("tex_no_math")
      \ ['\\{'          , '{'] ,
      \ ['\\}'          , '}'] ,
      \ ['|'            , '|'] ,
-     \ ['\\|'          , '   '] ,
+     \ ['\\|'          , '‖'] ,
      \ ['\\backslash'  , '\'] ,
-     \ ['\\downarrow'  , '   '] ,
-     \ ['\\Downarrow'  , '   '] ,
+     \ ['\\downarrow'  , '↓'] ,
+     \ ['\\Downarrow'  , '⇓'] ,
      \ ['\\langle'     , '<'] ,
      \ ['\\lbrace'     , '['] ,
-     \ ['\\lceil'      , '   '] ,
-     \ ['\\lfloor'     , '   '] ,
-     \ ['\\lgroup'     , '   '] ,
-     \ ['\\lmoustache' , '   '] ,
+     \ ['\\lceil'      , '⌈'] ,
+     \ ['\\lfloor'     , '⌊'] ,
+     \ ['\\lgroup'     , '⌊'] ,
+     \ ['\\lmoustache' , '⎛'] ,
      \ ['\\rangle'     , '>'] ,
      \ ['\\rbrace'     , ']'] ,
-     \ ['\\rceil'      , '   '] ,
-     \ ['\\rfloor'     , '   '] ,
-     \ ['\\rgroup'     , '   '] ,
-     \ ['\\rmoustache' , '   '] ,
-     \ ['\\uparrow'    , '   '] ,
-     \ ['\\Uparrow'    , '   '] ,
-     \ ['\\updownarrow', '   '] ,
-     \ ['\\Updownarrow', '   ']]
+     \ ['\\rceil'      , '⌉'] ,
+     \ ['\\rfloor'     , '⌋'] ,
+     \ ['\\rgroup'     , '⌋'] ,
+     \ ['\\rmoustache' , '⎞'] ,
+     \ ['\\uparrow'    , '↑'] ,
+     \ ['\\Uparrow'    , '↑'] ,
+     \ ['\\updownarrow', '↕'] ,
+     \ ['\\Updownarrow', '⇕']]
   syn match texMathDelim	'\\[bB]igg\=[lr]' contained nextgroup=texMathDelimBad
   for texmath in s:texMathDelimList
    exe "syn match texMathDelim	'\\\\[bB]igg\\=[lr]\\=".texmath[0]."'	contained conceal cchar=".texmath[1]
@@ -530,10 +530,10 @@ if !exists("tex_no_math")
 endif
 syn match texSpecialChar	"\^\^[0-9a-f]\{2}\|\^\^\S"
 if s:tex_conceal !~ 'S'
- syn match texSpecialChar	'\\glq\>'	contained conceal cchar=   
- syn match texSpecialChar	'\\grq\>'	contained conceal cchar=   
- syn match texSpecialChar	'\\glqq\>'	contained conceal cchar=   
- syn match texSpecialChar	'\\grqq\>'	contained conceal cchar=   
+ syn match texSpecialChar	'\\glq\>'	contained conceal cchar=‚
+ syn match texSpecialChar	'\\grq\>'	contained conceal cchar=‘
+ syn match texSpecialChar	'\\glqq\>'	contained conceal cchar=„
+ syn match texSpecialChar	'\\grqq\>'	contained conceal cchar=“
  syn match texSpecialChar	'\\hyp\>'	contained conceal cchar=-
 endif
 
@@ -662,284 +662,284 @@ endif
 if has("conceal") && &enc == 'utf-8'
 
  " Math Symbols {{{2
- " (many of these symbols were contributed by Bj  rn Winckler)
+ " (many of these symbols were contributed by Björn Winckler)
  if s:tex_conceal =~ 'm'
   let s:texMathList=[
-    \ ['|'		, '   '],
-    \ ['aleph'		, '   '],
-    \ ['amalg'		, '   '],
-    \ ['angle'		, '   '],
-    \ ['approx'		, '   '],
-    \ ['ast'		, '   '],
-    \ ['asymp'		, '   '],
-    \ ['backepsilon'	, '   '],
-    \ ['backsimeq'	, '   '],
-    \ ['backslash'	, '   '],
-    \ ['barwedge'	, '   '],
-    \ ['because'	, '   '],
-    \ ['between'	, '   '],
-    \ ['bigcap'		, '   '],
-    \ ['bigcirc'	, '   '],
-    \ ['bigcup'		, '   '],
-    \ ['bigodot'	, '   '],
-    \ ['bigoplus'	, '   '],
-    \ ['bigotimes'	, '   '],
-    \ ['bigsqcup'	, '   '],
-    \ ['bigtriangledown', '   '],
-    \ ['bigtriangleup'	, '   '],
-    \ ['bigvee'		, '   '],
-    \ ['bigwedge'	, '   '],
-    \ ['blacksquare'	, '   '],
-    \ ['bot'		, '   '],
-    \ ['bowtie'	        , '   '],
-    \ ['boxdot'		, '   '],
-    \ ['boxminus'	, '   '],
-    \ ['boxplus'	, '   '],
-    \ ['boxtimes'	, '   '],
-    \ ['bullet'	        , '   '],
-    \ ['bumpeq'		, '   '],
-    \ ['Bumpeq'		, '   '],
-    \ ['cap'		, '   '],
-    \ ['Cap'		, '   '],
-    \ ['cdot'		, '  '],
-    \ ['cdots'		, '   '],
-    \ ['circ'		, '   '],
-    \ ['circeq'		, '   '],
-    \ ['circlearrowleft', '   '],
-    \ ['circlearrowright', '   '],
-    \ ['circledast'	, '   '],
-    \ ['circledcirc'	, '   '],
-    \ ['clubsuit'	, '   '],
-    \ ['complement'	, '   '],
-    \ ['cong'		, '   '],
-    \ ['coprod'		, '   '],
-    \ ['copyright'	, '  '],
-    \ ['cup'		, '   '],
-    \ ['Cup'		, '   '],
-    \ ['curlyeqprec'	, '   '],
-    \ ['curlyeqsucc'	, '   '],
-    \ ['curlyvee'	, '   '],
-    \ ['curlywedge'	, '   '],
-    \ ['dagger'	        , '   '],
-    \ ['dashv'		, '   '],
-    \ ['ddagger'	, '   '],
-    \ ['ddots'	        , '   '],
-    \ ['diamond'	, '   '],
-    \ ['diamondsuit'	, '   '],
-    \ ['div'		, '  '],
-    \ ['doteq'		, '   '],
-    \ ['doteqdot'	, '   '],
-    \ ['dotplus'	, '   '],
-    \ ['dots'		, '   '],
-    \ ['dotsb'		, '   '],
-    \ ['dotsc'		, '   '],
-    \ ['dotsi'		, '   '],
-    \ ['dotso'		, '   '],
-    \ ['doublebarwedge'	, '   '],
-    \ ['downarrow'	, '   '],
-    \ ['Downarrow'	, '   '],
-    \ ['ell'		, '   '],
-    \ ['emptyset'	, '   '],
-    \ ['eqcirc'		, '   '],
-    \ ['eqsim'		, '   '],
-    \ ['eqslantgtr'	, '   '],
-    \ ['eqslantless'	, '   '],
-    \ ['equiv'		, '   '],
-    \ ['exists'		, '   '],
-    \ ['fallingdotseq'	, '   '],
-    \ ['flat'		, '   '],
-    \ ['forall'		, '   '],
-    \ ['frown'		, '   '],
-    \ ['ge'		, '   '],
-    \ ['geq'		, '   '],
-    \ ['geqq'		, '   '],
-    \ ['gets'		, '   '],
-    \ ['gg'		, '   '],
-    \ ['gneqq'		, '   '],
-    \ ['gtrdot'		, '   '],
-    \ ['gtreqless'	, '   '],
-    \ ['gtrless'	, '   '],
-    \ ['gtrsim'		, '   '],
-    \ ['hbar'		, '   '],
-    \ ['heartsuit'	, '   '],
-    \ ['hookleftarrow'	, '   '],
-    \ ['hookrightarrow'	, '   '],
-    \ ['iiint'		, '   '],
-    \ ['iint'		, '   '],
-    \ ['Im'		, '   '],
-    \ ['imath'		, '  '],
-    \ ['in'		, '   '],
-    \ ['infty'		, '   '],
-    \ ['int'		, '   '],
-    \ ['lceil'		, '   '],
-    \ ['ldots'		, '   '],
-    \ ['le'		, '   '],
-    \ ['leadsto'	, '   '],
+    \ ['|'		, '‖'],
+    \ ['aleph'		, 'ℵ'],
+    \ ['amalg'		, '∐'],
+    \ ['angle'		, '∠'],
+    \ ['approx'		, '≈'],
+    \ ['ast'		, '∗'],
+    \ ['asymp'		, '≍'],
+    \ ['backepsilon'	, '∍'],
+    \ ['backsimeq'	, '≃'],
+    \ ['backslash'	, '∖'],
+    \ ['barwedge'	, '⊼'],
+    \ ['because'	, '∵'],
+    \ ['between'	, '≬'],
+    \ ['bigcap'		, '∩'],
+    \ ['bigcirc'	, '○'],
+    \ ['bigcup'		, '∪'],
+    \ ['bigodot'	, '⊙'],
+    \ ['bigoplus'	, '⊕'],
+    \ ['bigotimes'	, '⊗'],
+    \ ['bigsqcup'	, '⊔'],
+    \ ['bigtriangledown', '∇'],
+    \ ['bigtriangleup'	, '∆'],
+    \ ['bigvee'		, '⋁'],
+    \ ['bigwedge'	, '⋀'],
+    \ ['blacksquare'	, '∎'],
+    \ ['bot'		, '⊥'],
+    \ ['bowtie'	        , '⋈'],
+    \ ['boxdot'		, '⊡'],
+    \ ['boxminus'	, '⊟'],
+    \ ['boxplus'	, '⊞'],
+    \ ['boxtimes'	, '⊠'],
+    \ ['bullet'	        , '•'],
+    \ ['bumpeq'		, '≏'],
+    \ ['Bumpeq'		, '≎'],
+    \ ['cap'		, '∩'],
+    \ ['Cap'		, '⋒'],
+    \ ['cdot'		, '·'],
+    \ ['cdots'		, '⋯'],
+    \ ['circ'		, '∘'],
+    \ ['circeq'		, '≗'],
+    \ ['circlearrowleft', '↺'],
+    \ ['circlearrowright', '↻'],
+    \ ['circledast'	, '⊛'],
+    \ ['circledcirc'	, '⊚'],
+    \ ['clubsuit'	, '♣'],
+    \ ['complement'	, '∁'],
+    \ ['cong'		, '≅'],
+    \ ['coprod'		, '∐'],
+    \ ['copyright'	, '©'],
+    \ ['cup'		, '∪'],
+    \ ['Cup'		, '⋓'],
+    \ ['curlyeqprec'	, '⋞'],
+    \ ['curlyeqsucc'	, '⋟'],
+    \ ['curlyvee'	, '⋎'],
+    \ ['curlywedge'	, '⋏'],
+    \ ['dagger'	        , '†'],
+    \ ['dashv'		, '⊣'],
+    \ ['ddagger'	, '‡'],
+    \ ['ddots'	        , '⋱'],
+    \ ['diamond'	, '⋄'],
+    \ ['diamondsuit'	, '♢'],
+    \ ['div'		, '÷'],
+    \ ['doteq'		, '≐'],
+    \ ['doteqdot'	, '≑'],
+    \ ['dotplus'	, '∔'],
+    \ ['dots'		, '…'],
+    \ ['dotsb'		, '⋯'],
+    \ ['dotsc'		, '…'],
+    \ ['dotsi'		, '⋯'],
+    \ ['dotso'		, '…'],
+    \ ['doublebarwedge'	, '⩞'],
+    \ ['downarrow'	, '↓'],
+    \ ['Downarrow'	, '⇓'],
+    \ ['ell'		, 'ℓ'],
+    \ ['emptyset'	, '∅'],
+    \ ['eqcirc'		, '≖'],
+    \ ['eqsim'		, '≂'],
+    \ ['eqslantgtr'	, '⪖'],
+    \ ['eqslantless'	, '⪕'],
+    \ ['equiv'		, '≡'],
+    \ ['exists'		, '∃'],
+    \ ['fallingdotseq'	, '≒'],
+    \ ['flat'		, '♭'],
+    \ ['forall'		, '∀'],
+    \ ['frown'		, '⁔'],
+    \ ['ge'		, '≥'],
+    \ ['geq'		, '≥'],
+    \ ['geqq'		, '≧'],
+    \ ['gets'		, '←'],
+    \ ['gg'		, '⟫'],
+    \ ['gneqq'		, '≩'],
+    \ ['gtrdot'		, '⋗'],
+    \ ['gtreqless'	, '⋛'],
+    \ ['gtrless'	, '≷'],
+    \ ['gtrsim'		, '≳'],
+    \ ['hbar'		, 'ℏ'],
+    \ ['heartsuit'	, '♡'],
+    \ ['hookleftarrow'	, '↩'],
+    \ ['hookrightarrow'	, '↪'],
+    \ ['iiint'		, '∭'],
+    \ ['iint'		, '∬'],
+    \ ['Im'		, 'ℑ'],
+    \ ['imath'		, 'ɩ'],
+    \ ['in'		, '∈'],
+    \ ['infty'		, '∞'],
+    \ ['int'		, '∫'],
+    \ ['lceil'		, '⌈'],
+    \ ['ldots'		, '…'],
+    \ ['le'		, '≤'],
+    \ ['leadsto'	, '↝'],
     \ ['left('		, '('],
     \ ['left\['		, '['],
     \ ['left\\{'	, '{'],
-    \ ['leftarrow'	, '   '],
-    \ ['Leftarrow'	, '   '],
-    \ ['leftarrowtail'	, '   '],
-    \ ['leftharpoondown', '   '],
-    \ ['leftharpoonup'	, '   '],
-    \ ['leftrightarrow'	, '   '],
-    \ ['Leftrightarrow'	, '   '],
-    \ ['leftrightsquigarrow', '   '],
-    \ ['leftthreetimes'	, '   '],
-    \ ['leq'		, '   '],
-    \ ['leq'		, '   '],
-    \ ['leqq'		, '   '],
-    \ ['lessdot'	, '   '],
-    \ ['lesseqgtr'	, '   '],
-    \ ['lesssim'	, '   '],
-    \ ['lfloor'		, '   '],
-    \ ['ll'		, '   '],
-    \ ['lmoustache'     , '   '],
-    \ ['lneqq'		, '   '],
-    \ ['ltimes'		, '   '],
-    \ ['mapsto'		, '   '],
-    \ ['measuredangle'	, '   '],
-    \ ['mid'		, '   '],
-    \ ['models'		, '   '],
-    \ ['mp'		, '   '],
-    \ ['nabla'		, '   '],
-    \ ['natural'	, '   '],
-    \ ['ncong'		, '   '],
-    \ ['ne'		, '   '],
-    \ ['nearrow'	, '   '],
-    \ ['neg'		, '  '],
-    \ ['neq'		, '   '],
-    \ ['nexists'	, '   '],
-    \ ['ngeq'		, '   '],
-    \ ['ngeqq'		, '   '],
-    \ ['ngtr'		, '   '],
-    \ ['ni'		, '   '],
-    \ ['nleftarrow'	, '   '],
-    \ ['nLeftarrow'	, '   '],
-    \ ['nLeftrightarrow', '   '],
-    \ ['nleq'		, '   '],
-    \ ['nleqq'		, '   '],
-    \ ['nless'		, '   '],
-    \ ['nmid'		, '   '],
-    \ ['notin'		, '   '],
-    \ ['nprec'		, '   '],
-    \ ['nrightarrow'	, '   '],
-    \ ['nRightarrow'	, '   '],
-    \ ['nsim'		, '   '],
-    \ ['nsucc'		, '   '],
-    \ ['ntriangleleft'	, '   '],
-    \ ['ntrianglelefteq', '   '],
-    \ ['ntriangleright'	, '   '],
-    \ ['ntrianglerighteq', '   '],
-    \ ['nvdash'		, '   '],
-    \ ['nvDash'		, '   '],
-    \ ['nVdash'		, '   '],
-    \ ['nwarrow'	, '   '],
-    \ ['odot'		, '   '],
-    \ ['oint'		, '   '],
-    \ ['ominus'		, '   '],
-    \ ['oplus'		, '   '],
-    \ ['oslash'		, '   '],
-    \ ['otimes'		, '   '],
-    \ ['owns'		, '   '],
-    \ ['P'	        , '  '],
-    \ ['parallel'	, '   '],
-    \ ['partial'	, '   '],
-    \ ['perp'		, '   '],
-    \ ['pitchfork'	, '   '],
-    \ ['pm'		, '  '],
-    \ ['prec'		, '   '],
-    \ ['precapprox'	, '   '],
-    \ ['preccurlyeq'	, '   '],
-    \ ['preceq'		, '   '],
-    \ ['precnapprox'	, '   '],
-    \ ['precneqq'	, '   '],
-    \ ['precsim'	, '   '],
-    \ ['prime'		, '   '],
-    \ ['prod'		, '   '],
-    \ ['propto'		, '   '],
-    \ ['rceil'		, '   '],
-    \ ['Re'		, '   '],
-    \ ['rfloor'		, '   '],
+    \ ['leftarrow'	, '⟵'],
+    \ ['Leftarrow'	, '⟸'],
+    \ ['leftarrowtail'	, '↢'],
+    \ ['leftharpoondown', '↽'],
+    \ ['leftharpoonup'	, '↼'],
+    \ ['leftrightarrow'	, '↔'],
+    \ ['Leftrightarrow'	, '⇔'],
+    \ ['leftrightsquigarrow', '↭'],
+    \ ['leftthreetimes'	, '⋋'],
+    \ ['leq'		, '≤'],
+    \ ['leq'		, '≤'],
+    \ ['leqq'		, '≦'],
+    \ ['lessdot'	, '⋖'],
+    \ ['lesseqgtr'	, '⋚'],
+    \ ['lesssim'	, '≲'],
+    \ ['lfloor'		, '⌊'],
+    \ ['ll'		, '≪'],
+    \ ['lmoustache'     , '╭'],
+    \ ['lneqq'		, '≨'],
+    \ ['ltimes'		, '⋉'],
+    \ ['mapsto'		, '↦'],
+    \ ['measuredangle'	, '∡'],
+    \ ['mid'		, '∣'],
+    \ ['models'		, '╞'],
+    \ ['mp'		, '∓'],
+    \ ['nabla'		, '∇'],
+    \ ['natural'	, '♮'],
+    \ ['ncong'		, '≇'],
+    \ ['ne'		, '≠'],
+    \ ['nearrow'	, '↗'],
+    \ ['neg'		, '¬'],
+    \ ['neq'		, '≠'],
+    \ ['nexists'	, '∄'],
+    \ ['ngeq'		, '≱'],
+    \ ['ngeqq'		, '≱'],
+    \ ['ngtr'		, '≯'],
+    \ ['ni'		, '∋'],
+    \ ['nleftarrow'	, '↚'],
+    \ ['nLeftarrow'	, '⇍'],
+    \ ['nLeftrightarrow', '⇎'],
+    \ ['nleq'		, '≰'],
+    \ ['nleqq'		, '≰'],
+    \ ['nless'		, '≮'],
+    \ ['nmid'		, '∤'],
+    \ ['notin'		, '∉'],
+    \ ['nprec'		, '⊀'],
+    \ ['nrightarrow'	, '↛'],
+    \ ['nRightarrow'	, '⇏'],
+    \ ['nsim'		, '≁'],
+    \ ['nsucc'		, '⊁'],
+    \ ['ntriangleleft'	, '⋪'],
+    \ ['ntrianglelefteq', '⋬'],
+    \ ['ntriangleright'	, '⋫'],
+    \ ['ntrianglerighteq', '⋭'],
+    \ ['nvdash'		, '⊬'],
+    \ ['nvDash'		, '⊭'],
+    \ ['nVdash'		, '⊮'],
+    \ ['nwarrow'	, '↖'],
+    \ ['odot'		, '⊙'],
+    \ ['oint'		, '∮'],
+    \ ['ominus'		, '⊖'],
+    \ ['oplus'		, '⊕'],
+    \ ['oslash'		, '⊘'],
+    \ ['otimes'		, '⊗'],
+    \ ['owns'		, '∋'],
+    \ ['P'	        , '¶'],
+    \ ['parallel'	, '║'],
+    \ ['partial'	, '∂'],
+    \ ['perp'		, '⊥'],
+    \ ['pitchfork'	, '⋔'],
+    \ ['pm'		, '±'],
+    \ ['prec'		, '≺'],
+    \ ['precapprox'	, '⪷'],
+    \ ['preccurlyeq'	, '≼'],
+    \ ['preceq'		, '⪯'],
+    \ ['precnapprox'	, '⪹'],
+    \ ['precneqq'	, '⪵'],
+    \ ['precsim'	, '≾'],
+    \ ['prime'		, '′'],
+    \ ['prod'		, '∏'],
+    \ ['propto'		, '∝'],
+    \ ['rceil'		, '⌉'],
+    \ ['Re'		, 'ℜ'],
+    \ ['rfloor'		, '⌋'],
     \ ['right)'		, ')'],
     \ ['right]'		, ']'],
     \ ['right\\}'	, '}'],
-    \ ['rightarrow'	, '   '],
-    \ ['Rightarrow'	, '   '],
-    \ ['rightarrowtail'	, '   '],
-    \ ['rightleftharpoons', '   '],
-    \ ['rightsquigarrow', '   '],
-    \ ['rightthreetimes', '   '],
-    \ ['risingdotseq'	, '   '],
-    \ ['rmoustache'     , '   '],
-    \ ['rtimes'		, '   '],
-    \ ['S'	        , '  '],
-    \ ['searrow'	, '   '],
-    \ ['setminus'	, '   '],
-    \ ['sharp'		, '   '],
-    \ ['sim'		, '   '],
-    \ ['simeq'		, '   '],
-    \ ['smile'		, '   '],
-    \ ['spadesuit'	, '   '],
-    \ ['sphericalangle'	, '   '],
-    \ ['sqcap'		, '   '],
-    \ ['sqcup'		, '   '],
-    \ ['sqsubset'	, '   '],
-    \ ['sqsubseteq'	, '   '],
-    \ ['sqsupset'	, '   '],
-    \ ['sqsupseteq'	, '   '],
-    \ ['star'		, '   '],
-    \ ['subset'		, '   '],
-    \ ['Subset'		, '   '],
-    \ ['subseteq'	, '   '],
-    \ ['subseteqq'	, '   '],
-    \ ['subsetneq'	, '   '],
-    \ ['subsetneqq'	, '   '],
-    \ ['succ'		, '   '],
-    \ ['succapprox'	, '   '],
-    \ ['succcurlyeq'	, '   '],
-    \ ['succeq'		, '   '],
-    \ ['succnapprox'	, '   '],
-    \ ['succneqq'	, '   '],
-    \ ['succsim'	, '   '],
-    \ ['sum'		, '   '],
-    \ ['supset'		, '   '],
-    \ ['Supset'		, '   '],
-    \ ['supseteq'	, '   '],
-    \ ['supseteqq'	, '   '],
-    \ ['supsetneq'	, '   '],
-    \ ['supsetneqq'	, '   '],
-    \ ['surd'		, '   '],
-    \ ['swarrow'	, '   '],
-    \ ['therefore'	, '   '],
-    \ ['times'		, '  '],
-    \ ['to'		, '   '],
-    \ ['top'		, '   '],
-    \ ['triangle'	, '   '],
-    \ ['triangleleft'	, '   '],
-    \ ['trianglelefteq'	, '   '],
-    \ ['triangleq'	, '   '],
-    \ ['triangleright'	, '   '],
-    \ ['trianglerighteq', '   '],
-    \ ['twoheadleftarrow', '   '],
-    \ ['twoheadrightarrow', '   '],
-    \ ['uparrow'	, '   '],
-    \ ['Uparrow'	, '   '],
-    \ ['updownarrow'	, '   '],
-    \ ['Updownarrow'	, '   '],
-    \ ['varnothing'	, '   '],
-    \ ['vartriangle'	, '   '],
-    \ ['vdash'		, '   '],
-    \ ['vDash'		, '   '],
-    \ ['Vdash'		, '   '],
-    \ ['vdots'		, '   '],
-    \ ['vee'		, '   '],
-    \ ['veebar'		, '   '],
-    \ ['Vvdash'		, '   '],
-    \ ['wedge'		, '   '],
-    \ ['wp'		, '   '],
-    \ ['wr'		, '   ']]
+    \ ['rightarrow'	, '⟶'],
+    \ ['Rightarrow'	, '⟹'],
+    \ ['rightarrowtail'	, '↣'],
+    \ ['rightleftharpoons', '⇌'],
+    \ ['rightsquigarrow', '↝'],
+    \ ['rightthreetimes', '⋌'],
+    \ ['risingdotseq'	, '≓'],
+    \ ['rmoustache'     , '╮'],
+    \ ['rtimes'		, '⋊'],
+    \ ['S'	        , '§'],
+    \ ['searrow'	, '↘'],
+    \ ['setminus'	, '∖'],
+    \ ['sharp'		, '♯'],
+    \ ['sim'		, '∼'],
+    \ ['simeq'		, '⋍'],
+    \ ['smile'		, '‿'],
+    \ ['spadesuit'	, '♠'],
+    \ ['sphericalangle'	, '∢'],
+    \ ['sqcap'		, '⊓'],
+    \ ['sqcup'		, '⊔'],
+    \ ['sqsubset'	, '⊏'],
+    \ ['sqsubseteq'	, '⊑'],
+    \ ['sqsupset'	, '⊐'],
+    \ ['sqsupseteq'	, '⊒'],
+    \ ['star'		, '✫'],
+    \ ['subset'		, '⊂'],
+    \ ['Subset'		, '⋐'],
+    \ ['subseteq'	, '⊆'],
+    \ ['subseteqq'	, '⫅'],
+    \ ['subsetneq'	, '⊊'],
+    \ ['subsetneqq'	, '⫋'],
+    \ ['succ'		, '≻'],
+    \ ['succapprox'	, '⪸'],
+    \ ['succcurlyeq'	, '≽'],
+    \ ['succeq'		, '⪰'],
+    \ ['succnapprox'	, '⪺'],
+    \ ['succneqq'	, '⪶'],
+    \ ['succsim'	, '≿'],
+    \ ['sum'		, '∑'],
+    \ ['supset'		, '⊃'],
+    \ ['Supset'		, '⋑'],
+    \ ['supseteq'	, '⊇'],
+    \ ['supseteqq'	, '⫆'],
+    \ ['supsetneq'	, '⊋'],
+    \ ['supsetneqq'	, '⫌'],
+    \ ['surd'		, '√'],
+    \ ['swarrow'	, '↙'],
+    \ ['therefore'	, '∴'],
+    \ ['times'		, '×'],
+    \ ['to'		, '→'],
+    \ ['top'		, '⊤'],
+    \ ['triangle'	, '∆'],
+    \ ['triangleleft'	, '⊲'],
+    \ ['trianglelefteq'	, '⊴'],
+    \ ['triangleq'	, '≜'],
+    \ ['triangleright'	, '⊳'],
+    \ ['trianglerighteq', '⊵'],
+    \ ['twoheadleftarrow', '↞'],
+    \ ['twoheadrightarrow', '↠'],
+    \ ['uparrow'	, '↑'],
+    \ ['Uparrow'	, '⇑'],
+    \ ['updownarrow'	, '↕'],
+    \ ['Updownarrow'	, '⇕'],
+    \ ['varnothing'	, '∅'],
+    \ ['vartriangle'	, '∆'],
+    \ ['vdash'		, '⊢'],
+    \ ['vDash'		, '⊨'],
+    \ ['Vdash'		, '⊩'],
+    \ ['vdots'		, '⋮'],
+    \ ['vee'		, '∨'],
+    \ ['veebar'		, '⊻'],
+    \ ['Vvdash'		, '⊪'],
+    \ ['wedge'		, '∧'],
+    \ ['wp'		, '℘'],
+    \ ['wr'		, '≀']]
 "    \ ['jmath'		, 'X']
 "    \ ['uminus'	, 'X']
 "    \ ['uplus'		, 'X']
@@ -952,33 +952,33 @@ if has("conceal") && &enc == 'utf-8'
   endfor
 
   if &ambw == "double"
-   syn match texMathSymbol '\\gg\>'			contained conceal cchar=   
-   syn match texMathSymbol '\\ll\>'			contained conceal cchar=   
+   syn match texMathSymbol '\\gg\>'			contained conceal cchar=≫
+   syn match texMathSymbol '\\ll\>'			contained conceal cchar=≪
   else
-   syn match texMathSymbol '\\gg\>'			contained conceal cchar=   
-   syn match texMathSymbol '\\ll\>'			contained conceal cchar=   
+   syn match texMathSymbol '\\gg\>'			contained conceal cchar=⟫
+   syn match texMathSymbol '\\ll\>'			contained conceal cchar=⟪
   endif
 
-  syn match texMathSymbol '\\hat{a}' contained conceal cchar=  
-  syn match texMathSymbol '\\hat{A}' contained conceal cchar=  
-  syn match texMathSymbol '\\hat{c}' contained conceal cchar=  
-  syn match texMathSymbol '\\hat{C}' contained conceal cchar=  
-  syn match texMathSymbol '\\hat{e}' contained conceal cchar=  
-  syn match texMathSymbol '\\hat{E}' contained conceal cchar=  
-  syn match texMathSymbol '\\hat{g}' contained conceal cchar=  
-  syn match texMathSymbol '\\hat{G}' contained conceal cchar=  
-  syn match texMathSymbol '\\hat{i}' contained conceal cchar=  
-  syn match texMathSymbol '\\hat{I}' contained conceal cchar=  
-  syn match texMathSymbol '\\hat{o}' contained conceal cchar=  
-  syn match texMathSymbol '\\hat{O}' contained conceal cchar=  
-  syn match texMathSymbol '\\hat{s}' contained conceal cchar=  
-  syn match texMathSymbol '\\hat{S}' contained conceal cchar=  
-  syn match texMathSymbol '\\hat{u}' contained conceal cchar=  
-  syn match texMathSymbol '\\hat{U}' contained conceal cchar=  
-  syn match texMathSymbol '\\hat{w}' contained conceal cchar=  
-  syn match texMathSymbol '\\hat{W}' contained conceal cchar=  
-  syn match texMathSymbol '\\hat{y}' contained conceal cchar=  
-  syn match texMathSymbol '\\hat{Y}' contained conceal cchar=  
+  syn match texMathSymbol '\\hat{a}' contained conceal cchar=â
+  syn match texMathSymbol '\\hat{A}' contained conceal cchar=Â
+  syn match texMathSymbol '\\hat{c}' contained conceal cchar=ĉ
+  syn match texMathSymbol '\\hat{C}' contained conceal cchar=Ĉ
+  syn match texMathSymbol '\\hat{e}' contained conceal cchar=ê
+  syn match texMathSymbol '\\hat{E}' contained conceal cchar=Ê
+  syn match texMathSymbol '\\hat{g}' contained conceal cchar=ĝ
+  syn match texMathSymbol '\\hat{G}' contained conceal cchar=Ĝ
+  syn match texMathSymbol '\\hat{i}' contained conceal cchar=î
+  syn match texMathSymbol '\\hat{I}' contained conceal cchar=Î
+  syn match texMathSymbol '\\hat{o}' contained conceal cchar=ô
+  syn match texMathSymbol '\\hat{O}' contained conceal cchar=Ô
+  syn match texMathSymbol '\\hat{s}' contained conceal cchar=ŝ
+  syn match texMathSymbol '\\hat{S}' contained conceal cchar=Ŝ
+  syn match texMathSymbol '\\hat{u}' contained conceal cchar=û
+  syn match texMathSymbol '\\hat{U}' contained conceal cchar=Û
+  syn match texMathSymbol '\\hat{w}' contained conceal cchar=ŵ
+  syn match texMathSymbol '\\hat{W}' contained conceal cchar=Ŵ
+  syn match texMathSymbol '\\hat{y}' contained conceal cchar=ŷ
+  syn match texMathSymbol '\\hat{Y}' contained conceal cchar=Ŷ
  endif
 
  " Greek {{{2
@@ -986,45 +986,45 @@ if has("conceal") && &enc == 'utf-8'
   fun! s:Greek(group,pat,cchar)
     exe 'syn match '.a:group." '".a:pat."' contained conceal cchar=".a:cchar
   endfun
-  call s:Greek('texGreek','\\alpha\>'		,'  ')
-  call s:Greek('texGreek','\\beta\>'		,'  ')
-  call s:Greek('texGreek','\\gamma\>'		,'  ')
-  call s:Greek('texGreek','\\delta\>'		,'  ')
-  call s:Greek('texGreek','\\epsilon\>'		,'  ')
-  call s:Greek('texGreek','\\varepsilon\>'	,'  ')
-  call s:Greek('texGreek','\\zeta\>'		,'  ')
-  call s:Greek('texGreek','\\eta\>'		,'  ')
-  call s:Greek('texGreek','\\theta\>'		,'  ')
-  call s:Greek('texGreek','\\vartheta\>'		,'  ')
-  call s:Greek('texGreek','\\kappa\>'		,'  ')
-  call s:Greek('texGreek','\\lambda\>'		,'  ')
-  call s:Greek('texGreek','\\mu\>'		,'  ')
-  call s:Greek('texGreek','\\nu\>'		,'  ')
-  call s:Greek('texGreek','\\xi\>'		,'  ')
-  call s:Greek('texGreek','\\pi\>'		,'  ')
-  call s:Greek('texGreek','\\varpi\>'		,'  ')
-  call s:Greek('texGreek','\\rho\>'		,'  ')
-  call s:Greek('texGreek','\\varrho\>'		,'  ')
-  call s:Greek('texGreek','\\sigma\>'		,'  ')
-  call s:Greek('texGreek','\\varsigma\>'		,'  ')
-  call s:Greek('texGreek','\\tau\>'		,'  ')
-  call s:Greek('texGreek','\\upsilon\>'		,'  ')
-  call s:Greek('texGreek','\\phi\>'		,'  ')
-  call s:Greek('texGreek','\\varphi\>'		,'  ')
-  call s:Greek('texGreek','\\chi\>'		,'  ')
-  call s:Greek('texGreek','\\psi\>'		,'  ')
-  call s:Greek('texGreek','\\omega\>'		,'  ')
-  call s:Greek('texGreek','\\Gamma\>'		,'  ')
-  call s:Greek('texGreek','\\Delta\>'		,'  ')
-  call s:Greek('texGreek','\\Theta\>'		,'  ')
-  call s:Greek('texGreek','\\Lambda\>'		,'  ')
-  call s:Greek('texGreek','\\Xi\>'		,'  ')
-  call s:Greek('texGreek','\\Pi\>'		,'  ')
-  call s:Greek('texGreek','\\Sigma\>'		,'  ')
-  call s:Greek('texGreek','\\Upsilon\>'		,'  ')
-  call s:Greek('texGreek','\\Phi\>'		,'  ')
-  call s:Greek('texGreek','\\Psi\>'		,'  ')
-  call s:Greek('texGreek','\\Omega\>'		,'  ')
+  call s:Greek('texGreek','\\alpha\>'		,'α')
+  call s:Greek('texGreek','\\beta\>'		,'β')
+  call s:Greek('texGreek','\\gamma\>'		,'γ')
+  call s:Greek('texGreek','\\delta\>'		,'δ')
+  call s:Greek('texGreek','\\epsilon\>'		,'ϵ')
+  call s:Greek('texGreek','\\varepsilon\>'	,'ε')
+  call s:Greek('texGreek','\\zeta\>'		,'ζ')
+  call s:Greek('texGreek','\\eta\>'		,'η')
+  call s:Greek('texGreek','\\theta\>'		,'θ')
+  call s:Greek('texGreek','\\vartheta\>'		,'ϑ')
+  call s:Greek('texGreek','\\kappa\>'		,'κ')
+  call s:Greek('texGreek','\\lambda\>'		,'λ')
+  call s:Greek('texGreek','\\mu\>'		,'μ')
+  call s:Greek('texGreek','\\nu\>'		,'ν')
+  call s:Greek('texGreek','\\xi\>'		,'ξ')
+  call s:Greek('texGreek','\\pi\>'		,'π')
+  call s:Greek('texGreek','\\varpi\>'		,'ϖ')
+  call s:Greek('texGreek','\\rho\>'		,'ρ')
+  call s:Greek('texGreek','\\varrho\>'		,'ϱ')
+  call s:Greek('texGreek','\\sigma\>'		,'σ')
+  call s:Greek('texGreek','\\varsigma\>'		,'ς')
+  call s:Greek('texGreek','\\tau\>'		,'τ')
+  call s:Greek('texGreek','\\upsilon\>'		,'υ')
+  call s:Greek('texGreek','\\phi\>'		,'φ')
+  call s:Greek('texGreek','\\varphi\>'		,'ϕ')
+  call s:Greek('texGreek','\\chi\>'		,'χ')
+  call s:Greek('texGreek','\\psi\>'		,'ψ')
+  call s:Greek('texGreek','\\omega\>'		,'ω')
+  call s:Greek('texGreek','\\Gamma\>'		,'Γ')
+  call s:Greek('texGreek','\\Delta\>'		,'Δ')
+  call s:Greek('texGreek','\\Theta\>'		,'Θ')
+  call s:Greek('texGreek','\\Lambda\>'		,'Λ')
+  call s:Greek('texGreek','\\Xi\>'		,'Χ')
+  call s:Greek('texGreek','\\Pi\>'		,'Π')
+  call s:Greek('texGreek','\\Sigma\>'		,'Σ')
+  call s:Greek('texGreek','\\Upsilon\>'		,'Υ')
+  call s:Greek('texGreek','\\Phi\>'		,'Φ')
+  call s:Greek('texGreek','\\Psi\>'		,'Ψ')
+  call s:Greek('texGreek','\\Omega\>'		,'Ω')
   delfun s:Greek
  endif
 
@@ -1038,101 +1038,101 @@ if has("conceal") && &enc == 'utf-8'
     exe 'syn match '.a:group." '".a:leader.a:pat."' contained conceal cchar=".a:cchar
     exe 'syn match '.a:group."s '".a:pat."' contained conceal cchar=".a:cchar.' nextgroup='.a:group.'s'
   endfun
-  call s:SuperSub('texSuperscript','\^','0','   ')
-  call s:SuperSub('texSuperscript','\^','1','  ')
-  call s:SuperSub('texSuperscript','\^','2','  ')
-  call s:SuperSub('texSuperscript','\^','3','  ')
-  call s:SuperSub('texSuperscript','\^','4','   ')
-  call s:SuperSub('texSuperscript','\^','5','   ')
-  call s:SuperSub('texSuperscript','\^','6','   ')
-  call s:SuperSub('texSuperscript','\^','7','   ')
-  call s:SuperSub('texSuperscript','\^','8','   ')
-  call s:SuperSub('texSuperscript','\^','9','   ')
-  call s:SuperSub('texSuperscript','\^','a','   ')
-  call s:SuperSub('texSuperscript','\^','b','   ')
-  call s:SuperSub('texSuperscript','\^','c','   ')
-  call s:SuperSub('texSuperscript','\^','d','   ')
-  call s:SuperSub('texSuperscript','\^','e','   ')
-  call s:SuperSub('texSuperscript','\^','f','   ')
-  call s:SuperSub('texSuperscript','\^','g','   ')
-  call s:SuperSub('texSuperscript','\^','h','  ')
-  call s:SuperSub('texSuperscript','\^','i','   ')
-  call s:SuperSub('texSuperscript','\^','j','  ')
-  call s:SuperSub('texSuperscript','\^','k','   ')
-  call s:SuperSub('texSuperscript','\^','l','  ')
-  call s:SuperSub('texSuperscript','\^','m','   ')
-  call s:SuperSub('texSuperscript','\^','n','   ')
-  call s:SuperSub('texSuperscript','\^','o','   ')
-  call s:SuperSub('texSuperscript','\^','p','   ')
-  call s:SuperSub('texSuperscript','\^','r','  ')
-  call s:SuperSub('texSuperscript','\^','s','  ')
-  call s:SuperSub('texSuperscript','\^','t','   ')
-  call s:SuperSub('texSuperscript','\^','u','   ')
-  call s:SuperSub('texSuperscript','\^','v','   ')
-  call s:SuperSub('texSuperscript','\^','w','  ')
-  call s:SuperSub('texSuperscript','\^','x','  ')
-  call s:SuperSub('texSuperscript','\^','y','  ')
-  call s:SuperSub('texSuperscript','\^','z','   ')
-  call s:SuperSub('texSuperscript','\^','A','   ')
-  call s:SuperSub('texSuperscript','\^','B','   ')
-  call s:SuperSub('texSuperscript','\^','D','   ')
-  call s:SuperSub('texSuperscript','\^','E','   ')
-  call s:SuperSub('texSuperscript','\^','G','   ')
-  call s:SuperSub('texSuperscript','\^','H','   ')
-  call s:SuperSub('texSuperscript','\^','I','   ')
-  call s:SuperSub('texSuperscript','\^','J','   ')
-  call s:SuperSub('texSuperscript','\^','K','   ')
-  call s:SuperSub('texSuperscript','\^','L','   ')
-  call s:SuperSub('texSuperscript','\^','M','   ')
-  call s:SuperSub('texSuperscript','\^','N','   ')
-  call s:SuperSub('texSuperscript','\^','O','   ')
-  call s:SuperSub('texSuperscript','\^','P','   ')
-  call s:SuperSub('texSuperscript','\^','R','   ')
-  call s:SuperSub('texSuperscript','\^','T','   ')
-  call s:SuperSub('texSuperscript','\^','U','   ')
-  call s:SuperSub('texSuperscript','\^','W','   ')
-  call s:SuperSub('texSuperscript','\^',',','   ')
-  call s:SuperSub('texSuperscript','\^',':','   ')
-  call s:SuperSub('texSuperscript','\^',';','   ')
-  call s:SuperSub('texSuperscript','\^','+','   ')
-  call s:SuperSub('texSuperscript','\^','-','   ')
-  call s:SuperSub('texSuperscript','\^','<','  ')
-  call s:SuperSub('texSuperscript','\^','>','  ')
-  call s:SuperSub('texSuperscript','\^','/','  ')
-  call s:SuperSub('texSuperscript','\^','(','   ')
-  call s:SuperSub('texSuperscript','\^',')','   ')
-  call s:SuperSub('texSuperscript','\^','\.','  ')
-  call s:SuperSub('texSuperscript','\^','=','  ')
-  call s:SuperSub('texSubscript','_','0','   ')
-  call s:SuperSub('texSubscript','_','1','   ')
-  call s:SuperSub('texSubscript','_','2','   ')
-  call s:SuperSub('texSubscript','_','3','   ')
-  call s:SuperSub('texSubscript','_','4','   ')
-  call s:SuperSub('texSubscript','_','5','   ')
-  call s:SuperSub('texSubscript','_','6','   ')
-  call s:SuperSub('texSubscript','_','7','   ')
-  call s:SuperSub('texSubscript','_','8','   ')
-  call s:SuperSub('texSubscript','_','9','   ')
-  call s:SuperSub('texSubscript','_','a','   ')
-  call s:SuperSub('texSubscript','_','e','   ')
-  call s:SuperSub('texSubscript','_','i','   ')
-  call s:SuperSub('texSubscript','_','o','   ')
-  call s:SuperSub('texSubscript','_','u','   ')
-  call s:SuperSub('texSubscript','_',',','   ')
-  call s:SuperSub('texSubscript','_','+','   ')
-  call s:SuperSub('texSubscript','_','-','   ')
-  call s:SuperSub('texSubscript','_','/','  ')
-  call s:SuperSub('texSubscript','_','(','   ')
-  call s:SuperSub('texSubscript','_',')','   ')
-  call s:SuperSub('texSubscript','_','\.','   ')
-  call s:SuperSub('texSubscript','_','r','   ')
-  call s:SuperSub('texSubscript','_','v','   ')
-  call s:SuperSub('texSubscript','_','x','   ')
-  call s:SuperSub('texSubscript','_','\\beta\>' ,'   ')
-  call s:SuperSub('texSubscript','_','\\delta\>','   ')
-  call s:SuperSub('texSubscript','_','\\phi\>'  ,'   ')
-  call s:SuperSub('texSubscript','_','\\gamma\>','   ')
-  call s:SuperSub('texSubscript','_','\\chi\>'  ,'   ')
+  call s:SuperSub('texSuperscript','\^','0','⁰')
+  call s:SuperSub('texSuperscript','\^','1','¹')
+  call s:SuperSub('texSuperscript','\^','2','²')
+  call s:SuperSub('texSuperscript','\^','3','³')
+  call s:SuperSub('texSuperscript','\^','4','⁴')
+  call s:SuperSub('texSuperscript','\^','5','⁵')
+  call s:SuperSub('texSuperscript','\^','6','⁶')
+  call s:SuperSub('texSuperscript','\^','7','⁷')
+  call s:SuperSub('texSuperscript','\^','8','⁸')
+  call s:SuperSub('texSuperscript','\^','9','⁹')
+  call s:SuperSub('texSuperscript','\^','a','ᵃ')
+  call s:SuperSub('texSuperscript','\^','b','ᵇ')
+  call s:SuperSub('texSuperscript','\^','c','ᶜ')
+  call s:SuperSub('texSuperscript','\^','d','ᵈ')
+  call s:SuperSub('texSuperscript','\^','e','ᵉ')
+  call s:SuperSub('texSuperscript','\^','f','ᶠ')
+  call s:SuperSub('texSuperscript','\^','g','ᵍ')
+  call s:SuperSub('texSuperscript','\^','h','ʰ')
+  call s:SuperSub('texSuperscript','\^','i','ⁱ')
+  call s:SuperSub('texSuperscript','\^','j','ʲ')
+  call s:SuperSub('texSuperscript','\^','k','ᵏ')
+  call s:SuperSub('texSuperscript','\^','l','ˡ')
+  call s:SuperSub('texSuperscript','\^','m','ᵐ')
+  call s:SuperSub('texSuperscript','\^','n','ⁿ')
+  call s:SuperSub('texSuperscript','\^','o','ᵒ')
+  call s:SuperSub('texSuperscript','\^','p','ᵖ')
+  call s:SuperSub('texSuperscript','\^','r','ʳ')
+  call s:SuperSub('texSuperscript','\^','s','ˢ')
+  call s:SuperSub('texSuperscript','\^','t','ᵗ')
+  call s:SuperSub('texSuperscript','\^','u','ᵘ')
+  call s:SuperSub('texSuperscript','\^','v','ᵛ')
+  call s:SuperSub('texSuperscript','\^','w','ʷ')
+  call s:SuperSub('texSuperscript','\^','x','ˣ')
+  call s:SuperSub('texSuperscript','\^','y','ʸ')
+  call s:SuperSub('texSuperscript','\^','z','ᶻ')
+  call s:SuperSub('texSuperscript','\^','A','ᴬ')
+  call s:SuperSub('texSuperscript','\^','B','ᴮ')
+  call s:SuperSub('texSuperscript','\^','D','ᴰ')
+  call s:SuperSub('texSuperscript','\^','E','ᴱ')
+  call s:SuperSub('texSuperscript','\^','G','ᴳ')
+  call s:SuperSub('texSuperscript','\^','H','ᴴ')
+  call s:SuperSub('texSuperscript','\^','I','ᴵ')
+  call s:SuperSub('texSuperscript','\^','J','ᴶ')
+  call s:SuperSub('texSuperscript','\^','K','ᴷ')
+  call s:SuperSub('texSuperscript','\^','L','ᴸ')
+  call s:SuperSub('texSuperscript','\^','M','ᴹ')
+  call s:SuperSub('texSuperscript','\^','N','ᴺ')
+  call s:SuperSub('texSuperscript','\^','O','ᴼ')
+  call s:SuperSub('texSuperscript','\^','P','ᴾ')
+  call s:SuperSub('texSuperscript','\^','R','ᴿ')
+  call s:SuperSub('texSuperscript','\^','T','ᵀ')
+  call s:SuperSub('texSuperscript','\^','U','ᵁ')
+  call s:SuperSub('texSuperscript','\^','W','ᵂ')
+  call s:SuperSub('texSuperscript','\^',',','︐')
+  call s:SuperSub('texSuperscript','\^',':','︓')
+  call s:SuperSub('texSuperscript','\^',';','︔')
+  call s:SuperSub('texSuperscript','\^','+','⁺')
+  call s:SuperSub('texSuperscript','\^','-','⁻')
+  call s:SuperSub('texSuperscript','\^','<','˂')
+  call s:SuperSub('texSuperscript','\^','>','˃')
+  call s:SuperSub('texSuperscript','\^','/','ˊ')
+  call s:SuperSub('texSuperscript','\^','(','⁽')
+  call s:SuperSub('texSuperscript','\^',')','⁾')
+  call s:SuperSub('texSuperscript','\^','\.','˙')
+  call s:SuperSub('texSuperscript','\^','=','˭')
+  call s:SuperSub('texSubscript','_','0','₀')
+  call s:SuperSub('texSubscript','_','1','₁')
+  call s:SuperSub('texSubscript','_','2','₂')
+  call s:SuperSub('texSubscript','_','3','₃')
+  call s:SuperSub('texSubscript','_','4','₄')
+  call s:SuperSub('texSubscript','_','5','₅')
+  call s:SuperSub('texSubscript','_','6','₆')
+  call s:SuperSub('texSubscript','_','7','₇')
+  call s:SuperSub('texSubscript','_','8','₈')
+  call s:SuperSub('texSubscript','_','9','₉')
+  call s:SuperSub('texSubscript','_','a','ₐ')
+  call s:SuperSub('texSubscript','_','e','ₑ')
+  call s:SuperSub('texSubscript','_','i','ᵢ')
+  call s:SuperSub('texSubscript','_','o','ₒ')
+  call s:SuperSub('texSubscript','_','u','ᵤ')
+  call s:SuperSub('texSubscript','_',',','︐')
+  call s:SuperSub('texSubscript','_','+','₊')
+  call s:SuperSub('texSubscript','_','-','₋')
+  call s:SuperSub('texSubscript','_','/','ˏ')
+  call s:SuperSub('texSubscript','_','(','₍')
+  call s:SuperSub('texSubscript','_',')','₎')
+  call s:SuperSub('texSubscript','_','\.','‸')
+  call s:SuperSub('texSubscript','_','r','ᵣ')
+  call s:SuperSub('texSubscript','_','v','ᵥ')
+  call s:SuperSub('texSubscript','_','x','ₓ')
+  call s:SuperSub('texSubscript','_','\\beta\>' ,'ᵦ')
+  call s:SuperSub('texSubscript','_','\\delta\>','ᵨ')
+  call s:SuperSub('texSubscript','_','\\phi\>'  ,'ᵩ')
+  call s:SuperSub('texSubscript','_','\\gamma\>','ᵧ')
+  call s:SuperSub('texSubscript','_','\\chi\>'  ,'ᵪ')
   delfun s:SuperSub
  endif
 
@@ -1161,55 +1161,55 @@ if has("conceal") && &enc == 'utf-8'
      endfor
    endfun
    "                  \`  \'  \^  \"  \~  \.  \c  \H  \k  \r  \u  \v
-   call s:Accents('a','  ','  ','  ','  ','  ','  ',' ',' ','  ','  ','  ','  ')
-   call s:Accents('A','  ','  ','  ','  ','  ','  ',' ',' ','  ','  ','  ','  ')
-   call s:Accents('c',' ','  ','  ',' ',' ','  ','  ',' ',' ',' ',' ','  ')
-   call s:Accents('C',' ','  ','  ',' ',' ','  ','  ',' ',' ',' ',' ','  ')
-   call s:Accents('d',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','  ')
-   call s:Accents('D',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','  ')
-   call s:Accents('e','  ','  ','  ','  ','   ','  ','  ',' ','  ',' ','  ','  ')
-   call s:Accents('E','  ','  ','  ','  ','   ','  ','  ',' ','  ',' ','  ','  ')
-   call s:Accents('g',' ','  ','  ',' ',' ','  ','  ',' ',' ',' ','  ',' ')
-   call s:Accents('G',' ','  ','  ',' ',' ','  ','  ',' ',' ',' ','  ',' ')
-   call s:Accents('h',' ',' ','  ',' ',' ',' ',' ',' ',' ',' ',' ','  ')
-   call s:Accents('H',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','  ')
-   call s:Accents('i','  ','  ','  ','  ','  ','  ',' ',' ',' ',' ','  ',' ')
-   call s:Accents('I','  ','  ','  ','  ','  ','  ',' ',' ',' ',' ','  ',' ')
-   call s:Accents('J',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','  ')
-   call s:Accents('k',' ',' ',' ',' ',' ',' ','  ',' ',' ',' ',' ',' ')
-   call s:Accents('K',' ',' ',' ',' ',' ',' ','  ',' ',' ',' ',' ',' ')
-   call s:Accents('l',' ','  ','  ',' ',' ',' ','  ',' ',' ',' ',' ','  ')
-   call s:Accents('L',' ','  ','  ',' ',' ',' ','  ',' ',' ',' ',' ','  ')
-   call s:Accents('n',' ','  ',' ',' ','  ',' ','  ',' ',' ',' ',' ','  ')
-   call s:Accents('N',' ','  ',' ',' ','  ',' ','  ',' ',' ',' ',' ','  ')
-   call s:Accents('o','  ','  ','  ','  ','  ','  ',' ','  ','  ',' ','  ',' ')
-   call s:Accents('O','  ','  ','  ','  ','  ','  ',' ','  ','  ',' ','  ',' ')
-   call s:Accents('r',' ','  ',' ',' ',' ',' ','  ',' ',' ',' ',' ','  ')
-   call s:Accents('R',' ','  ',' ',' ',' ',' ','  ',' ',' ',' ',' ','  ')
-   call s:Accents('s',' ','  ','  ',' ',' ',' ','  ',' ','  ',' ',' ','  ')
-   call s:Accents('S',' ','  ','  ',' ',' ',' ','  ',' ',' ',' ',' ','  ')
-   call s:Accents('t',' ',' ',' ',' ',' ',' ','  ',' ',' ',' ',' ','  ')
-   call s:Accents('T',' ',' ',' ',' ',' ',' ','  ',' ',' ',' ',' ','  ')
-   call s:Accents('u','  ','  ','  ','  ','  ',' ',' ','  ','  ','  ','  ','  ')
-   call s:Accents('U','  ','  ','  ','  ','  ',' ',' ','  ','  ','  ','  ','  ')
-   call s:Accents('w',' ',' ','  ',' ',' ',' ',' ',' ',' ',' ',' ',' ')
-   call s:Accents('W',' ',' ','  ',' ',' ',' ',' ',' ',' ',' ',' ',' ')
-   call s:Accents('y','   ','  ','  ','  ','   ',' ',' ',' ',' ',' ',' ',' ')
-   call s:Accents('Y','   ','  ','  ','  ','   ',' ',' ',' ',' ',' ',' ',' ')
-   call s:Accents('z',' ','  ',' ',' ',' ','  ',' ',' ',' ',' ',' ','  ')
-   call s:Accents('Z',' ','  ',' ',' ',' ','  ',' ',' ',' ',' ',' ','  ')
-   call s:Accents('\\i','  ','  ','  ','  ','  ','  ',' ',' ',' ',' ','  ',' ')
+   call s:Accents('a','à','á','â','ä','ã','ȧ',' ',' ','ą','å','ă','ă')
+   call s:Accents('A','À','Á','Â','Ä','Ã','Ȧ',' ',' ','Ą','Å','Ă','Ă')
+   call s:Accents('c',' ','ć','ĉ',' ',' ','ċ','ç',' ',' ',' ',' ','č')
+   call s:Accents('C',' ','Ć','Ĉ',' ',' ','Ċ','Ç',' ',' ',' ',' ','Č')
+   call s:Accents('d',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','ď')
+   call s:Accents('D',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','Ď')
+   call s:Accents('e','è','é','ê','ë','ẽ','ė','ȩ',' ','ę',' ','ĕ','ě')
+   call s:Accents('E','È','É','Ê','Ë','Ẽ','Ė','Ȩ',' ','Ę',' ','Ĕ','Ě')
+   call s:Accents('g',' ','ǵ','ĝ',' ',' ','ġ','ģ',' ',' ',' ','ğ',' ')
+   call s:Accents('G',' ','Ǵ','Ĝ',' ',' ','Ġ','Ģ',' ',' ',' ','Ğ',' ')
+   call s:Accents('h',' ',' ','ĥ',' ',' ',' ',' ',' ',' ',' ',' ','ȟ')
+   call s:Accents('H',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','Ȟ')
+   call s:Accents('i','ì','í','î','ï','ĩ','į',' ',' ',' ',' ','ĭ',' ')
+   call s:Accents('I','Ì','Í','Î','Ï','Ĩ','İ',' ',' ',' ',' ','Ĭ',' ')
+   call s:Accents('J',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','ǰ')
+   call s:Accents('k',' ',' ',' ',' ',' ',' ','ķ',' ',' ',' ',' ',' ')
+   call s:Accents('K',' ',' ',' ',' ',' ',' ','Ķ',' ',' ',' ',' ',' ')
+   call s:Accents('l',' ','ĺ','ľ',' ',' ',' ','ļ',' ',' ',' ',' ','ľ')
+   call s:Accents('L',' ','Ĺ','Ľ',' ',' ',' ','Ļ',' ',' ',' ',' ','Ľ')
+   call s:Accents('n',' ','ń',' ',' ','ñ',' ','ņ',' ',' ',' ',' ','ň')
+   call s:Accents('N',' ','Ń',' ',' ','Ñ',' ','Ņ',' ',' ',' ',' ','Ň')
+   call s:Accents('o','ò','ó','ô','ö','õ','ȯ',' ','ő','ǫ',' ','ŏ',' ')
+   call s:Accents('O','Ò','Ó','Ô','Ö','Õ','Ȯ',' ','Ő','Ǫ',' ','Ŏ',' ')
+   call s:Accents('r',' ','ŕ',' ',' ',' ',' ','ŗ',' ',' ',' ',' ','ř')
+   call s:Accents('R',' ','Ŕ',' ',' ',' ',' ','Ŗ',' ',' ',' ',' ','Ř')
+   call s:Accents('s',' ','ś','ŝ',' ',' ',' ','ş',' ','ȿ',' ',' ','š')
+   call s:Accents('S',' ','Ś','Ŝ',' ',' ',' ','Ş',' ',' ',' ',' ','Š')
+   call s:Accents('t',' ',' ',' ',' ',' ',' ','ţ',' ',' ',' ',' ','ť')
+   call s:Accents('T',' ',' ',' ',' ',' ',' ','Ţ',' ',' ',' ',' ','Ť')
+   call s:Accents('u','ù','ú','û','ü','ũ',' ',' ','ű','ų','ů','ŭ','ǔ')
+   call s:Accents('U','Ù','Ú','Û','Ü','Ũ',' ',' ','Ű','Ų','Ů','Ŭ','Ǔ')
+   call s:Accents('w',' ',' ','ŵ',' ',' ',' ',' ',' ',' ',' ',' ',' ')
+   call s:Accents('W',' ',' ','Ŵ',' ',' ',' ',' ',' ',' ',' ',' ',' ')
+   call s:Accents('y','ỳ','ý','ŷ','ÿ','ỹ',' ',' ',' ',' ',' ',' ',' ')
+   call s:Accents('Y','Ỳ','Ý','Ŷ','Ÿ','Ỹ',' ',' ',' ',' ',' ',' ',' ')
+   call s:Accents('z',' ','ź',' ',' ',' ','ż',' ',' ',' ',' ',' ','ž')
+   call s:Accents('Z',' ','Ź',' ',' ',' ','Ż',' ',' ',' ',' ',' ','Ž')
+   call s:Accents('\\i','ì','í','î','ï','ĩ','į',' ',' ',' ',' ','ĭ',' ')
    "                  \`  \'  \^  \"  \~  \.  \c  \H  \k  \r  \u  \v
    delfun s:Accents
-   syn match texAccent   '\\aa\>'	conceal cchar=  
-   syn match texAccent   '\\AA\>'	conceal cchar=  
-   syn match texAccent	'\\o\>'		conceal cchar=  
-   syn match texAccent	'\\O\>'		conceal cchar=  
-   syn match texLigature	'\\AE\>'	conceal cchar=  
-   syn match texLigature	'\\ae\>'	conceal cchar=  
-   syn match texLigature	'\\oe\>'	conceal cchar=  
-   syn match texLigature	'\\OE\>'	conceal cchar=  
-   syn match texLigature	'\\ss\>'	conceal cchar=  
+   syn match texAccent   '\\aa\>'	conceal cchar=å
+   syn match texAccent   '\\AA\>'	conceal cchar=Å
+   syn match texAccent	'\\o\>'		conceal cchar=ø
+   syn match texAccent	'\\O\>'		conceal cchar=Ø
+   syn match texLigature	'\\AE\>'	conceal cchar=Æ
+   syn match texLigature	'\\ae\>'	conceal cchar=æ
+   syn match texLigature	'\\oe\>'	conceal cchar=œ
+   syn match texLigature	'\\OE\>'	conceal cchar=Œ
+   syn match texLigature	'\\ss\>'	conceal cchar=ß
   endif
  endif
 endif
