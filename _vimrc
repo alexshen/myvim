@@ -31,7 +31,6 @@ endif
 
 Plugin 'kien/ctrlp.vim'
 Plugin 'ervandew/supertab'
-Plugin 'fholgado/minibufexpl.vim'
 
 " snip mate plugin and dependencies
 Plugin 'MarcWeber/vim-addon-mw-utils'
@@ -184,15 +183,13 @@ nmap \t :retab<CR>
 " Press Space to turn off highlighting and clear any message already displayed.
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 noremap ; :
+noremap : ;
 
 autocmd FileType text syn match TextTag "\*[^* \t]\+\*"
 autocmd FileType text syn match TextJump "|[^* \t]\+|"
 
 hi def link TextTag String
 hi def link TextJump Comment
-
-" project
-" let g:proj_window_width = 45
 
 " taglist
 let Tlist_WinWidth = 56 
@@ -203,10 +200,6 @@ let Tlist_Show_One_File = 1
 " Force all shell scripts to be recognized as bash scripts
 let g:is_bash = 1
 
-" Minibuf
-" Enable <c-tab>
-noremap <C-TAB>   :MBEbf<CR>
-noremap <C-S-TAB> :MBEbb<CR>
 " Enable <c-h,j,k,l> to navigate among windows
 noremap <C-J>     <C-W>j
 noremap <C-K>     <C-W>k
@@ -232,6 +225,7 @@ let g:ctrlp_clear_cache_on_exit = 0
 
 noremap <silent> <Leader>f :CtrlP<CR>
 noremap <silent> <Leader>t :CtrlPTag<CR>
+noremap <silent> <Leader>s :CtrlPTag<CR>
 noremap <silent> <Leader>m :CtrlPMRU<CR>
 noremap <silent> <Leader>b :CtrlPBuffer<CR>
 noremap <silent> <Leader>r :CtrlPClearCache<CR>
@@ -288,17 +282,19 @@ set laststatus=2
 let g:tern_show_signature_in_pum = 1
 
 " vim-jsbeautify
-autocmd FileType javascript noremap <buffer>  <c-s-f> :call JsBeautify()<cr>
-autocmd FileType javascript vnoremap <buffer> <c-s-f> :call RangeJsBeautify()<cr>
+autocmd FileType javascript noremap <buffer> <Leader>ff :call JsBeautify()<cr>
+autocmd FileType javascript vnoremap <buffer> <Leader>ff :call RangeJsBeautify()<cr>
 
 " nerd tree
 nnoremap <silent> <Leader>nd :NERDTree<CR>
 nnoremap <silent> <Leader>nf :NERDTreeFind<CR>
+nnoremap <silent> <Leader>nc :NERDTreeClose<CR>
 
 " easy align
 vmap <CR> <Plug>(EasyAlign)
 
 " ctrlspace
 set hidden
+set showtabline=0
 let g:airline_exclude_preview = 1
-let g:ctrlspace_default_mapping_key = '<A-Space>'
+nnoremap <silent> <Leader>, :CtrlSpace<CR>
