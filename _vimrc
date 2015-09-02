@@ -49,7 +49,6 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'a.vim'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-fugitive'
 Plugin 'elzr/vim-json'
 Plugin 'marijnh/tern_for_vim'
 Plugin 'maksimr/vim-jsbeautify'
@@ -222,6 +221,10 @@ let g:ctrlp_custom_ignore = {
     \ }
 let g:ctrlp_max_files = 0
 let g:ctrlp_clear_cache_on_exit = 0
+if executable("ag")
+    let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
+endif
+
 
 noremap <silent> <Leader>f :CtrlP<CR>
 noremap <silent> <Leader>t :CtrlPTag<CR>
@@ -297,4 +300,15 @@ vmap <CR> <Plug>(EasyAlign)
 set hidden
 set showtabline=0
 let g:airline_exclude_preview = 1
+let g:CtrlSpaceSaveWorkspaceOnSwitch = 1
+let g:CtrlSpaceSaveWorkspaceOnExit = 1
 nnoremap <silent> <Leader>, :CtrlSpace<CR>
+nnoremap <silent> <Leader>/ :CtrlSpace /<CR>
+nnoremap <silent> <Leader>o :CtrlSpace o<CR>
+hi link CtrlSpaceNormal   Normal
+hi link CtrlSpaceSelected PMenu
+hi link CtrlSpaceStatus   StatusLine
+hi link CtrlSpaceSearch   Type
+if executable("ag")
+    let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
+endif
