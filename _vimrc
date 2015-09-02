@@ -6,7 +6,7 @@ set rtp+=~/.vim/bundle/Vundle.vim,~/.vim/bundle/vim-projectroot
 
 call vundle#begin()
 
-"Plugin 'gmarik/Vundle.vim'
+"Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'Tagbar'
 Plugin 'junegunn/vim-easy-align'
