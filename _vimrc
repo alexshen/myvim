@@ -16,17 +16,12 @@ Plugin 'scrooloose/nerdtree'
 if filereadable(projectroot#guess() . '/.clang_complete')
     Plugin 'Rip-Rip/clang_complete'
     if has('win32')
-        let g:clang_library_path = glob('~') . '/.vim/bundle/ycm-win/python'
+        let g:clang_library_path = glob('~') . '/.vim/bundle/YouCompleteMe/third_party/ycmd'
     end
 else
     " do not load clang_complete
     let g:clang_complete_loaded = 0
-    if has('win32')
-        " local plugin
-        Plugin 'ycm-win', {'pinned': 1}
-    else
-        Plugin 'Valloric/YouCompleteMe.git'
-    endif
+    Plugin 'Valloric/YouCompleteMe.git'
 endif
 
 Plugin 'kien/ctrlp.vim'
@@ -54,6 +49,8 @@ Plugin 'marijnh/tern_for_vim'
 Plugin 'maksimr/vim-jsbeautify'
 Plugin 'einars/js-beautify'
 Plugin 'szw/vim-ctrlspace'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'Shougo/vimshell.vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -246,6 +243,9 @@ let g:ycm_filetype_blacklist = { 'tex' : 1, 'json' : 1 }
 let g:ycm_collect_identifiers_from_tags_files = 1
 if has('win32')
     let g:ycm_key_invoke_completion = '<C-S-Space>'
+    " on windows, csharp server cannot be terminated properly,
+    " specifying a port to force reusing the existing server.
+    let g:ycm_csharp_server_port = 13579
 endif
 
 " SnipMate
