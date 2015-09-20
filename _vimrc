@@ -180,6 +180,10 @@ nmap \t :retab<CR>
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 noremap ; :
 noremap : ;
+" allow uppercase commands...
+cnoremap W w
+cnoremap Q q
+cnoremap X x
 
 autocmd FileType text syn match TextTag "\*[^* \t]\+\*"
 autocmd FileType text syn match TextJump "|[^* \t]\+|"
