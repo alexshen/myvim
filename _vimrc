@@ -45,12 +45,13 @@ Plugin 'a.vim'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-surround'
 Plugin 'elzr/vim-json'
-Plugin 'marijnh/tern_for_vim'
+"Plugin 'marijnh/tern_for_vim'
 Plugin 'maksimr/vim-jsbeautify'
 Plugin 'einars/js-beautify'
 Plugin 'szw/vim-ctrlspace'
-Plugin 'Shougo/vimproc.vim'
-Plugin 'Shougo/vimshell.vim'
+Plugin 'fatih/vim-go.git'
+"Plugin 'Shougo/vimproc.vim'
+"Plugin 'Shougo/vimshell.vim'
 
 call vundle#end()
 filetype plugin indent on
