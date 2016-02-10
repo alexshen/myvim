@@ -51,6 +51,7 @@ Plugin 'einars/js-beautify'
 Plugin 'szw/vim-ctrlspace'
 Plugin 'fatih/vim-go.git'
 Plugin 'SirVer/ultisnips'
+Plugin 'jiangmiao/auto-pairs'
 "Plugin 'Shougo/vimproc.vim'
 "Plugin 'Shougo/vimshell.vim'
 
@@ -342,7 +343,7 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
 
-function CreateDirIfNotExist(dir)
+function! CreateDirIfNotExist(dir)
     if ! isdirectory(a:dir)
         call mkdir(a:dir)
     endif
