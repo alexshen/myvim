@@ -13,7 +13,7 @@ Plugin 'junegunn/vim-easy-align'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 
-if filereadable(projectroot#guess() . '/.clang_complete')
+if filereadable(projectroot#guess() . '.clang_complete')
     Plugin 'Rip-Rip/clang_complete'
     if has('win32')
         let g:clang_library_path = glob('~') . '/.vim/bundle/YouCompleteMe/third_party/ycmd'
@@ -50,6 +50,7 @@ Plugin 'maksimr/vim-jsbeautify'
 Plugin 'einars/js-beautify'
 Plugin 'szw/vim-ctrlspace'
 Plugin 'fatih/vim-go.git'
+Plugin 'SirVer/ultisnips'
 "Plugin 'Shougo/vimproc.vim'
 "Plugin 'Shougo/vimshell.vim'
 
@@ -107,7 +108,8 @@ if has('gui_win32')
     " full screen
     map <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
 
-    set guifont=Consolas:h10
+    "set guifont=Consolas:h10
+    set guifont=Source_Code_Pro:h9
 elseif has('unix') || has('macunix')
     set ffs=unix
     if has('gui_gtk2')
@@ -246,6 +248,7 @@ let g:ycm_server_log_level = 'debug'
 let g:ycm_filetype_blacklist = { 'tex' : 1, 'json' : 1 }
 "let g:ycm_filetype_specific_completion_to_disable = { 'tex' : 1 }
 let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_add_preview_to_completeopt = 1
 if has('win32')
     let g:ycm_key_invoke_completion = '<C-S-Space>'
     " on windows, csharp server cannot be terminated properly,
@@ -254,12 +257,13 @@ if has('win32')
 endif
 
 " SnipMate
-imap <C-J> <Plug>snipMateNextOrTrigger
-smap <C-J> <Plug>snipMateNextOrTrigger
+"imap <C-J> <Plug>snipMateNextOrTrigger
+"smap <C-J> <Plug>snipMateNextOrTrigger
 
+" remap to avoid conflict with mappings for window navigation
 nmap <C-N> <Plug>IMAP_JumpForward
 vmap <C-N> <Plug>IMAP_JumpForward
-imap <C-N> <Plug>IMAP_JumpForward
+"imap <C-N> <Plug>IMAP_JumpForward
 
 " Latex-Suite
 let g:Tex_DefaultTargetFormat = 'pdf'
@@ -317,3 +321,38 @@ hi link CtrlSpaceSearch   Type
 if executable("ag")
     let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
 endif
+
+function! g:UltiSnips_Complete()
+    call UltiSnips#ExpandSnippet()
+    if g:ulti_expand_res == 0
+        if pumvisible()
+            return "\<C-n>"
+        else
+            call UltiSnips#JumpForwards()
+            if g:ulti_jump_forwards_res == 0
+               return "\<TAB>"
+            endif
+        endif
+    endif
+    return ""
+endfunction
+
+let g:UltiSnipsExpandTrigger="<c-o>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
+
+function CreateDirIfNotExist(dir)
+    if ! isdirectory(a:dir)
+        call mkdir(a:dir)
+    endif
+endfunction
+
+" setup the backup directories
+call CreateDirIfNotExist($HOME . '/.vim/backup/')
+call CreateDirIfNotExist($HOME . '/.vim/swap/')
+call CreateDirIfNotExist($HOME . '/.vim/undo/')
+
+set backupdir=~/.vim/backup//
+set directory=~/.vim/swap//
+set undodir=~/.vim/undo//
