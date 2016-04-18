@@ -145,6 +145,7 @@ set smarttab
 set encoding=utf-8
 set backspace=indent,eol,start
 set number
+set relativenumber
 set guioptions-=T " no tool bar
 set incsearch
 set ruler
