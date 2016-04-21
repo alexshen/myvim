@@ -52,6 +52,7 @@ Plugin 'szw/vim-ctrlspace'
 Plugin 'fatih/vim-go.git'
 Plugin 'SirVer/ultisnips'
 Plugin 'jiangmiao/auto-pairs'
+Plugin 'christoomey/vim-tmux-navigator'
 "Plugin 'Shougo/vimproc.vim'
 "Plugin 'Shougo/vimshell.vim'
 
