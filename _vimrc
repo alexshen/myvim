@@ -252,6 +252,7 @@ let g:ycm_filetype_blacklist = { 'tex' : 1, 'json' : 1 }
 "let g:ycm_filetype_specific_completion_to_disable = { 'tex' : 1 }
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_add_preview_to_completeopt = 1
+set pvh=7
 if has('win32')
     let g:ycm_key_invoke_completion = '<C-S-Space>'
     " on windows, csharp server cannot be terminated properly,
