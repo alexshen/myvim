@@ -6,7 +6,7 @@ set rtp+=~/.vim/bundle/Vundle.vim,~/.vim/bundle/vim-projectroot
 
 call vundle#begin()
 
-"Plugin 'VundleVim/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'Tagbar'
 Plugin 'junegunn/vim-easy-align'
@@ -48,13 +48,12 @@ Plugin 'elzr/vim-json'
 "Plugin 'marijnh/tern_for_vim'
 Plugin 'maksimr/vim-jsbeautify'
 Plugin 'einars/js-beautify'
-Plugin 'szw/vim-ctrlspace'
+Plugin 'vim-ctrlspace/vim-ctrlspace.git'
 Plugin 'fatih/vim-go.git'
 Plugin 'SirVer/ultisnips'
-Plugin 'jiangmiao/auto-pairs'
+"Plugin 'jiangmiao/auto-pairs'
 Plugin 'christoomey/vim-tmux-navigator'
-"Plugin 'Shougo/vimproc.vim'
-"Plugin 'Shougo/vimshell.vim'
+Plugin 'alexshen/vim-glsl.git'
 
 call vundle#end()
 filetype plugin indent on
@@ -282,8 +281,10 @@ let g:cpp_class_scope_highlight = 1
 " let g:cpp_experimental_template_highlight = 1
 
 " a.vim
-nmap <silent> <A-o> :A<CR>
-imap <silent> <A-o> :A<CR>
+" : not working with meta-key, don't know why
+nmap <silent> <M-o> ;A<CR>
+imap <silent> <M-o> ;A<CR>
+
 let g:alternateExtensions_h = "cpp,cxx,cc,CC,c"
 let g:alternateExtensions_H = "CPP,CXX,CC,C"
 
@@ -315,6 +316,8 @@ set showtabline=0
 let g:airline_exclude_preview = 1
 let g:CtrlSpaceSaveWorkspaceOnSwitch = 1
 let g:CtrlSpaceSaveWorkspaceOnExit = 1
+let g:CtrlSpaceIgnoredFiles = '\v[\/](tmp|temp|build)[\/]'
+
 nnoremap <silent> <Leader>, :CtrlSpace<CR>
 nnoremap <silent> <Leader>/ :CtrlSpace /<CR>
 nnoremap <silent> <Leader>o :CtrlSpace o<CR>
@@ -341,7 +344,7 @@ function! g:UltiSnips_Complete()
     return ""
 endfunction
 
-let g:UltiSnipsExpandTrigger="<c-o>"
+let g:UltiSnipsExpandTrigger="<c-l>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
@@ -360,3 +363,14 @@ call CreateDirIfNotExist($HOME . '/.vim/undo/')
 set backupdir=~/.vim/backup//
 set directory=~/.vim/swap//
 set undodir=~/.vim/undo//
+
+set ttimeout timeoutlen=300
+let g:solarized_termcolors = 256
+
+let c='a'
+while c <= 'z'
+    exec "set <M-".c.">=\<Esc>".c
+    exec "nmap \<Esc>".c." <M-".c.">"
+    exec "imap \<Esc>".c." <M-".c.">"
+    let c = nr2char(1+char2nr(c))
+endw
