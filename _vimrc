@@ -282,8 +282,8 @@ let g:cpp_class_scope_highlight = 1
 
 " a.vim
 " : not working with meta-key, don't know why
-nmap <silent> <M-o> ;A<CR>
-imap <silent> <M-o> ;A<CR>
+nmap <silent> <Leader>a ;A<CR>
+imap <silent> <Leader>a ;A<CR>
 
 let g:alternateExtensions_h = "cpp,cxx,cc,CC,c"
 let g:alternateExtensions_H = "CPP,CXX,CC,C"
@@ -364,9 +364,10 @@ set backupdir=~/.vim/backup//
 set directory=~/.vim/swap//
 set undodir=~/.vim/undo//
 
-set ttimeout timeoutlen=300
+set ttimeoutlen=0 timeoutlen=1000
 let g:solarized_termcolors = 256
 
+" map meta key
 let c='a'
 while c <= 'z'
     exec "set <M-".c.">=\<Esc>".c
@@ -374,3 +375,6 @@ while c <= 'z'
     exec "imap \<Esc>".c." <M-".c.">"
     let c = nr2char(1+char2nr(c))
 endw
+
+" show keystrokes in status line
+set showcmd
