@@ -59,7 +59,8 @@ call vundle#end()
 filetype plugin indent on
 set modeline
 " breaking for characters greater than 255, such as Chinese
-set fo+=m
+" join comment lines
+set fo+=mj
 
 " cmd height 2
 set ch=2
