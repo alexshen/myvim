@@ -131,7 +131,11 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
-colorscheme desertEx
+"colorscheme desertEx
+set background=light
+let g:solarized_termcolors = 256
+let g:solarized_termtrans=1
+colorscheme solarized
 "colorscheme mrdark
 "set guifont=courier_new:h10
 "set guifont=Lucida_Console:h10
@@ -366,7 +370,6 @@ set directory=~/.vim/swap//
 set undodir=~/.vim/undo//
 
 set ttimeoutlen=0 timeoutlen=1000
-let g:solarized_termcolors = 256
 
 " map meta key
 let c='a'
@@ -379,3 +382,14 @@ endw
 
 " show keystrokes in status line
 set showcmd
+
+" use i-beam cursor in insert mode, works in iTerm2 but not in Terminal
+if empty($TMUX)
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+  let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+else
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+  let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
+endif
