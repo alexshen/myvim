@@ -54,6 +54,7 @@ Plugin 'SirVer/ultisnips'
 "Plugin 'jiangmiao/auto-pairs'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'alexshen/vim-glsl.git'
+Plugin 'rhysd/vim-clang-format'
 
 call vundle#end()
 filetype plugin indent on
@@ -123,18 +124,19 @@ elseif has('unix') || has('macunix')
     endif
 endif
 
-"if has('gui_running')
-"    set lines=58 columns=150
-"endif
-
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
 "colorscheme desertEx
-set background=light
-let g:solarized_termcolors = 256
-let g:solarized_termtrans=1
+" set the background base on time
+if strftime("%H") < 18
+  set background=light
+else
+  set background=dark
+endif
+"let g:solarized_termcolors=256
+"let g:solarized_termtrans=1
 colorscheme solarized
 "colorscheme mrdark
 "set guifont=courier_new:h10
@@ -143,6 +145,10 @@ colorscheme solarized
 "set guifont=Bitstream_Vera_Serif:h10
 "set guifont=Triskweline:h10
 "set guifont=ProggyCleanSZ:h11
+
+nnoremap <Leader>bd :set background=dark
+nnoremap <Leader>bl :set background=light
+
 
 set noerrorbells visualbell t_vb=
 set ignorecase smartcase
@@ -325,7 +331,7 @@ let g:CtrlSpaceIgnoredFiles = '\v[\/](tmp|temp|build)[\/]'
 
 nnoremap <silent> <Leader>, :CtrlSpace<CR>
 nnoremap <silent> <Leader>/ :CtrlSpace /<CR>
-nnoremap <silent> <Leader>o :CtrlSpace o<CR>
+nnoremap <silent> <Leader>o :CtrlSpace o/<CR>
 hi link CtrlSpaceNormal   Normal
 hi link CtrlSpaceSelected PMenu
 hi link CtrlSpaceStatus   StatusLine
@@ -384,12 +390,22 @@ endw
 set showcmd
 
 " use i-beam cursor in insert mode, works in iTerm2 but not in Terminal
-if empty($TMUX)
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-  let &t_SR = "\<Esc>]50;CursorShape=2\x7"
-else
-  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-  let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
-endif
+"if empty($TMUX)
+  "let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  "let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+  "let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+"else
+  "let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  "let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+  "let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
+"endif
+
+set tw=100
+
+augroup ClangFormatSettings
+    autocmd!
+    " map to <Leader>cf in C++ code
+    autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+    autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+augroup END
+
