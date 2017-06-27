@@ -45,7 +45,7 @@ Plugin 'a.vim'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-surround'
 Plugin 'elzr/vim-json'
-"Plugin 'marijnh/tern_for_vim'
+Plugin 'marijnh/tern_for_vim'
 Plugin 'maksimr/vim-jsbeautify'
 Plugin 'einars/js-beautify'
 Plugin 'vim-ctrlspace/vim-ctrlspace.git'
@@ -55,6 +55,7 @@ Plugin 'SirVer/ultisnips'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'alexshen/vim-glsl.git'
 Plugin 'rhysd/vim-clang-format'
+Plugin 'mbbill/undotree'
 
 call vundle#end()
 filetype plugin indent on
@@ -130,10 +131,14 @@ set shiftwidth=4
 set expandtab
 "colorscheme desertEx
 " set the background base on time
-if strftime("%H") < 18
-  set background=light
+if $VIM_BACKGROUND_TIMED == "1"
+    if strftime("%H") < 18
+      set background=light
+    else
+      set background=dark
+    endif
 else
-  set background=dark
+    set background=dark
 endif
 "let g:solarized_termcolors=256
 "let g:solarized_termtrans=1
@@ -262,6 +267,7 @@ let g:ycm_filetype_blacklist = { 'tex' : 1, 'json' : 1 }
 "let g:ycm_filetype_specific_completion_to_disable = { 'tex' : 1 }
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_add_preview_to_completeopt = 1
+let g:ycm_complete_in_comments = 1
 set pvh=7
 if has('win32')
     let g:ycm_key_invoke_completion = '<C-S-Space>'
@@ -269,6 +275,10 @@ if has('win32')
     " specifying a port to force reusing the existing server.
     let g:ycm_csharp_server_port = 13579
 endif
+
+autocmd FileType c,cpp,objc,objcpp,cs,go,javascript,python,rust,typescript nnoremap <Leader>gd :YcmCompleter GoToDefinition<CR>
+autocmd FileType c,cpp,objc,objcpp,cs,go,python,rust nnoremap <Leader>gD :YcmCompleter GoToDeclaration<CR>
+autocmd FileType c,cpp,objc,objcpp nnoremap <Leader>gi :YcmCompleter GoToInclude<CR>
 
 " SnipMate
 "imap <C-J> <Plug>snipMateNextOrTrigger
@@ -409,3 +419,10 @@ augroup ClangFormatSettings
     autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
 augroup END
 
+nnoremap <Leader>u :UndotreeToggle<CR>
+if has("persistent_undo")
+    set undodir=~/.undodir/
+    set undofile
+endif
+
+set splitbelow
