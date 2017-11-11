@@ -27,6 +27,7 @@ Plugin 'Valloric/YouCompleteMe.git'
 Plugin 'kien/ctrlp.vim'
 Plugin 'ervandew/supertab'
 Plugin 'ap/vim-buftabline'
+Plugin 'easymotion/vim-easymotion'
 
 " snip mate plugin and dependencies
 Plugin 'MarcWeber/vim-addon-mw-utils'
@@ -380,10 +381,10 @@ function! s:unite_my_settings()"{{{
     imap <silent><buffer><expr> <C-s>     unite#do_action('split')
 endfunction"}}}
 
-nnoremap <silent> <Leader>ff :<C-u>Unite -buffer-name=files   file_rec/async<cr>
-nnoremap <silent> <Leader>fp :<C-u>UniteWithProjectDir -buffer-name=files  file_rec/async<cr>
-nnoremap <silent> <Leader>fc :<C-u>UniteWithCurrentDir -buffer-name=files  file_rec/async<cr>
-nnoremap <silent> <Leader>fb :<C-u>UniteWithBufferDir -buffer-name=files   file_rec/async<cr>
+nnoremap <silent> <Leader>f :<C-u>Unite -buffer-name=files   file_rec/async<cr>
+"nnoremap <silent> <Leader>fp :<C-u>UniteWithProjectDir -buffer-name=files  file_rec/async<cr>
+"nnoremap <silent> <Leader>fc :<C-u>UniteWithCurrentDir -buffer-name=files  file_rec/async<cr>
+"nnoremap <silent> <Leader>fb :<C-u>UniteWithBufferDir -buffer-name=files   file_rec/async<cr>
 nnoremap <silent> <Leader>r :<C-u>Unite -buffer-name=mru     file_mru<cr>
 nnoremap <silent> <Leader>o :<C-u>Unite -buffer-name=outline outline<cr>
 nnoremap <silent> <Leader>y :<C-u>Unite -buffer-name=yank    history/yank<cr>
