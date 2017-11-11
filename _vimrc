@@ -8,22 +8,22 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 
+Plugin 'Shougo/vimproc.vim', {'do' : 'make'}
+Plugin 'Shougo/unite.vim'
+Plugin 'Shougo/vimfiler.vim'
+Plugin 'Shougo/neomru.vim'
+Plugin 'Shougo/unite-help'
+Plugin 'Shougo/unite-outline'
+Plugin 'Shougo/unite-session'
+Plugin 'Shougo/neoyank.vim'
+Plugin 'tsukkee/unite-tag'
+Plugin 't9md/vim-choosewin'
 Plugin 'Tagbar'
 Plugin 'junegunn/vim-easy-align'
+Plugin 'junegunn/goyo.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
-
-if filereadable(projectroot#guess() . '.clang_complete')
-    Plugin 'Rip-Rip/clang_complete'
-    if has('win32')
-        let g:clang_library_path = glob('~') . '/.vim/bundle/YouCompleteMe/third_party/ycmd'
-    end
-else
-    " do not load clang_complete
-    let g:clang_complete_loaded = 0
-    Plugin 'Valloric/YouCompleteMe.git'
-endif
-
+Plugin 'Valloric/YouCompleteMe.git'
 Plugin 'kien/ctrlp.vim'
 Plugin 'ervandew/supertab'
 
@@ -33,11 +33,10 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 
 Plugin 'honza/vim-snippets'
-Plugin 'taglist.vim'
-Plugin 'LaTeX-Suite-aka-Vim-LaTeX'
+"Plugin 'LaTeX-Suite-aka-Vim-LaTeX'
 Plugin 'cscope_macros.vim'
 Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-colorscheme-switcher'
+"Plugin 'xolox/vim-colorscheme-switcher'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'dbakker/vim-projectroot'
 Plugin 'octol/vim-cpp-enhanced-highlight'
@@ -45,17 +44,16 @@ Plugin 'a.vim'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-surround'
 Plugin 'elzr/vim-json'
-Plugin 'marijnh/tern_for_vim'
-Plugin 'maksimr/vim-jsbeautify'
-Plugin 'einars/js-beautify'
-Plugin 'vim-ctrlspace/vim-ctrlspace.git'
+"Plugin 'maksimr/vim-jsbeautify'
+"Plugin 'einars/js-beautify'
+"Plugin 'vim-ctrlspace/vim-ctrlspace.git'
 Plugin 'fatih/vim-go.git'
 Plugin 'SirVer/ultisnips'
 "Plugin 'jiangmiao/auto-pairs'
 Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'alexshen/vim-glsl.git'
+Plugin 'tikhomirov/vim-glsl.git'
 Plugin 'rhysd/vim-clang-format'
-Plugin 'mbbill/undotree'
+"Plugin 'mbbill/undotree'
 
 call vundle#end()
 filetype plugin indent on
@@ -68,10 +66,6 @@ set fo+=mj
 set ch=2
 
 set mousehide       " Hide the mouse when typing text
-
-" Make shift-insert work like in Xterm
-map <S-Insert> <MiddleMouse>
-map! <S-Insert> <MiddleMouse>
 
 " Only do this for Vim version 5.0 and later.
 if version >= 500
@@ -88,20 +82,6 @@ if version >= 500
   set hlsearch
 endif
 
-" Check if a font is available
-function! HasFontInstalled(font)
-    if executable('fc-list') != 1
-        return 0
-    endif
-
-    let l:fcList = system('fc-list')
-    if match(l:fcList, '\<' . a:font . ':') != -1
-        return 1
-    endif
-
-    return 0
-endfunction
-
 set langmenu=en_US
 let $LANG='en_US'
 source $VIMRUNTIME/delmenu.vim
@@ -117,11 +97,7 @@ if has('gui_win32')
 elseif has('unix') || has('macunix')
     set ffs=unix
     if has('gui_gtk2')
-        if HasFontInstalled('Ubuntu Mono')
-            set guifont=Ubuntu\ Mono\ 10
-        elseif HasFontInstalled('Consolas')
-            set guifont=Consolas\ 11
-        endif
+        set guifont=Ubuntu\ Mono\ 10
     endif
 endif
 
@@ -129,17 +105,7 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
-"colorscheme desertEx
-" set the background base on time
-if $VIM_BACKGROUND_TIMED == "1"
-    if strftime("%H") < 18
-      set background=light
-    else
-      set background=dark
-    endif
-else
-    set background=dark
-endif
+
 "let g:solarized_termcolors=256
 "let g:solarized_termtrans=1
 colorscheme solarized
@@ -150,10 +116,6 @@ colorscheme solarized
 "set guifont=Bitstream_Vera_Serif:h10
 "set guifont=Triskweline:h10
 "set guifont=ProggyCleanSZ:h11
-
-nnoremap <Leader>bd :set background=dark
-nnoremap <Leader>bl :set background=light
-
 
 set noerrorbells visualbell t_vb=
 set ignorecase smartcase
@@ -180,7 +142,8 @@ set wak=no
 
 filetype plugin on
 filetype indent on
-let mapleader = ','
+
+let mapleader = "\<Space>"
 
 " super tab, user defined completion
 let g:SuperTabDefaultCompletionType = "context"
@@ -195,31 +158,11 @@ set tags+=./tags,tags;
 
 imap <C-BS> <C-W>
 imap <C-DEL> <ESC>lcw
-" replace tab with whitespaces
-nmap \t :retab<CR>
+
 " Press Space to turn off highlighting and clear any message already displayed.
-nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+nnoremap <silent> <CR> :nohlsearch<CR><CR>
 noremap ; :
 noremap : ;
-" allow uppercase commands...
-cnoremap W w
-cnoremap Q q
-cnoremap X x
-
-autocmd FileType text syn match TextTag "\*[^* \t]\+\*"
-autocmd FileType text syn match TextJump "|[^* \t]\+|"
-
-hi def link TextTag String
-hi def link TextJump Comment
-
-" taglist
-let Tlist_WinWidth = 56 
-" show only the current file
-let Tlist_Show_One_File = 1
-" let Tlist_Use_Right_Window = 1
-
-" Force all shell scripts to be recognized as bash scripts
-let g:is_bash = 1
 
 " Enable <c-h,j,k,l> to navigate among windows
 noremap <C-J>     <C-W>j
@@ -230,7 +173,9 @@ noremap <C-L>     <C-W>l
 " Tagbar
 " make it appear on the left by default
 let g:tagbar_left = 1
-nnoremap <silent> <A-9> :TagbarToggle<CR>
+nnoremap <silent> <F2> :TagbarToggle<CR>
+let g:NERDTreeWinPos = 'right'
+nnoremap <silent> <F3> :NERDTreeToggle<CR>
 
 " CtrlP
 let g:ctrlp_lazy_update = 1
@@ -248,16 +193,6 @@ if executable("ag")
 endif
 
 
-noremap <silent> <Leader>f :CtrlP<CR>
-noremap <silent> <Leader>t :CtrlPTag<CR>
-noremap <silent> <Leader>s :CtrlPTag<CR>
-noremap <silent> <Leader>m :CtrlPMRU<CR>
-noremap <silent> <Leader>b :CtrlPBuffer<CR>
-noremap <silent> <Leader>r :CtrlPClearCache<CR>
-" visual assist style map
-noremap <silent> <A-S-o> :CtrlP<CR>
-noremap <silent> <A-S-s> :CtrlPTag<CR>
-
 " Ycm
 let g:ycm_server_keep_logfiles = 1
 let g:ycm_confirm_extra_conf = 0
@@ -268,17 +203,10 @@ let g:ycm_filetype_blacklist = { 'tex' : 1, 'json' : 1 }
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_complete_in_comments = 1
-set pvh=7
-if has('win32')
-    let g:ycm_key_invoke_completion = '<C-S-Space>'
-    " on windows, csharp server cannot be terminated properly,
-    " specifying a port to force reusing the existing server.
-    let g:ycm_csharp_server_port = 13579
-endif
 
-autocmd FileType c,cpp,objc,objcpp,cs,go,javascript,python,rust,typescript nnoremap <Leader>gd :YcmCompleter GoToDefinition<CR>
-autocmd FileType c,cpp,objc,objcpp,cs,go,python,rust nnoremap <Leader>gD :YcmCompleter GoToDeclaration<CR>
-autocmd FileType c,cpp,objc,objcpp nnoremap <Leader>gi :YcmCompleter GoToInclude<CR>
+autocmd FileType c,cpp,objc,objcpp,cs,go,javascript,python,rust,typescript nnoremap <Space>gd :YcmCompleter GoToDefinition<CR>
+autocmd FileType c,cpp,objc,objcpp,cs,go,python,rust nnoremap <Space>gD :YcmCompleter GoToDeclaration<CR>
+autocmd FileType c,cpp,objc,objcpp nnoremap <Space>gi :YcmCompleter GoToInclude<CR>
 
 " SnipMate
 "imap <C-J> <Plug>snipMateNextOrTrigger
@@ -293,9 +221,6 @@ vmap <C-N> <Plug>IMAP_JumpForward
 let g:Tex_DefaultTargetFormat = 'pdf'
 let g:Tex_CompileRule_pdf = 'xelatex -synctex=1 -interaction=nonstopmode -shell-escape $*'
 let g:Tex_ViewRule_pdf = 'mupdf'
-
-" clang_complete
-let g:clang_snippets = 1
 
 " enhanced cpp highlight
 let g:cpp_class_scope_highlight = 1
@@ -313,42 +238,18 @@ let g:alternateExtensions_H = "CPP,CXX,CC,C"
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 " This is slow, so disable it
 let g:airline#extensions#tagbar#enabled = 0
+let g:airline#extensions#tabline#enabled = 1
 " make sure airline is always visible
 set laststatus=2
 
 " tern
 let g:tern_show_signature_in_pum = 1
 
-" vim-jsbeautify
-autocmd FileType javascript noremap <buffer> <Leader>ff :call JsBeautify()<cr>
-autocmd FileType javascript vnoremap <buffer> <Leader>ff :call RangeJsBeautify()<cr>
-
 " nerd tree
-nnoremap <silent> <Leader>nd :NERDTree<CR>
 nnoremap <silent> <Leader>nf :NERDTreeFind<CR>
-nnoremap <silent> <Leader>nc :NERDTreeClose<CR>
 
 " easy align
 vmap <CR> <Plug>(EasyAlign)
-
-" ctrlspace
-set hidden
-set showtabline=0
-let g:airline_exclude_preview = 1
-let g:CtrlSpaceSaveWorkspaceOnSwitch = 1
-let g:CtrlSpaceSaveWorkspaceOnExit = 1
-let g:CtrlSpaceIgnoredFiles = '\v[\/](tmp|temp|build)[\/]'
-
-nnoremap <silent> <Leader>, :CtrlSpace<CR>
-nnoremap <silent> <Leader>/ :CtrlSpace /<CR>
-nnoremap <silent> <Leader>o :CtrlSpace o/<CR>
-hi link CtrlSpaceNormal   Normal
-hi link CtrlSpaceSelected PMenu
-hi link CtrlSpaceStatus   StatusLine
-hi link CtrlSpaceSearch   Type
-if executable("ag")
-    let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
-endif
 
 function! g:UltiSnips_Complete()
     call UltiSnips#ExpandSnippet()
@@ -400,15 +301,15 @@ endw
 set showcmd
 
 " use i-beam cursor in insert mode, works in iTerm2 but not in Terminal
-"if empty($TMUX)
-  "let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-  "let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-  "let &t_SR = "\<Esc>]50;CursorShape=2\x7"
-"else
-  "let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-  "let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-  "let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
-"endif
+if empty($TMUX)
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+  let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+else
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+  let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
+endif
 
 set tw=100
 
@@ -419,10 +320,80 @@ augroup ClangFormatSettings
     autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
 augroup END
 
-nnoremap <Leader>u :UndotreeToggle<CR>
-if has("persistent_undo")
-    set undodir=~/.undodir/
-    set undofile
-endif
-
 set splitbelow
+
+" window management
+nnoremap <silent> <Leader>wc :ChooseWin<CR>
+" distraction free reading
+nnoremap <silent> <Leader>wC :Goyo<CR>
+nnoremap <silent> <Leader>w= <C-w>=
+
+
+" Unite settings
+" Like ctrlp.vim settings.
+call unite#custom#profile('default', 'context', {
+\   'start_insert': 1,
+\   'winheight': 10,
+\   'direction': 'botright',
+\ })
+
+nnoremap [unite] <Nop>
+nnoremap , [unite]
+
+autocmd FileType unite call s:unite_my_settings()
+function! s:unite_my_settings()"{{{
+    " Overwrite settings.
+
+    imap <buffer> jj      <Plug>(unite_insert_leave)
+    "imap <buffer> <C-w>     <Plug>(unite_delete_backward_path)
+
+    imap <buffer><expr> j unite#smart_map('j', '')
+    imap <buffer> <TAB>   <Plug>(unite_select_next_line)
+    imap <buffer> <C-j> <Plug>(unite_select_next_line)
+    imap <buffer> <C-k> <Plug>(unite_select_previous_line)
+    "imap <buffer> '     <Plug>(unite_quick_match_default_action)
+    "nmap <buffer> '     <Plug>(unite_quick_match_default_action)
+    imap <buffer><expr> x
+                \ unite#smart_map('x', "\<Plug>(unite_quick_match_jump)")
+    nmap <buffer> x     <Plug>(unite_quick_match_jump)
+    nmap <buffer> <C-z>     <Plug>(unite_toggle_transpose_window)
+    imap <buffer> <C-z>     <Plug>(unite_toggle_transpose_window)
+    nmap <buffer> <C-j>     <Plug>(unite_toggle_auto_preview)
+    nmap <buffer> <C-r>     <Plug>(unite_narrowing_input_history)
+    imap <buffer> <C-r>     <Plug>(unite_narrowing_input_history)
+    nnoremap <silent><buffer><expr> l
+                \ unite#smart_map('l', unite#do_action('default'))
+
+    let unite = unite#get_current_unite()
+    if unite.profile_name ==# 'search'
+        nnoremap <silent><buffer><expr> r     unite#do_action('replace')
+    else
+        nnoremap <silent><buffer><expr> r     unite#do_action('rename')
+    endif
+
+    nnoremap <silent><buffer><expr> cd     unite#do_action('lcd')
+    nnoremap <buffer><expr> S      unite#mappings#set_current_sorters(
+                \ empty(unite#mappings#get_current_sorters()) ?
+                \ ['sorter_reverse'] : [])
+
+    " Runs "split" action by <C-s>.
+    imap <silent><buffer><expr> <C-s>     unite#do_action('split')
+endfunction"}}}
+
+nnoremap <silent> <Leader>ff :<C-u>Unite -buffer-name=files   file_rec/async<cr>
+nnoremap <silent> <Leader>fp :<C-u>UniteWithProjectDir -buffer-name=files  file_rec/async<cr>
+nnoremap <silent> <Leader>fc :<C-u>UniteWithCurrentDir -buffer-name=files  file_rec/async<cr>
+nnoremap <silent> <Leader>fb :<C-u>UniteWithBufferDir -buffer-name=files   file_rec/async<cr>
+nnoremap <silent> <Leader>r :<C-u>Unite -buffer-name=mru     file_mru<cr>
+nnoremap <silent> <Leader>o :<C-u>Unite -buffer-name=outline outline<cr>
+nnoremap <silent> <Leader>y :<C-u>Unite -buffer-name=yank    history/yank<cr>
+nnoremap <silent> <Leader>b :<C-u>Unite -buffer-name=buffer  buffer<cr>
+nnoremap <silent> <Leader>h :<C-u>Unite -buffer-name=help    help<cr>
+nnoremap <silent> <Leader>s :<C-u>Unite -buffer-name=session session<cr>
+
+" unite session command abbreviation
+cnoreab uss UniteSessionSave
+cnoreab usl UniteSessionLoad
+
+" mru
+autocmd VimLeave * :NeoMRUSave
