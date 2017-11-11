@@ -26,6 +26,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'Valloric/YouCompleteMe.git'
 Plugin 'kien/ctrlp.vim'
 Plugin 'ervandew/supertab'
+Plugin 'ap/vim-buftabline'
 
 " snip mate plugin and dependencies
 Plugin 'MarcWeber/vim-addon-mw-utils'
@@ -238,7 +239,6 @@ let g:alternateExtensions_H = "CPP,CXX,CC,C"
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 " This is slow, so disable it
 let g:airline#extensions#tagbar#enabled = 0
-let g:airline#extensions#tabline#enabled = 1
 " make sure airline is always visible
 set laststatus=2
 
@@ -390,6 +390,7 @@ nnoremap <silent> <Leader>y :<C-u>Unite -buffer-name=yank    history/yank<cr>
 nnoremap <silent> <Leader>b :<C-u>Unite -buffer-name=buffer  buffer<cr>
 nnoremap <silent> <Leader>h :<C-u>Unite -buffer-name=help    help<cr>
 nnoremap <silent> <Leader>s :<C-u>Unite -buffer-name=session session<cr>
+nnoremap <silent> <Leader>t :<C-u>Unite -buffer-name=tag tag<cr>
 
 " unite session command abbreviation
 cnoreab uss UniteSessionSave
@@ -397,3 +398,15 @@ cnoreab usl UniteSessionLoad
 
 " mru
 autocmd VimLeave * :NeoMRUSave
+
+let g:buftabline_numbers = 2
+nmap <leader>1 <Plug>BufTabLine.Go(1)
+nmap <leader>2 <Plug>BufTabLine.Go(2)
+nmap <leader>3 <Plug>BufTabLine.Go(3)
+nmap <leader>4 <Plug>BufTabLine.Go(4)
+nmap <leader>5 <Plug>BufTabLine.Go(5)
+nmap <leader>6 <Plug>BufTabLine.Go(6)
+nmap <leader>7 <Plug>BufTabLine.Go(7)
+nmap <leader>8 <Plug>BufTabLine.Go(8)
+nmap <leader>9 <Plug>BufTabLine.Go(9)
+nmap <leader>0 <Plug>BufTabLine.Go(10)
