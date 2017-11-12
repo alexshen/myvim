@@ -8,7 +8,7 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'Shougo/vimproc.vim', {'do' : 'make'}
+Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/vimfiler.vim'
 Plugin 'Shougo/neomru.vim'
@@ -59,6 +59,8 @@ Plugin 'rhysd/vim-clang-format'
 
 call vundle#end()
 filetype plugin indent on
+
+set hidden
 set modeline
 " breaking for characters greater than 255, such as Chinese
 " join comment lines
@@ -67,23 +69,14 @@ set fo+=mj
 " cmd height 2
 set ch=2
 
-set mousehide       " Hide the mouse when typing text
+" Hide the mouse when typing text
+set mousehide
 
-" Only do this for Vim version 5.0 and later.
-if version >= 500
+" I like highlighting strings inside C comments
+let c_comment_strings=1
 
-  " I like highlighting strings inside C comments
-  let c_comment_strings=1
-
-  " Switch on syntax highlighting if it wasn't on yet.
-  if !exists("syntax_on")
-    syntax on
-  endif
-
-  " Switch on search pattern highlighting.
-  set hlsearch
-endif
-
+set hlsearch
+syntax on
 set langmenu=en_US
 let $LANG='en_US'
 source $VIMRUNTIME/delmenu.vim
@@ -111,13 +104,6 @@ set expandtab
 "let g:solarized_termcolors=256
 "let g:solarized_termtrans=1
 colorscheme solarized
-"colorscheme mrdark
-"set guifont=courier_new:h10
-"set guifont=Lucida_Console:h10
-"set guifont=Dina:h10
-"set guifont=Bitstream_Vera_Serif:h10
-"set guifont=Triskweline:h10
-"set guifont=ProggyCleanSZ:h11
 
 set noerrorbells visualbell t_vb=
 set ignorecase smartcase
@@ -161,8 +147,8 @@ set tags+=./tags,tags;
 imap <C-BS> <C-W>
 imap <C-DEL> <ESC>lcw
 
-" Press Space to turn off highlighting and clear any message already displayed.
-nnoremap <silent> <CR> :nohlsearch<CR><CR>
+nnoremap <silent> \\ :nohlsearch<CR>
+" save one keystroke for typing command
 noremap ; :
 noremap : ;
 
@@ -209,10 +195,6 @@ let g:ycm_complete_in_comments = 1
 autocmd FileType c,cpp,objc,objcpp,cs,go,javascript,python,rust,typescript nnoremap <Space>gd :YcmCompleter GoToDefinition<CR>
 autocmd FileType c,cpp,objc,objcpp,cs,go,python,rust nnoremap <Space>gD :YcmCompleter GoToDeclaration<CR>
 autocmd FileType c,cpp,objc,objcpp nnoremap <Space>gi :YcmCompleter GoToInclude<CR>
-
-" SnipMate
-"imap <C-J> <Plug>snipMateNextOrTrigger
-"smap <C-J> <Plug>snipMateNextOrTrigger
 
 " remap to avoid conflict with mappings for window navigation
 nmap <C-N> <Plug>IMAP_JumpForward
@@ -313,21 +295,14 @@ else
 endif
 
 set tw=100
-
-augroup ClangFormatSettings
-    autocmd!
-    " map to <Leader>cf in C++ code
-    autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
-    autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
-augroup END
-
 set splitbelow
 
 " window management
 nnoremap <silent> <Leader>wc :ChooseWin<CR>
+nnoremap <silent> <Leader>w= <C-w>=
+
 " distraction free reading
 nnoremap <silent> <Leader>wC :Goyo<CR>
-nnoremap <silent> <Leader>w= <C-w>=
 
 
 " Unite settings
@@ -350,6 +325,7 @@ function! s:unite_my_settings()"{{{
 
     imap <buffer><expr> j unite#smart_map('j', '')
     imap <buffer> <TAB>   <Plug>(unite_select_next_line)
+    imap <buffer> <S-TAB> <Plug>(unite_select_previous_line)
     imap <buffer> <C-j> <Plug>(unite_select_next_line)
     imap <buffer> <C-k> <Plug>(unite_select_previous_line)
     "imap <buffer> '     <Plug>(unite_quick_match_default_action)
@@ -389,8 +365,8 @@ nnoremap <silent> <Leader>r :<C-u>Unite -buffer-name=mru     file_mru<cr>
 nnoremap <silent> <Leader>o :<C-u>Unite -buffer-name=outline outline<cr>
 nnoremap <silent> <Leader>y :<C-u>Unite -buffer-name=yank    history/yank<cr>
 nnoremap <silent> <Leader>b :<C-u>Unite -buffer-name=buffer  buffer<cr>
-nnoremap <silent> <Leader>h :<C-u>Unite -buffer-name=help    help<cr>
-nnoremap <silent> <Leader>s :<C-u>Unite -buffer-name=session session<cr>
+nnoremap <silent> <Leader>H :<C-u>Unite -buffer-name=help    help<cr>
+nnoremap <silent> <Leader>S :<C-u>Unite -buffer-name=session session<cr>
 nnoremap <silent> <Leader>t :<C-u>Unite -buffer-name=tag tag<cr>
 
 " unite session command abbreviation
@@ -411,3 +387,18 @@ nmap <leader>7 <Plug>BufTabLine.Go(7)
 nmap <leader>8 <Plug>BufTabLine.Go(8)
 nmap <leader>9 <Plug>BufTabLine.Go(9)
 nmap <leader>0 <Plug>BufTabLine.Go(10)
+
+augroup ClangFormatSettings
+    autocmd!
+    " map to <Leader>= in C++ code
+    autocmd FileType c,cpp,objc nnoremap <buffer><Leader>= :<C-u>ClangFormat<CR>
+    autocmd FileType c,cpp,objc vnoremap <buffer><Leader>= :ClangFormat<CR>
+augroup END
+
+" easymotion
+let g:EasyMotion_smartcase = 1
+map <Leader><Leader>/ <Plug>(easymotion-sn)
+map <Leader><Leader>. <Plug>(easymotion-repeat)
+map <Leader><Leader>l <Plug>(easymotion-lineforward)
+map <Leader><Leader>h <Plug>(easymotion-linebackward)
+
