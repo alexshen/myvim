@@ -46,6 +46,7 @@ Plugin 'a.vim'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-surround'
 Plugin 'elzr/vim-json'
+Plugin 'schickling/vim-bufonly'
 "Plugin 'maksimr/vim-jsbeautify'
 "Plugin 'einars/js-beautify'
 "Plugin 'vim-ctrlspace/vim-ctrlspace.git'
@@ -180,6 +181,12 @@ if executable("ag")
     let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
 endif
 
+nnoremap <Leader>f :CtrlP<CR>
+nnoremap <Leader>b :CtrlPBuffer<CR>
+nnoremap <Leader>tt :CtrlPTag<CR>
+nnoremap <Leader>tb :CtrlPBufTag<CR>
+nnoremap <Leader>r :CtrlPMRU<CR>
+
 
 " Ycm
 let g:ycm_server_keep_logfiles = 1
@@ -300,6 +307,11 @@ set splitbelow
 " window management
 nnoremap <silent> <Leader>wc :ChooseWin<CR>
 nnoremap <silent> <Leader>w= <C-w>=
+" preview the tag under the cursor
+nnoremap <silent> <Leader>w} <C-w>}
+
+" delete all other buffers
+nnoremap <silent> <Leader>B :BufOnly<CR>
 
 " distraction free reading
 nnoremap <silent> <Leader>wC :Goyo<CR>
@@ -312,6 +324,10 @@ call unite#custom#profile('default', 'context', {
 \   'winheight': 10,
 \   'direction': 'botright',
 \ })
+
+"call unite#custom#source('file,file/new,buffer,file_rec/async', 'matchers', 'matcher_fuzzy')
+"call unite#custom#profile('files,file_rec/async', 'filters', ['sorter_rank'])
+"call unite#custom#source('tag', 'matchers', 'matcher_fuzzy')
 
 nnoremap [unite] <Nop>
 nnoremap , [unite]
@@ -357,17 +373,17 @@ function! s:unite_my_settings()"{{{
     imap <silent><buffer><expr> <C-s>     unite#do_action('split')
 endfunction"}}}
 
-nnoremap <silent> <Leader>f :<C-u>Unite -buffer-name=files   file_rec/async<cr>
+"nnoremap <silent> <Leader>f :<C-u>Unite -buffer-name=files   file_rec/async<cr>
 "nnoremap <silent> <Leader>fp :<C-u>UniteWithProjectDir -buffer-name=files  file_rec/async<cr>
 "nnoremap <silent> <Leader>fc :<C-u>UniteWithCurrentDir -buffer-name=files  file_rec/async<cr>
 "nnoremap <silent> <Leader>fb :<C-u>UniteWithBufferDir -buffer-name=files   file_rec/async<cr>
-nnoremap <silent> <Leader>r :<C-u>Unite -buffer-name=mru     file_mru<cr>
+"nnoremap <silent> <Leader>r :<C-u>Unite -buffer-name=mru     file_mru<cr>
 nnoremap <silent> <Leader>o :<C-u>Unite -buffer-name=outline outline<cr>
 nnoremap <silent> <Leader>y :<C-u>Unite -buffer-name=yank    history/yank<cr>
-nnoremap <silent> <Leader>b :<C-u>Unite -buffer-name=buffer  buffer<cr>
 nnoremap <silent> <Leader>H :<C-u>Unite -buffer-name=help    help<cr>
 nnoremap <silent> <Leader>S :<C-u>Unite -buffer-name=session session<cr>
-nnoremap <silent> <Leader>t :<C-u>Unite -buffer-name=tag tag<cr>
+"nnoremap <silent> <Leader>b :<C-u>Unite -buffer-name=buffer  buffer<cr>
+"nnoremap <silent> <Leader>t :<C-u>Unite -buffer-name=tag tag<cr>
 
 " unite session command abbreviation
 cnoreab uss UniteSessionSave
@@ -397,8 +413,9 @@ augroup END
 
 " easymotion
 let g:EasyMotion_smartcase = 1
-map <Leader><Leader>/ <Plug>(easymotion-sn)
-map <Leader><Leader>. <Plug>(easymotion-repeat)
-map <Leader><Leader>l <Plug>(easymotion-lineforward)
-map <Leader><Leader>h <Plug>(easymotion-linebackward)
+map <Leader>s <Plug>(easymotion-s)
+map <Leader>/ <Plug>(easymotion-sn)
+map <Leader>. <Plug>(easymotion-repeat)
+map <Leader>l <Plug>(easymotion-lineforward)
+map <Leader>h <Plug>(easymotion-linebackward)
 
