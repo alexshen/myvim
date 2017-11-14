@@ -2,63 +2,63 @@ set nocompatible
 set t_ut=
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim,~/.vim/bundle/vim-projectroot
+if empty(glob('~/.vim/autoload/plug.vim')) && executable('curl')
+  silent !curl -kfLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+endif
 
-call vundle#begin()
+call plug#begin('~/.vim/bundle')
 
-Plugin 'VundleVim/Vundle.vim'
-
-Plugin 'Shougo/vimproc.vim'
-Plugin 'Shougo/unite.vim'
-Plugin 'Shougo/vimfiler.vim'
-Plugin 'Shougo/neomru.vim'
-Plugin 'Shougo/unite-help'
-Plugin 'Shougo/unite-outline'
-Plugin 'Shougo/unite-session'
-Plugin 'Shougo/neoyank.vim'
-Plugin 'tsukkee/unite-tag'
-Plugin 't9md/vim-choosewin'
-Plugin 'Tagbar'
-Plugin 'junegunn/vim-easy-align'
-Plugin 'junegunn/goyo.vim'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/nerdtree'
-Plugin 'Valloric/YouCompleteMe.git'
-Plugin 'kien/ctrlp.vim'
-Plugin 'ervandew/supertab'
-Plugin 'ap/vim-buftabline'
-Plugin 'easymotion/vim-easymotion'
+Plug 'Shougo/vimproc.vim'
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/vimfiler.vim'
+Plug 'Shougo/neomru.vim'
+Plug 'Shougo/unite-help'
+Plug 'Shougo/unite-outline'
+Plug 'Shougo/unite-session'
+Plug 'Shougo/neoyank.vim'
+Plug 'tsukkee/unite-tag'
+Plug 't9md/vim-choosewin'
+Plug 'majutsushi/tagbar'
+Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/goyo.vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'Valloric/YouCompleteMe'
+Plug 'kien/ctrlp.vim'
+Plug 'ervandew/supertab'
+Plug 'ap/vim-buftabline'
+Plug 'easymotion/vim-easymotion'
 
 " snip mate plugin and dependencies
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
 
-Plugin 'honza/vim-snippets'
-"Plugin 'LaTeX-Suite-aka-Vim-LaTeX'
-Plugin 'cscope_macros.vim'
-Plugin 'xolox/vim-misc'
-"Plugin 'xolox/vim-colorscheme-switcher'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'dbakker/vim-projectroot'
-Plugin 'octol/vim-cpp-enhanced-highlight'
-Plugin 'a.vim'
-Plugin 'bling/vim-airline'
-Plugin 'tpope/vim-surround'
-Plugin 'elzr/vim-json'
-Plugin 'schickling/vim-bufonly'
-"Plugin 'maksimr/vim-jsbeautify'
-"Plugin 'einars/js-beautify'
-"Plugin 'vim-ctrlspace/vim-ctrlspace.git'
-Plugin 'fatih/vim-go.git'
-Plugin 'SirVer/ultisnips'
-"Plugin 'jiangmiao/auto-pairs'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'tikhomirov/vim-glsl.git'
-Plugin 'rhysd/vim-clang-format'
-"Plugin 'mbbill/undotree'
+Plug 'honza/vim-snippets'
+"Plug 'LaTeX-Suite-aka-Vim-LaTeX'
+Plug 'xolox/vim-misc'
+"Plug 'xolox/vim-colorscheme-switcher'
+Plug 'flazz/vim-colorschemes'
+Plug 'dbakker/vim-projectroot'
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'vim-scripts/a.vim'
+Plug 'bling/vim-airline'
+Plug 'tpope/vim-surround'
+Plug 'elzr/vim-json'
+Plug 'schickling/vim-bufonly'
+"Plug 'maksimr/vim-jsbeautify'
+"Plug 'einars/js-beautify'
+"Plug 'vim-ctrlspace/vim-ctrlspace.git'
+Plug 'fatih/vim-go'
+Plug 'SirVer/ultisnips'
+"Plug 'jiangmiao/auto-pairs'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'tikhomirov/vim-glsl'
+Plug 'rhysd/vim-clang-format'
+"Plug 'mbbill/undotree'
 
-call vundle#end()
+call plug#end()
 filetype plugin indent on
 
 set hidden
@@ -129,9 +129,6 @@ set mps+=<:>
 " disable win alt keys
 set wak=no
 
-filetype plugin on
-filetype indent on
-
 let mapleader = "\<Space>"
 
 " super tab, user defined completion
@@ -176,6 +173,7 @@ let g:ctrlp_custom_ignore = {
     \ 'file': '\v\.(exe|so|obj|swp|ii|user|suo)',
     \ }
 let g:ctrlp_max_files = 0
+let g:ctrlp_open_new_file = 'r'
 let g:ctrlp_clear_cache_on_exit = 0
 if executable("ag")
     let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
@@ -308,7 +306,7 @@ set splitbelow
 nnoremap <silent> <Leader>wc :ChooseWin<CR>
 nnoremap <silent> <Leader>w= <C-w>=
 " preview the tag under the cursor
-nnoremap <silent> <Leader>w} <C-w>}
+nnoremap <silent> <Leader>tp <C-w>}
 
 " delete all other buffers
 nnoremap <silent> <Leader>B :BufOnly<CR>
