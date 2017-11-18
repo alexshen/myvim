@@ -302,6 +302,10 @@ endif
 set tw=100
 set splitbelow
 
+" j, k          Store relative line number jumps in the jumplist.
+nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '') . 'k'
+nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
+
 " window management
 nnoremap <silent> <Leader>wc :ChooseWin<CR>
 nnoremap <silent> <Leader>w= <C-w>=
