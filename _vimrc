@@ -57,6 +57,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'tikhomirov/vim-glsl'
 Plug 'rhysd/vim-clang-format'
 "Plug 'mbbill/undotree'
+Plug 'Chiel92/vim-autoformat'
 
 call plug#end()
 filetype plugin indent on
@@ -227,6 +228,8 @@ let g:alternateExtensions_H = "CPP,CXX,CC,C"
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 " This is slow, so disable it
 let g:airline#extensions#tagbar#enabled = 0
+let g:airline_detect_iminsert=1
+
 " make sure airline is always visible
 set laststatus=2
 
@@ -406,12 +409,12 @@ nmap <leader>8 <Plug>BufTabLine.Go(8)
 nmap <leader>9 <Plug>BufTabLine.Go(9)
 nmap <leader>0 <Plug>BufTabLine.Go(10)
 
-augroup ClangFormatSettings
-    autocmd!
-    " map to <Leader>= in C++ code
-    autocmd FileType c,cpp,objc nnoremap <buffer><Leader>= :<C-u>ClangFormat<CR>
-    autocmd FileType c,cpp,objc vnoremap <buffer><Leader>= :ClangFormat<CR>
-augroup END
+"augroup ClangFormatSettings
+    "autocmd!
+    "" map to <Leader>= in C++ code
+    "autocmd FileType c,cpp,objc nnoremap <buffer><Leader>= :<C-u>ClangFormat<CR>
+    "autocmd FileType c,cpp,objc vnoremap <buffer><Leader>= :ClangFormat<CR>
+"augroup END
 
 " easymotion
 let g:EasyMotion_smartcase = 1
@@ -421,3 +424,27 @@ map <Leader>. <Plug>(easymotion-repeat)
 map <Leader>l <Plug>(easymotion-lineforward)
 map <Leader>h <Plug>(easymotion-linebackward)
 
+nnoremap <Leader>= :Autoformat<CR>
+
+" allow exiting insert mode without leaving home row
+inoremap jk <Esc>
+inoremap kj <Esc>
+inoremap jj <Esc>
+inoremap kk <Esc>
+
+cnoremap jk <c-u><bs>
+cnoremap kj <c-u><bs>
+cnoremap jj <c-u><bs>
+cnoremap kk <c-u><bs>
+
+" Execute 'lnoremap x X' and 'lnoremap X x' for each letter a-z.
+for c in range(char2nr('A'), char2nr('Z'))
+  execute 'lnoremap ' . nr2char(c+32) . ' ' . nr2char(c)
+  execute 'lnoremap ' . nr2char(c) . ' ' . nr2char(c+32)
+endfor
+
+" Kill the capslock when leaving insert mode.
+autocmd InsertLeave * set iminsert=0
+
+" Set following to show "<CAPS>" in the status line when "Caps Lock" is on.
+let b:keymap_name = "CAPS"
