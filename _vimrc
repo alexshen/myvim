@@ -319,7 +319,7 @@ nnoremap <silent> <Leader>tp <C-w>}
 nnoremap <silent> <Leader>B :BufOnly<CR>
 
 " distraction free reading
-nnoremap <silent> <Leader>wC :Goyo<CR>
+nnoremap <silent> <Leader>r :Goyo<CR>
 
 
 " Unite settings
