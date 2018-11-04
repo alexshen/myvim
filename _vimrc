@@ -425,6 +425,7 @@ map <Leader>l <Plug>(easymotion-lineforward)
 map <Leader>h <Plug>(easymotion-linebackward)
 
 nnoremap <Leader>= :Autoformat<CR>
+vnoremap <Leader>= :Autoformat<CR>
 
 " allow exiting insert mode without leaving home row
 inoremap jk <Esc>
