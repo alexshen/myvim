@@ -167,8 +167,7 @@ nnoremap <silent> <F3> :NERDTreeToggle<CR>
 " CtrlP
 let g:ctrlp_lazy_update = 1
 let g:ctrlp_use_caching = 1
-let g:ctrlp_open_new_file = 'v'
-let g:ctrlp_working_path_mode = 'rc'
+let g:ctrlp_working_path_mode = 'r'
 let g:ctrlp_custom_ignore = {
     \ 'dir': '\v[\/]\.(git|hg|svn)|obj$',
     \ 'file': '\v\.(exe|so|obj|swp|ii|user|suo)',
@@ -176,9 +175,14 @@ let g:ctrlp_custom_ignore = {
 let g:ctrlp_max_files = 0
 let g:ctrlp_open_new_file = 'r'
 let g:ctrlp_clear_cache_on_exit = 0
-if executable("ag")
-    let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
-endif
+let ctrlp_user_cmd_unix = 'find %s -type f'  " MacOSX/Linux
+let ctrlp_user_cmd_win = 'dir %s /-n /b /s /a-d'  " Windows
+let g:ctrlp_user_command = {
+\ 'types': {
+  \ 1: ['.git', 'cd %s && git ls-files -co --exclude-standard | sort'],
+  \ },
+\ 'fallback': has('unix') ? ctrlp_user_cmd_unix : ctrlp_user_cmd_win
+\ }
 
 nnoremap <Leader>f :CtrlP<CR>
 nnoremap <Leader>b :CtrlPBuffer<CR>
