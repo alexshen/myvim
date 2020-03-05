@@ -50,7 +50,7 @@ Plug 'schickling/vim-bufonly'
 "Plug 'maksimr/vim-jsbeautify'
 "Plug 'einars/js-beautify'
 "Plug 'vim-ctrlspace/vim-ctrlspace.git'
-Plug 'fatih/vim-go'
+"Plug 'fatih/vim-go'
 Plug 'SirVer/ultisnips'
 "Plug 'jiangmiao/auto-pairs'
 Plug 'christoomey/vim-tmux-navigator'
@@ -173,7 +173,8 @@ let g:ctrlp_custom_ignore = {
     \ 'file': '\v\.(exe|so|obj|swp|ii|user|suo)',
     \ }
 let g:ctrlp_max_files = 0
-let g:ctrlp_open_new_file = 'r'
+let g:ctrlp_open_new_file = 'ij'
+let g:ctrlp_open_multiple_files = 'ij'
 let g:ctrlp_clear_cache_on_exit = 0
 let ctrlp_user_cmd_unix = 'find %s -type f'  " MacOSX/Linux
 let ctrlp_user_cmd_win = 'dir %s /-n /b /s /a-d'  " Windows
@@ -323,7 +324,7 @@ nnoremap <silent> <Leader>tp <C-w>}
 nnoremap <silent> <Leader>B :BufOnly<CR>
 
 " distraction free reading
-nnoremap <silent> <Leader>r :Goyo<CR>
+nnoremap <silent> <Leader>R :Goyo<CR>
 
 
 " Unite settings
@@ -430,12 +431,6 @@ map <Leader>h <Plug>(easymotion-linebackward)
 
 nnoremap <Leader>= :Autoformat<CR>
 vnoremap <Leader>= :Autoformat<CR>
-
-" allow exiting insert mode without leaving home row
-inoremap jk <Esc>
-inoremap kj <Esc>
-inoremap jj <Esc>
-inoremap kk <Esc>
 
 cnoremap jk <c-u><bs>
 cnoremap kj <c-u><bs>
