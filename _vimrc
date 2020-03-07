@@ -45,6 +45,7 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'vim-scripts/a.vim'
 Plug 'bling/vim-airline'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
 Plug 'elzr/vim-json'
 Plug 'schickling/vim-bufonly'
 "Plug 'maksimr/vim-jsbeautify'
@@ -58,6 +59,7 @@ Plug 'tikhomirov/vim-glsl'
 Plug 'rhysd/vim-clang-format'
 "Plug 'mbbill/undotree'
 Plug 'Chiel92/vim-autoformat'
+Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 filetype plugin indent on
@@ -448,3 +450,5 @@ autocmd InsertLeave * set iminsert=0
 
 " Set following to show "<CAPS>" in the status line when "Caps Lock" is on.
 let b:keymap_name = "CAPS"
+
+let g:airline_solarized_bg='dark'
