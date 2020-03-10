@@ -30,6 +30,7 @@ Plug 'ervandew/supertab'
 Plug 'ap/vim-buftabline'
 Plug 'easymotion/vim-easymotion'
 
+
 " snip mate plugin and dependencies
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
@@ -39,6 +40,7 @@ Plug 'honza/vim-snippets'
 "Plug 'LaTeX-Suite-aka-Vim-LaTeX'
 Plug 'xolox/vim-misc'
 "Plug 'xolox/vim-colorscheme-switcher'
+Plug 'joshdick/onedark.vim'
 Plug 'flazz/vim-colorschemes'
 Plug 'dbakker/vim-projectroot'
 Plug 'octol/vim-cpp-enhanced-highlight'
@@ -265,8 +267,6 @@ function! g:UltiSnips_Complete()
 endfunction
 
 let g:UltiSnipsExpandTrigger="<c-l>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
 
 function! CreateDirIfNotExist(dir)
