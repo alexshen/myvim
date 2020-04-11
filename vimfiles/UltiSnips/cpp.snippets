@@ -1,0 +1,25 @@
+snippet once "Include header once only guard"
+#ifndef ${1:`!p
+if not snip.c:
+	snip.rv = 'INCLUDED_' + snip.basename.upper()
+else:
+	snip.rv = snip.c`}
+#define $1
+
+${VISUAL}$0
+
+#endif /* $1 */
+endsnippet
+
+snippet bc "banner comment"
+`!p
+if not snip.c:
+    tw = int(vim.eval('&tw'))
+    strip = '// '
+    strip += (tw - len(strip)) * '='
+    snip.rv = strip
+else:
+    snip.rv = snip.c`
+// ${VISUAL:INLINE FUNCTION DEFINITIONS}$0
+`!p snip.rv = snip.c if snip.c else strip`
+endsnippet

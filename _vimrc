@@ -32,9 +32,9 @@ Plug 'easymotion/vim-easymotion'
 
 
 " snip mate plugin and dependencies
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'tomtom/tlib_vim'
-Plug 'garbas/vim-snipmate'
+" Plug 'MarcWeber/vim-addon-mw-utils'
+" Plug 'tomtom/tlib_vim'
+" Plug 'garbas/vim-snipmate'
 
 Plug 'honza/vim-snippets'
 "Plug 'LaTeX-Suite-aka-Vim-LaTeX'
@@ -146,6 +146,7 @@ set completeopt=longest,menuone
 " 3. search upward until the root
 " See file-search, tags-option for details
 set tags+=./tags,tags;
+set cscopetag
 
 imap <C-BS> <C-W>
 imap <C-DEL> <ESC>lcw
@@ -287,13 +288,15 @@ set undodir=~/.vim/undo//
 set ttimeoutlen=0 timeoutlen=1000
 
 " map meta key
-let c='a'
-while c <= 'z'
-    exec "set <M-".c.">=\<Esc>".c
-    exec "nmap \<Esc>".c." <M-".c.">"
-    exec "imap \<Esc>".c." <M-".c.">"
-    let c = nr2char(1+char2nr(c))
-endw
+if !has('nvim')
+    let c='a'
+    while c <= 'z'
+        exec "set <M-".c.">=\<Esc>".c
+        exec "nmap \<Esc>".c." <M-".c.">"
+        exec "imap \<Esc>".c." <M-".c.">"
+        let c = nr2char(1+char2nr(c))
+    endw
+endif
 
 " show keystrokes in status line
 set showcmd
@@ -309,7 +312,9 @@ else
   let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
 endif
 
-set tw=100
+set tw=79
+" show the visual width limit
+set cc=80
 set splitbelow
 
 " j, k          Store relative line number jumps in the jumplist.
