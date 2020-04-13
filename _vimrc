@@ -443,6 +443,7 @@ map <Leader>h <Plug>(easymotion-linebackward)
 
 nnoremap <Leader>= :Autoformat<CR>
 vnoremap <Leader>= :Autoformat<CR>
+let g:autoformat_autoindent = 0
 
 " Execute 'lnoremap x X' and 'lnoremap X x' for each letter a-z.
 for c in range(char2nr('A'), char2nr('Z'))
