@@ -37,9 +37,9 @@ Plug 'easymotion/vim-easymotion'
 " Plug 'garbas/vim-snipmate'
 
 Plug 'honza/vim-snippets'
-"Plug 'LaTeX-Suite-aka-Vim-LaTeX'
+" Plug 'LaTeX-Suite-aka-Vim-LaTeX'
 Plug 'xolox/vim-misc'
-"Plug 'xolox/vim-colorscheme-switcher'
+" Plug 'xolox/vim-colorscheme-switcher'
 Plug 'joshdick/onedark.vim'
 Plug 'flazz/vim-colorschemes'
 Plug 'dbakker/vim-projectroot'
@@ -50,16 +50,16 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'elzr/vim-json'
 Plug 'schickling/vim-bufonly'
-"Plug 'maksimr/vim-jsbeautify'
-"Plug 'einars/js-beautify'
-"Plug 'vim-ctrlspace/vim-ctrlspace.git'
-"Plug 'fatih/vim-go'
+" Plug 'maksimr/vim-jsbeautify'
+" Plug 'einars/js-beautify'
+" Plug 'vim-ctrlspace/vim-ctrlspace.git'
+" Plug 'fatih/vim-go'
 Plug 'SirVer/ultisnips'
-"Plug 'jiangmiao/auto-pairs'
+" Plug 'jiangmiao/auto-pairs'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tikhomirov/vim-glsl'
 Plug 'rhysd/vim-clang-format'
-"Plug 'mbbill/undotree'
+" Plug 'mbbill/undotree'
 Plug 'Chiel92/vim-autoformat'
 Plug 'vim-airline/vim-airline-themes'
 
@@ -208,9 +208,11 @@ let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_complete_in_comments = 1
 
-autocmd FileType c,cpp,objc,objcpp,cs,go,javascript,python,rust,typescript nnoremap <Space>gd :YcmCompleter GoToDefinition<CR>
-autocmd FileType c,cpp,objc,objcpp,cs,go,python,rust nnoremap <Space>gD :YcmCompleter GoToDeclaration<CR>
-autocmd FileType c,cpp,objc,objcpp nnoremap <Space>gi :YcmCompleter GoToInclude<CR>
+autocmd FileType c,cpp,objc,objcpp,cs,go,javascript,python,rust,typescript nnoremap <Leader>gdf :YcmCompleter GoToDefinition<CR>
+autocmd FileType c,cpp,objc,objcpp,cs,go,python,rust nnoremap <Leader>gdl :YcmCompleter GoToDeclaration<CR>
+autocmd FileType c,cpp,objc,objcpp nnoremap <Leader>gi :YcmCompleter GoToInclude<CR>
+nnoremap <Leader>yd :YcmDiags<CR>
+nnoremap <Leader>yf :YcmCompleter FixIt<CR>
 
 " remap to avoid conflict with mappings for window navigation
 nmap <C-N> <Plug>IMAP_JumpForward
@@ -229,10 +231,13 @@ let g:cpp_class_scope_highlight = 1
 " a.vim
 " : not working with meta-key, don't know why
 nmap <silent> <Leader>a ;A<CR>
-imap <silent> <Leader>a ;A<CR>
 
 let g:alternateExtensions_h = "cpp,cxx,cc,CC,c"
 let g:alternateExtensions_H = "CPP,CXX,CC,C"
+" unmap the unexpected default mappings which cause input delay
+autocmd VimEnter * iunmap <Leader>ihn
+autocmd VimEnter * iunmap <Leader>is
+autocmd VimEnter * iunmap <Leader>ih
 
 " airline
 let g:airline#extensions#tabline#buffer_idx_mode = 1
@@ -396,7 +401,7 @@ endfunction"}}}
 "nnoremap <silent> <Leader>fb :<C-u>UniteWithBufferDir -buffer-name=files   file_rec/async<cr>
 "nnoremap <silent> <Leader>r :<C-u>Unite -buffer-name=mru     file_mru<cr>
 nnoremap <silent> <Leader>o :<C-u>Unite -buffer-name=outline outline<cr>
-nnoremap <silent> <Leader>y :<C-u>Unite -buffer-name=yank    history/yank<cr>
+nnoremap <silent> <Leader>Y :<C-u>Unite -buffer-name=yank    history/yank<cr>
 nnoremap <silent> <Leader>H :<C-u>Unite -buffer-name=help    help<cr>
 nnoremap <silent> <Leader>S :<C-u>Unite -buffer-name=session session<cr>
 "nnoremap <silent> <Leader>b :<C-u>Unite -buffer-name=buffer  buffer<cr>
