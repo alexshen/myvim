@@ -1,10 +1,12 @@
 snippet once "Include header once only guard"
+// clang-format off
 #ifndef ${1:`!p
 if not snip.c:
 	snip.rv = 'INCLUDED_' + snip.basename.upper()
 else:
 	snip.rv = snip.c`}
 #define $1
+// clang-format on
 
 ${VISUAL}$0
 

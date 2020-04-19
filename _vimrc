@@ -3,8 +3,8 @@ set t_ut=
 filetype off
 
 if empty(glob('~/.vim/autoload/plug.vim')) && executable('curl')
-  silent !curl -kfLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    silent !curl -kfLo ~/.vim/autoload/plug.vim --create-dirs
+                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endif
 
 call plug#begin('~/.vim/bundle')
@@ -27,7 +27,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'Valloric/YouCompleteMe'
 Plug 'kien/ctrlp.vim'
 Plug 'ervandew/supertab'
-Plug 'ap/vim-buftabline'
+"Plug 'ap/vim-buftabline'
 Plug 'easymotion/vim-easymotion'
 
 
@@ -174,9 +174,9 @@ let g:ctrlp_lazy_update = 1
 let g:ctrlp_use_caching = 1
 let g:ctrlp_working_path_mode = 'r'
 let g:ctrlp_custom_ignore = {
-    \ 'dir': '\v[\/]\.(git|hg|svn)|obj$',
-    \ 'file': '\v\.(exe|so|obj|swp|ii|user|suo)',
-    \ }
+            \ 'dir': '\v[\/]\.(git|hg|svn)|obj$',
+            \ 'file': '\v\.(exe|so|obj|swp|ii|user|suo)',
+            \ }
 let g:ctrlp_max_files = 0
 let g:ctrlp_open_new_file = 'ij'
 let g:ctrlp_open_multiple_files = 'ij'
@@ -184,11 +184,11 @@ let g:ctrlp_clear_cache_on_exit = 0
 let ctrlp_user_cmd_unix = 'find %s -type f'  " MacOSX/Linux
 let ctrlp_user_cmd_win = 'dir %s /-n /b /s /a-d'  " Windows
 let g:ctrlp_user_command = {
-\ 'types': {
-  \ 1: ['.git', 'cd %s && git ls-files -co --exclude-standard | sort'],
-  \ },
-\ 'fallback': has('unix') ? ctrlp_user_cmd_unix : ctrlp_user_cmd_win
-\ }
+            \ 'types': {
+            \ 1: ['.git', 'cd %s && git ls-files -co --exclude-standard | sort'],
+            \ },
+            \ 'fallback': has('unix') ? ctrlp_user_cmd_unix : ctrlp_user_cmd_win
+            \ }
 
 nnoremap <Leader>f :CtrlP<CR>
 nnoremap <Leader>b :CtrlPBuffer<CR>
@@ -241,9 +241,25 @@ autocmd VimEnter * iunmap <Leader>ih
 
 " airline
 let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#exclude_preview = 1
+
+nmap <Leader>1 <Plug>AirlineSelectTab1
+nmap <Leader>2 <Plug>AirlineSelectTab2
+nmap <Leader>3 <Plug>AirlineSelectTab3
+nmap <Leader>4 <Plug>AirlineSelectTab4
+nmap <Leader>5 <Plug>AirlineSelectTab5
+nmap <Leader>6 <Plug>AirlineSelectTab6
+nmap <Leader>7 <Plug>AirlineSelectTab7
+nmap <Leader>8 <Plug>AirlineSelectTab8
+nmap <Leader>9 <Plug>AirlineSelectTab9
+nmap <Leader>- <Plug>AirlineSelectPrevTab
+nmap <Leader>+ <Plug>AirlineSelectNextTab
+
 " This is slow, so disable it
 let g:airline#extensions#tagbar#enabled = 0
-let g:airline_detect_iminsert=1
+let g:airline_detect_iminsert = 1
 
 " make sure airline is always visible
 set laststatus=2
@@ -414,17 +430,17 @@ cnoreab usl UniteSessionLoad
 " mru
 autocmd VimLeave * :NeoMRUSave
 
-let g:buftabline_numbers = 2
-nmap <leader>1 <Plug>BufTabLine.Go(1)
-nmap <leader>2 <Plug>BufTabLine.Go(2)
-nmap <leader>3 <Plug>BufTabLine.Go(3)
-nmap <leader>4 <Plug>BufTabLine.Go(4)
-nmap <leader>5 <Plug>BufTabLine.Go(5)
-nmap <leader>6 <Plug>BufTabLine.Go(6)
-nmap <leader>7 <Plug>BufTabLine.Go(7)
-nmap <leader>8 <Plug>BufTabLine.Go(8)
-nmap <leader>9 <Plug>BufTabLine.Go(9)
-nmap <leader>0 <Plug>BufTabLine.Go(10)
+"let g:buftabline_numbers = 2
+"nmap <leader>1 <Plug>BufTabLine.Go(1)
+"nmap <leader>2 <Plug>BufTabLine.Go(2)
+"nmap <leader>3 <Plug>BufTabLine.Go(3)
+"nmap <leader>4 <Plug>BufTabLine.Go(4)
+"nmap <leader>5 <Plug>BufTabLine.Go(5)
+"nmap <leader>6 <Plug>BufTabLine.Go(6)
+"nmap <leader>7 <Plug>BufTabLine.Go(7)
+"nmap <leader>8 <Plug>BufTabLine.Go(8)
+"nmap <leader>9 <Plug>BufTabLine.Go(9)
+"nmap <leader>0 <Plug>BufTabLine.Go(10)
 
 "augroup ClangFormatSettings
     "autocmd!
@@ -443,7 +459,6 @@ map <Leader>h <Plug>(easymotion-linebackward)
 
 nnoremap <Leader>= :Autoformat<CR>
 vnoremap <Leader>= :Autoformat<CR>
-let g:autoformat_autoindent = 0
 
 " Execute 'lnoremap x X' and 'lnoremap X x' for each letter a-z.
 for c in range(char2nr('A'), char2nr('Z'))
@@ -458,3 +473,6 @@ autocmd InsertLeave * set iminsert=0
 let b:keymap_name = "CAPS"
 
 let g:airline_solarized_bg='dark'
+
+" terminal
+tnoremap <Esc> <C-\><C-n>
