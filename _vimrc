@@ -59,7 +59,7 @@ Plug 'SirVer/ultisnips'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tikhomirov/vim-glsl'
 Plug 'rhysd/vim-clang-format'
-" Plug 'mbbill/undotree'
+Plug 'mbbill/undotree'
 Plug 'Chiel92/vim-autoformat'
 Plug 'vim-airline/vim-airline-themes'
 
@@ -343,7 +343,7 @@ nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '') . 'k'
 nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
 
 " window management
-nnoremap <silent> <Leader>wc :ChooseWin<CR>
+nnoremap <silent> <Leader>ww :ChooseWin<CR>
 nnoremap <silent> <Leader>w= <C-w>=
 " preview the tag under the cursor
 nnoremap <silent> <Leader>tp <C-w>}
@@ -476,3 +476,18 @@ let g:airline_solarized_bg='dark'
 
 " terminal
 tnoremap <Esc> <C-\><C-n>
+
+" undotree
+let g:undotree_SplitWidth = 35
+
+noremap <F4> :UndotreeToggle<CR>
+
+if has("persistent_undo")
+    set undodir='~/.undodir/'
+    set undofile
+endif
+
+function g:Undotree_CustomMap()
+    nmap <buffer> J <plug>UndotreeGoNextState
+    nmap <buffer> K <plug>UndotreeGoPreviousState
+endfunc
