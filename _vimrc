@@ -326,11 +326,15 @@ set showcmd
 if empty($TMUX)
   let &t_SI = "\<Esc>]50;CursorShape=1\x7"
   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-  let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+  if exists('+t_SR')
+      let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+  endif
 else
   let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
   let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-  let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
+  if exists('+t_SR')
+      let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
+  endif
 endif
 
 set tw=79
@@ -475,7 +479,9 @@ let b:keymap_name = "CAPS"
 let g:airline_solarized_bg='dark'
 
 " terminal
-tnoremap <Esc> <C-\><C-n>
+if has('terminal')
+    tnoremap <Esc> <C-\><C-n>
+endif
 
 " undotree
 let g:undotree_SplitWidth = 35
