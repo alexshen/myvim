@@ -109,7 +109,9 @@ set expandtab
 
 "let g:solarized_termcolors=256
 "let g:solarized_termtrans=1
-colorscheme solarized
+if has('gui_running')
+    colorscheme solarized
+endif
 
 set noerrorbells visualbell t_vb=
 set ignorecase smartcase
@@ -489,7 +491,6 @@ let g:undotree_SplitWidth = 35
 noremap <F4> :UndotreeToggle<CR>
 
 if has("persistent_undo")
-    set undodir='~/.undodir/'
     set undofile
 endif
 
@@ -497,3 +498,14 @@ function g:Undotree_CustomMap()
     nmap <buffer> J <plug>UndotreeGoNextState
     nmap <buffer> K <plug>UndotreeGoPreviousState
 endfunc
+
+function! ToggleSpellCheck()
+    echo 'hello'
+    if &spell == 1
+        setlocal nospell
+    else
+        setlocal spell spelllang=en
+    endif
+endfunc
+
+nnoremap <Leader>S :call ToggleSpellCheck()<CR>
