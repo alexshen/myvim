@@ -500,7 +500,6 @@ function g:Undotree_CustomMap()
 endfunc
 
 function! ToggleSpellCheck()
-    echo 'hello'
     if &spell == 1
         setlocal nospell
     else
