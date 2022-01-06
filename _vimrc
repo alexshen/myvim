@@ -508,3 +508,13 @@ function! ToggleSpellCheck()
 endfunc
 
 nnoremap <Leader>S :call ToggleSpellCheck()<CR>
+
+function! ToggleUnnamedClipboard()
+    if stridx(&clipboard, 'unnamedplus') != -1
+        setlocal clipboard-=unnamedplus,unnamed
+    else
+        setlocal clipboard+=unnamedplus,unnamed
+    endif
+endfunc
+
+nnoremap <Leader>P :call ToggleUnnamedClipboard()<CR>
