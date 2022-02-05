@@ -518,3 +518,4 @@ function! ToggleUnnamedClipboard()
 endfunc
 
 nnoremap <Leader>P :call ToggleUnnamedClipboard()<CR>
+inoremap jk <ESC>
