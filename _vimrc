@@ -109,7 +109,9 @@ set expandtab
 
 "let g:solarized_termcolors=256
 "let g:solarized_termtrans=1
-if has('gui_running')
+if $VIM_COLORSCHEME
+    colorscheme $VIM_COLORSCHEME
+elseif has('gui_running')
     colorscheme solarized
 endif
 
