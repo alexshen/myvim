@@ -88,18 +88,8 @@ let $LANG='en_US'
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
 
-if has('gui_win32')
-    " au GUIEnter * simalt ~x
-    " full screen
-    map <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
-
-    "set guifont=Consolas:h10
-    set guifont=Source_Code_Pro:h9
-elseif has('unix') || has('macunix')
+if has('unix') || has('macunix')
     set ffs=unix
-    if has('gui_gtk2')
-        set guifont=Ubuntu\ Mono\ 10
-    endif
 endif
 
 set tabstop=4
@@ -111,8 +101,11 @@ set expandtab
 "let g:solarized_termtrans=1
 if $VIM_COLORSCHEME != ''
     colorscheme $VIM_COLORSCHEME
-elseif has('gui_running')
-    colorscheme solarized
+endif
+if $VIM_GUIFONT != ''
+    " don't know why direct setting guifont doesn't work
+    " exec does the job
+    exec "set guifont=" . $VIM_GUIFONT
 endif
 
 set noerrorbells visualbell t_vb=
