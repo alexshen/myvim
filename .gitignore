@@ -5,3 +5,4 @@ vimfiles/bundle/
 vimfiles/swap/
 vimfiles/autoload/plug.vim
 vimfiles/.netrwhist
+vim8*/
