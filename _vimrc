@@ -63,6 +63,10 @@ Plug 'mbbill/undotree'
 Plug 'Chiel92/vim-autoformat'
 Plug 'vim-airline/vim-airline-themes'
 
+if has('nvim')
+    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+endif
+
 call plug#end()
 filetype plugin indent on
 
