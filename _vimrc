@@ -53,7 +53,7 @@ Plug 'schickling/vim-bufonly'
 " Plug 'maksimr/vim-jsbeautify'
 " Plug 'einars/js-beautify'
 " Plug 'vim-ctrlspace/vim-ctrlspace.git'
-" Plug 'fatih/vim-go'
+Plug 'fatih/vim-go'
 Plug 'SirVer/ultisnips'
 " Plug 'jiangmiao/auto-pairs'
 Plug 'christoomey/vim-tmux-navigator'
@@ -518,3 +518,5 @@ endfunc
 
 nnoremap <Leader>P :call ToggleUnnamedClipboard()<CR>
 inoremap jk <ESC>
+
+let g:syntastic_go_checkers = ['golint', 'govet']
