@@ -19,7 +19,7 @@ Plug 'Shougo/unite-session'
 Plug 'Shougo/neoyank.vim'
 Plug 'tsukkee/unite-tag'
 Plug 't9md/vim-choosewin'
-Plug 'majutsushi/tagbar'
+Plug 'preservim/tagbar'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/goyo.vim'
 Plug 'scrooloose/nerdcommenter'
@@ -166,9 +166,9 @@ noremap <C-L>     <C-W>l
 " Tagbar
 " make it appear on the left by default
 let g:tagbar_left = 1
-nnoremap <silent> <F2> :TagbarToggle<CR>
+"nnoremap <silent> <C-S-T> :TagbarToggle<CR>
 let g:NERDTreeWinPos = 'right'
-nnoremap <silent> <F3> :NERDTreeToggle<CR>
+"nnoremap <silent> <F3> :NERDTreeToggle<CR>
 
 " CtrlP
 let g:ctrlp_lazy_update = 1
@@ -520,3 +520,7 @@ nnoremap <Leader>P :call ToggleUnnamedClipboard()<CR>
 inoremap jk <ESC>
 
 let g:syntastic_go_checkers = ['golint', 'govet']
+
+au FileType go nnoremap <silent> <F1> :GoDoc<CR>
+au FileType go nnoremap <silent> <F2> :GoRename<CR>
+au FileType go nnoremap <silent> <F7> :GoBuild<CR>
