@@ -147,7 +147,9 @@ set completeopt=longest,menuone
 " 3. search upward until the root
 " See file-search, tags-option for details
 set tags+=./tags,tags;
-set cscopetag
+if !has('nvim')
+    set cscopetag
+endif
 
 imap <C-BS> <C-W>
 imap <C-DEL> <ESC>lcw
