@@ -466,6 +466,7 @@ map <Leader>h <Plug>(easymotion-linebackward)
 
 nnoremap <Leader>= :Autoformat<CR>
 vnoremap <Leader>= :Autoformat<CR>
+nnoremap <Leader>- :AutoformatLine<CR>
 
 " Execute 'lnoremap x X' and 'lnoremap X x' for each letter a-z.
 for c in range(char2nr('A'), char2nr('Z'))
