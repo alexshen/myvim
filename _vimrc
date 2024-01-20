@@ -305,9 +305,9 @@ call CreateDirIfNotExist($HOME . '/.vim/backup/')
 call CreateDirIfNotExist($HOME . '/.vim/swap/')
 call CreateDirIfNotExist($HOME . '/.vim/undo/')
 
-set backupdir=~/.vim/backup//
-set directory=~/.vim/swap//
-set undodir=~/.vim/undo//
+set backupdir=~/.vim/backup/
+set directory=~/.vim/swap/
+set undodir=~/.vim/undo/
 
 set ttimeoutlen=0 timeoutlen=1000
 
