@@ -101,6 +101,8 @@ set softtabstop=4
 set shiftwidth=4
 set expandtab
 
+au FileType haskell setlocal shiftwidth=2 tabstop=2
+
 "let g:solarized_termcolors=256
 "let g:solarized_termtrans=1
 if $VIM_COLORSCHEME != ''
