@@ -26,7 +26,9 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'Valloric/YouCompleteMe'
 Plug 'kien/ctrlp.vim'
-Plug 'ervandew/supertab'
+if !has('nvim')
+    Plug 'ervandew/supertab'
+endif
 "Plug 'ap/vim-buftabline'
 Plug 'easymotion/vim-easymotion'
 
@@ -140,8 +142,10 @@ set wak=no
 let mapleader = "\<Space>"
 
 " super tab, user defined completion
-let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabLongestEnhanced = 1
+if !has('nvim')
+    let g:SuperTabDefaultCompletionType = "context"
+    let g:SuperTabLongestEnhanced = 1
+endif
 set completeopt=longest,menuone
 
 " 1. search tags in the directory where the current file is
