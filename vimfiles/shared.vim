@@ -90,11 +90,11 @@ noremap : ;
 " Y yanks whole line (same as yy)
 nnoremap Y yy
 
-" Enable <c-h,j,k,l> to navigate among windows
-noremap <C-J>     <C-W>j
-noremap <C-K>     <C-W>k
-noremap <C-H>     <C-W>h
-noremap <C-L>     <C-W>l
+" Enable <c-h,j,k,l> to navigate among windows (uses tmux-navigator if available)
+noremap <silent> <C-J> :TmuxNavigateDown<CR>
+noremap <silent> <C-K> :TmuxNavigateUp<CR>
+noremap <silent> <C-H> :TmuxNavigateLeft<CR>
+noremap <silent> <C-L> :TmuxNavigateRight<CR>
 
 " Tagbar
 " make it appear on the left by default

@@ -93,7 +93,7 @@ require("lazy").setup({
   -- Shared Vim plugins (also available in Vim via vim-plug)
   "Chiel92/vim-autoformat",
   "SirVer/ultisnips",
-  "christoomey/vim-tmux-navigator",
+  { "christoomey/vim-tmux-navigator", lazy = false },
   "dbakker/vim-projectroot",
   "easymotion/vim-easymotion",
   "elzr/vim-json",
