@@ -152,12 +152,6 @@ autocmd VimEnter * silent! iunmap <Leader>ihn
 autocmd VimEnter * silent! iunmap <Leader>is
 autocmd VimEnter * silent! iunmap <Leader>ih
 
-" airline
-let g:airline#extensions#tabline#buffer_idx_mode = 1
-let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#exclude_preview = 1
-
 nmap <Leader>1 <Plug>AirlineSelectTab1
 nmap <Leader>2 <Plug>AirlineSelectTab2
 nmap <Leader>3 <Plug>AirlineSelectTab3
@@ -170,12 +164,9 @@ nmap <Leader>9 <Plug>AirlineSelectTab9
 nmap <Leader>- <Plug>AirlineSelectPrevTab
 nmap <Leader>+ <Plug>AirlineSelectNextTab
 
-" This is slow, so disable it
-let g:airline#extensions#tagbar#enabled = 0
-let g:airline_detect_iminsert = 1
-
 " make sure airline is always visible
 set laststatus=2
+set showtabline=2
 
 " tern
 let g:tern_show_signature_in_pum = 1
@@ -288,7 +279,6 @@ autocmd InsertLeave * set iminsert=0
 " Set following to show "<CAPS>" in the status line when "Caps Lock" is on.
 let b:keymap_name = "CAPS"
 
-let g:airline_solarized_bg='dark'
 
 " terminal
 if has('terminal')

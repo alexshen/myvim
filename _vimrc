@@ -53,6 +53,15 @@ Plug 'xolox/vim-misc'
 
 call plug#end()
 
+" airline
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#exclude_preview = 1
+let g:airline#extensions#tagbar#enabled = 0
+let g:airline_detect_iminsert = 1
+let g:airline_solarized_bg='dark'
+
 " super tab, user defined completion
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabLongestEnhanced = 1

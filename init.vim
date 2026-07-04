@@ -93,7 +93,6 @@ require("lazy").setup({
   -- Shared Vim plugins (also available in Vim via vim-plug)
   "Chiel92/vim-autoformat",
   "SirVer/ultisnips",
-  "bling/vim-airline",
   "christoomey/vim-tmux-navigator",
   "dbakker/vim-projectroot",
   "easymotion/vim-easymotion",
@@ -114,7 +113,21 @@ require("lazy").setup({
   "t9md/vim-choosewin",
   "tpope/vim-fugitive",
   "tpope/vim-surround",
-  "vim-airline/vim-airline-themes",
+  {
+    "vim-airline/vim-airline",
+    lazy = false,
+    init = function()
+      -- Must be set before airline loads
+      vim.g["airline#extensions#tabline#enabled"] = 1
+      vim.g["airline#extensions#tabline#buffer_idx_mode"] = 1
+      vim.g["airline#extensions#tabline#buffer_nr_show"] = 1
+      vim.g["airline#extensions#tabline#exclude_preview"] = 1
+      vim.g["airline#extensions#tagbar#enabled"] = 0
+      vim.g.airline_detect_iminsert = 1
+      vim.g.airline_solarized_bg = 'dark'
+    end,
+  },
+  { "vim-airline/vim-airline-themes", lazy = false },
   "vim-scripts/a.vim",
 })
 EOF
