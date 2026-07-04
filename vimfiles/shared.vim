@@ -87,6 +87,9 @@ nnoremap <silent> \\ :nohlsearch<CR>
 noremap ; :
 noremap : ;
 
+" Y yanks whole line (same as yy)
+nnoremap Y yy
+
 " Enable <c-h,j,k,l> to navigate among windows
 noremap <C-J>     <C-W>j
 noremap <C-K>     <C-W>k
