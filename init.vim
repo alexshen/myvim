@@ -26,17 +26,14 @@ require("lazy").setup({
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
     config = function()
-      local ok, ts = pcall(require, "nvim-treesitter.configs")
-      if ok then
-        ts.setup({
+      require("nvim-treesitter.configs").setup({
           ensure_installed = { "c", "cpp", "go", "haskell", "javascript",
                                "python", "rust", "lua", "vim", "typescript",
                                "swift" },
           auto_install = true,
           highlight = { enable = true },
           indent = { enable = true },
-        })
-      end
+      })
     end,
   },
 
@@ -52,16 +49,13 @@ require("lazy").setup({
     dependencies = { "williamboman/mason.nvim", "neovim/nvim-lspconfig" },
     event = "VeryLazy",
     config = function()
-      local ok, m = pcall(require, "mason-lspconfig")
-      if ok then
-        m.setup({
+      require("mason-lspconfig").setup({
           handlers = {
             function(server_name)
               vim.lsp.enable(server_name)
             end,
           },
-        })
-      end
+      })
     end,
   },
   "neovim/nvim-lspconfig",
