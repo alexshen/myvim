@@ -2,48 +2,44 @@
 
 vim_dir=$(cd $(dirname "$0") && pwd)
 
-pushd ~
+prompt_overwrite() {
+    local path="$1"
+    local label="$2"
+    if [ -f "$path" ] || [ -L "$path" ]; then
+        echo -n "$label already exists, overwrite?(y/n) "
+        read answer
+        case $answer in
+            y|Y) rm -f "$path"
+                 ln -s "$vim_dir/$3" "$path"
+                 echo "  $path -> $vim_dir/$3"
+                 ;;
+        esac
+    else
+        ln -s "$vim_dir/$3" "$path"
+        echo "  $path -> $vim_dir/$3"
+    fi
+}
 
-answer=y
-if [ -f .vimrc ]; then
-    echo -n '.vimrc already exist, overwrite?(y/n)'
-    read answer
+echo "Installing Vim config..."
+echo ""
+
+# Vim: .vimrc
+prompt_overwrite ~/.vimrc ".vimrc" "_vimrc"
+
+# Vim: .gvimrc
+prompt_overwrite ~/.gvimrc ".gvimrc" "_gvimrc"
+
+# Vim: vimfiles -> .vim
+if [ -d ~/.vim ] && [ ! -L ~/.vim ]; then
+    echo "  .vim is a directory, skipping (remove manually if you want to replace it)"
+else
+    prompt_overwrite ~/.vim ".vim" "vimfiles"
 fi
 
-case $answer in
-    y|Y) echo installing $vim_dir/_vimrc to ~/.vimrc
-         rm -f .vimrc
-         ln -s $vim_dir/_vimrc .vimrc
-         ;;
-esac
+echo ""
+echo "Installing Neovim config..."
 
-answer=y
-if [ -f .gvimrc ]; then
-    echo -n '.gvimrc already exist, overwrite?(y/n)'
-    read answer
-fi
-
-case $answer in
-    y|Y) echo installing $vim_dir/_gvimrc to ~/.gvimrc
-         rm -f .gvimrc
-         ln -s $vim_dir/_gvimrc .gvimrc
-         ;;
-esac
-
-answer=y
-if [ -L .vim ]; then
-    echo -n '.vim already exist, overwrite?(y/n)'
-    read answer
-elif [ -d .vim ]; then
-    echo -n .vim is a directoy
-    answer=n
-fi
-
-case $answer in
-    y|Y) echo installing $vim_dir/vimfiles to ~/.vim
-         rm -f .vim
-         ln -s $vim_dir/vimfiles .vim
-         ;;
-esac
-
-popd
+# Neovim: init.vim
+nvim_init_dir=~/.config/nvim
+mkdir -p "$nvim_init_dir"
+prompt_overwrite "$nvim_init_dir/init.vim" "init.vim" "init.vim"
