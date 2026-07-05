@@ -30,7 +30,8 @@ require("lazy").setup({
       if ok then
         ts.setup({
           ensure_installed = { "c", "cpp", "go", "haskell", "javascript",
-                               "python", "rust", "lua", "vim", "typescript" },
+                               "python", "rust", "lua", "vim", "typescript",
+                               "swift" },
           auto_install = true,
           highlight = { enable = true },
           indent = { enable = true },
@@ -56,10 +57,7 @@ require("lazy").setup({
         m.setup({
           handlers = {
             function(server_name)
-              local lspconfig_ok, lspconfig = pcall(require, "lspconfig")
-              if lspconfig_ok then
-                lspconfig[server_name].setup({})
-              end
+              vim.lsp.enable(server_name)
             end,
           },
         })
@@ -157,4 +155,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 -- Enable vim-go LSP features in Neovim (use gopls instead of vim-go's built-in)
 vim.g.go_fmt_command = "gopls"
+
+-- Setup sourcekit-lsp for Swift (already available from Xcode toolchain)
+vim.lsp.enable("sourcekit")
 EOF
