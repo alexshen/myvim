@@ -26,7 +26,7 @@ require("lazy").setup({
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
     config = function()
-      require("nvim-treesitter.configs").setup({
+      require("nvim-treesitter.config").setup({
           ensure_installed = { "c", "cpp", "go", "haskell", "javascript",
                                "python", "rust", "lua", "vim", "typescript",
                                "swift" },
