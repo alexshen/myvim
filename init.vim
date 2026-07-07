@@ -99,6 +99,11 @@ require("lazy").setup({
   "octol/vim-cpp-enhanced-highlight",
   "preservim/tagbar",
   "rhysd/vim-clang-format",
+  {
+    "rmagatti/auto-session",
+    lazy = false,
+    opts = { auto_restore = true, auto_save = true },
+  },
   "schickling/vim-bufonly",
   "scrooloose/nerdcommenter",
   "scrooloose/nerdtree",
