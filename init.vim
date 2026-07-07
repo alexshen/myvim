@@ -133,13 +133,14 @@ EOF
 source ~/.vim/shared.vim
 
 " ── Neovim backup/swap/undo directories ──
-call mkdir($HOME . '/.nvim/backup/', "p")
-call mkdir($HOME . '/.nvim/swap/', "p")
-call mkdir($HOME . '/.nvim/undo/', "p")
+let s:state = stdpath("state")
+call mkdir(s:state . "/backup/", "p")
+call mkdir(s:state . "/swap/", "p")
+call mkdir(s:state . "/undo/", "p")
 
-set backupdir=~/.nvim/backup/
-set directory=~/.nvim/swap/
-set undodir=~/.nvim/undo/
+let &backupdir = s:state . "/backup/"
+let &directory = s:state . "/swap/"
+let &undodir = s:state . "/undo/"
 
 " ── Neovim-specific LSP keymaps (replaces YCM GoTo* mappings) ──
 lua << EOF
