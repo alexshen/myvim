@@ -180,21 +180,6 @@ nnoremap <silent> <Leader>nf :NERDTreeFind<CR>
 " easy align
 vmap <CR> <Plug>(EasyAlign)
 
-function! CreateDirIfNotExist(dir)
-    if ! isdirectory(a:dir)
-        call mkdir(a:dir)
-    endif
-endfunction
-
-" setup the backup directories
-call CreateDirIfNotExist($HOME . '/.vim/backup/')
-call CreateDirIfNotExist($HOME . '/.vim/swap/')
-call CreateDirIfNotExist($HOME . '/.vim/undo/')
-
-set backupdir=~/.vim/backup/
-set directory=~/.vim/swap/
-set undodir=~/.vim/undo/
-
 set ttimeoutlen=0 timeoutlen=1000
 
 " show keystrokes in status line

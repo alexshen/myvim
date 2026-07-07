@@ -191,3 +191,12 @@ autocmd VimLeave * :NeoMRUSave
 
 " ── Shared settings (sourced from shared.vim) ──
 source ~/.vim/shared.vim
+
+" ── Vim backup/swap/undo directories ──
+call mkdir($HOME . '/.vim/backup/', "p")
+call mkdir($HOME . '/.vim/swap/', "p")
+call mkdir($HOME . '/.vim/undo/', "p")
+
+set backupdir=~/.vim/backup/
+set directory=~/.vim/swap/
+set undodir=~/.vim/undo/

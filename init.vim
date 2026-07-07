@@ -127,6 +127,15 @@ EOF
 " ── Source shared vim config (keymaps, options — vim-plug runs in _vimrc only) ──
 source ~/.vim/shared.vim
 
+" ── Neovim backup/swap/undo directories ──
+call mkdir($HOME . '/.nvim/backup/', "p")
+call mkdir($HOME . '/.nvim/swap/', "p")
+call mkdir($HOME . '/.nvim/undo/', "p")
+
+set backupdir=~/.nvim/backup/
+set directory=~/.nvim/swap/
+set undodir=~/.nvim/undo/
+
 " ── Neovim-specific LSP keymaps (replaces YCM GoTo* mappings) ──
 lua << EOF
 vim.api.nvim_create_autocmd("LspAttach", {
