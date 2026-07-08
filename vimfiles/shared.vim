@@ -90,6 +90,10 @@ noremap : ;
 " Y yanks whole line (same as yy)
 nnoremap Y yy
 
+" Yank to system clipboard
+nnoremap <leader>y :%y+<CR>
+vnoremap <leader>y "+y
+
 " Enable <c-h,j,k,l> to navigate among windows (uses tmux-navigator if available)
 noremap <silent> <C-J> :TmuxNavigateDown<CR>
 noremap <silent> <C-K> :TmuxNavigateUp<CR>
