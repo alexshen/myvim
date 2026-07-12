@@ -100,39 +100,8 @@ noremap <silent> <C-K> :TmuxNavigateUp<CR>
 noremap <silent> <C-H> :TmuxNavigateLeft<CR>
 noremap <silent> <C-L> :TmuxNavigateRight<CR>
 
-" Tagbar
-" make it appear on the left by default
-let g:tagbar_left = 1
-"nnoremap <silent> <C-S-T> :TagbarToggle<CR>
-let g:NERDTreeWinPos = 'right'
-"nnoremap <silent> <F3> :NERDTreeToggle<CR>
 
-" CtrlP
-let g:ctrlp_lazy_update = 1
-let g:ctrlp_use_caching = 1
-let g:ctrlp_working_path_mode = 'r'
-let g:ctrlp_custom_ignore = {
-            \ 'dir': '\v[\/]\.(git|hg|svn)|obj$',
-            \ 'file': '\v\.(exe|so|obj|swp|ii|user|suo)',
-            \ }
-let g:ctrlp_max_files = 0
-let g:ctrlp_open_new_file = 'ij'
-let g:ctrlp_open_multiple_files = 'ij'
-let g:ctrlp_clear_cache_on_exit = 0
-let ctrlp_user_cmd_unix = 'find %s -type f'  " MacOSX/Linux
-let ctrlp_user_cmd_win = 'dir %s /-n /b /s /a-d'  " Windows
-let g:ctrlp_user_command = {
-            \ 'types': {
-            \ 1: ['.git', 'cd %s && git ls-files -co --exclude-standard | sort'],
-            \ },
-            \ 'fallback': has('unix') ? ctrlp_user_cmd_unix : ctrlp_user_cmd_win
-            \ }
 
-nnoremap <Leader>f :CtrlP<CR>
-nnoremap <Leader>b :CtrlPBuffer<CR>
-nnoremap <Leader>tt :CtrlPTag<CR>
-nnoremap <Leader>tb :CtrlPBufTag<CR>
-nnoremap <Leader>r :CtrlPMRU<CR>
 
 " remap to avoid conflict with mappings for window navigation
 nmap <C-N> <Plug>IMAP_JumpForward
@@ -148,12 +117,6 @@ let g:Tex_ViewRule_pdf = 'mupdf'
 let g:cpp_class_scope_highlight = 1
 " let g:cpp_experimental_template_highlight = 1
 
-" a.vim
-" : not working with meta-key, don't know why
-nmap <silent> <Leader>a ;A<CR>
-
-let g:alternateExtensions_h = "cpp,cxx,cc,CC,c"
-let g:alternateExtensions_H = "CPP,CXX,CC,C"
 " unmap the unexpected default mappings which cause input delay
 autocmd VimEnter * silent! iunmap <Leader>ihn
 autocmd VimEnter * silent! iunmap <Leader>is
@@ -178,8 +141,6 @@ set showtabline=2
 " tern
 let g:tern_show_signature_in_pum = 1
 
-" nerd tree
-nnoremap <silent> <Leader>nf :NERDTreeFind<CR>
 
 " easy align
 vmap <CR> <Plug>(EasyAlign)
@@ -219,9 +180,6 @@ nnoremap <silent> <Leader>w= <C-w>=
 " preview the tag under the cursor
 nnoremap <silent> <Leader>tp <C-w>}
 
-" delete all other buffers
-nnoremap <silent> <Leader>B :BufOnly<CR>
-
 " distraction free reading
 nnoremap <silent> <Leader>R :Goyo<CR>
 
@@ -243,21 +201,6 @@ nnoremap <silent> <Leader>R :Goyo<CR>
     "autocmd FileType c,cpp,objc nnoremap <buffer><Leader>= :<C-u>ClangFormat<CR>
     "autocmd FileType c,cpp,objc vnoremap <buffer><Leader>= :ClangFormat<CR>
 "augroup END
-
-" easymotion
-let g:EasyMotion_smartcase = 1
-map <Leader>s <Plug>(easymotion-s)
-map <Leader>/ <Plug>(easymotion-sn)
-map <Leader>. <Plug>(easymotion-repeat)
-map <Leader>l <Plug>(easymotion-lineforward)
-map <Leader>h <Plug>(easymotion-linebackward)
-
-nnoremap <Leader>= :Autoformat<CR>
-vnoremap <Leader>= :Autoformat<CR>
-nnoremap <Leader>- :AutoformatLine<CR>
-
-let g:formatdef_ormolu_haskell = '"ormolu --no-cabal"'
-let g:formatters_haskell = ['ormolu_haskell']
 
 " Execute 'lnoremap x X' and 'lnoremap X x' for each letter a-z.
 for c in range(char2nr('A'), char2nr('Z'))

@@ -59,6 +59,7 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#exclude_preview = 1
 let g:airline#extensions#tagbar#enabled = 0
+let g:tagbar_left = 1
 let g:airline_detect_iminsert = 1
 let g:airline_solarized_bg='dark'
 
@@ -188,6 +189,59 @@ cnoreab usl UniteSessionLoad
 
 " mru
 autocmd VimLeave * :NeoMRUSave
+
+" easymotion
+let g:EasyMotion_smartcase = 1
+map <Leader>s <Plug>(easymotion-s)
+map <Leader>/ <Plug>(easymotion-sn)
+map <Leader>. <Plug>(easymotion-repeat)
+map <Leader>l <Plug>(easymotion-lineforward)
+map <Leader>h <Plug>(easymotion-linebackward)
+
+" nerdtree
+let g:NERDTreeWinPos = 'right'
+nnoremap <silent> <Leader>nf :NERDTreeFind<CR>
+
+" CtrlP
+let g:ctrlp_lazy_update = 1
+let g:ctrlp_use_caching = 1
+let g:ctrlp_working_path_mode = 'r'
+let g:ctrlp_custom_ignore = {
+            \ 'dir': '\v[\/]\.(git|hg|svn)|obj$',
+            \ 'file': '\v\.(exe|so|obj|swp|ii|user|suo)',
+            \ }
+let g:ctrlp_max_files = 0
+let g:ctrlp_open_new_file = 'ij'
+let g:ctrlp_open_multiple_files = 'ij'
+let g:ctrlp_clear_cache_on_exit = 0
+let ctrlp_user_cmd_unix = 'find %s -type f'  " MacOSX/Linux
+let ctrlp_user_cmd_win = 'dir %s /-n /b /s /a-d'  " Windows
+let g:ctrlp_user_command = {
+            \ 'types': {
+            \ 1: ['.git', 'cd %s && git ls-files -co --exclude-standard | sort'],
+            \ },
+            \ 'fallback': has('unix') ? ctrlp_user_cmd_unix : ctrlp_user_cmd_win
+            \ }
+nnoremap <Leader>f :CtrlP<CR>
+nnoremap <Leader>b :CtrlPBuffer<CR>
+nnoremap <Leader>tt :CtrlPTag<CR>
+nnoremap <Leader>tb :CtrlPBufTag<CR>
+nnoremap <Leader>r :CtrlPMRU<CR>
+
+" vim-bufonly
+nnoremap <silent> <Leader>B :BufOnly<CR>
+
+" vim-autoformat
+nnoremap <Leader>= :Autoformat<CR>
+vnoremap <Leader>= :Autoformat<CR>
+nnoremap <Leader>- :AutoformatLine<CR>
+let g:formatdef_ormolu_haskell = '"ormolu --no-cabal"'
+let g:formatters_haskell = ['ormolu_haskell']
+
+" a.vim
+nmap <silent> <Leader>a ;A<CR>
+let g:alternateExtensions_h = "cpp,cxx,cc,CC,c"
+let g:alternateExtensions_H = "CPP,CXX,CC,C"
 
 " ── Shared settings (sourced from shared.vim) ──
 source ~/.vim/shared.vim
