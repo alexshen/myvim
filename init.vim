@@ -24,10 +24,14 @@ require("lazy").setup({
   -- Treesitter: better syntax highlighting and parsing
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "master",
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
     config = function()
-      require("nvim-treesitter.config").setup({
+      -- Fix tree-sitter generate args for CLI >=0.25 (--no-bindings was removed)
+      local install = require("nvim-treesitter.install")
+      install.ts_generate_args = { "generate", "--abi", vim.treesitter.language_version }
+      require("nvim-treesitter.configs").setup({
           ensure_installed = { "c", "cpp", "go", "haskell", "javascript",
                                "python", "rust", "lua", "vim", "typescript",
                                "swift" },
