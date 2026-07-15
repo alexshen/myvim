@@ -101,18 +101,6 @@ noremap <silent> <C-H> :TmuxNavigateLeft<CR>
 noremap <silent> <C-L> :TmuxNavigateRight<CR>
 
 
-
-
-" remap to avoid conflict with mappings for window navigation
-nmap <C-N> <Plug>IMAP_JumpForward
-vmap <C-N> <Plug>IMAP_JumpForward
-"imap <C-N> <Plug>IMAP_JumpForward
-
-" Latex-Suite
-let g:Tex_DefaultTargetFormat = 'pdf'
-let g:Tex_CompileRule_pdf = 'xelatex -synctex=1 -interaction=nonstopmode -shell-escape $*'
-let g:Tex_ViewRule_pdf = 'mupdf'
-
 " enhanced cpp highlight
 let g:cpp_class_scope_highlight = 1
 " let g:cpp_experimental_template_highlight = 1
@@ -140,7 +128,6 @@ set showtabline=2
 
 " tern
 let g:tern_show_signature_in_pum = 1
-
 
 " easy align
 vmap <CR> <Plug>(EasyAlign)
@@ -182,25 +169,6 @@ nnoremap <silent> <Leader>tp <C-w>}
 
 " distraction free reading
 nnoremap <silent> <Leader>R :Goyo<CR>
-
-"let g:buftabline_numbers = 2
-"nmap <leader>1 <Plug>BufTabLine.Go(1)
-"nmap <leader>2 <Plug>BufTabLine.Go(2)
-"nmap <leader>3 <Plug>BufTabLine.Go(3)
-"nmap <leader>4 <Plug>BufTabLine.Go(4)
-"nmap <leader>5 <Plug>BufTabLine.Go(5)
-"nmap <leader>6 <Plug>BufTabLine.Go(6)
-"nmap <leader>7 <Plug>BufTabLine.Go(7)
-"nmap <leader>8 <Plug>BufTabLine.Go(8)
-"nmap <leader>9 <Plug>BufTabLine.Go(9)
-"nmap <leader>0 <Plug>BufTabLine.Go(10)
-
-"augroup ClangFormatSettings
-    "autocmd!
-    "" map to <Leader>= in C++ code
-    "autocmd FileType c,cpp,objc nnoremap <buffer><Leader>= :<C-u>ClangFormat<CR>
-    "autocmd FileType c,cpp,objc vnoremap <buffer><Leader>= :ClangFormat<CR>
-"augroup END
 
 " Execute 'lnoremap x X' and 'lnoremap X x' for each letter a-z.
 for c in range(char2nr('A'), char2nr('Z'))
