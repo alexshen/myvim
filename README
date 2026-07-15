@@ -1,1 +1,4 @@
-My current vim binary and configurations.
+Neovim config only (Vim support removed).
+
+Install: `./install.sh` (symlinks init.vim → ~/.config/nvim/init.vim, vimfiles/ → ~/.vim)
+Uninstall: `./uninstall.sh`

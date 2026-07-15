@@ -3,6 +3,78 @@ let &packpath = &runtimepath
 let g:python3_host_prog=$PYTHON3_HOST_PROG
 let mapleader = "\<Space>"
 
+" ── Base options ──────────────────────────────────────────────────────
+
+filetype plugin indent on
+set hidden
+set modeline
+set fo+=mj
+set ch=2
+set mousehide
+let c_comment_strings=1
+set hlsearch
+syntax on
+set langmenu=en_US
+let $LANG='en_US'
+source $VIMRUNTIME/delmenu.vim
+source $VIMRUNTIME/menu.vim
+
+if has('unix') || has('macunix')
+    set ffs=unix
+endif
+
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+
+au FileType haskell setlocal shiftwidth=2 tabstop=2
+
+if $VIM_COLORSCHEME != ''
+    colorscheme $VIM_COLORSCHEME
+endif
+if $VIM_GUIFONT != ''
+    exec "set guifont=" . $VIM_GUIFONT
+endif
+
+set noerrorbells visualbell t_vb=
+set ignorecase smartcase
+set smarttab
+set encoding=utf-8
+set backspace=indent,eol,start
+set number
+set relativenumber
+set guioptions-=T
+set incsearch
+set ruler
+set cindent cino+=g0,:0,l1,t0,(0
+set mps+=<:>
+set wak=no
+set completeopt=longest,menuone
+set tags+=./tags,tags;
+set tw=79
+set cc=80
+set splitbelow
+set laststatus=2
+set showtabline=2
+set ttimeoutlen=0 timeoutlen=1000
+set showcmd
+
+" use i-beam cursor in insert mode (iTerm2)
+if empty($TMUX)
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+  if exists('+t_SR')
+      let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+  endif
+else
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+  if exists('+t_SR')
+      let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
+  endif
+endif
+
 " ── Bootstrap lazy.nvim ──
 lua << EOF
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -65,7 +137,7 @@ require("lazy").setup({
   },
   "neovim/nvim-lspconfig",
 
-  -- blink.cmp: completion engine (replaces YCM + supertab)
+  -- blink.cmp: completion engine
   {
     "saghen/blink.cmp",
     version = "1.*",
@@ -87,8 +159,7 @@ require("lazy").setup({
   },
   "rafamadriz/friendly-snippets",
 
-  -- Shared Vim plugins (also available in Vim via vim-plug)
-  -- conform.nvim: code formatting (replaces vim-autoformat)
+  -- conform.nvim: code formatting
   {
     "stevearc/conform.nvim",
     event = { "BufWritePre" },
@@ -129,7 +200,7 @@ require("lazy").setup({
       },
     },
   },
-  -- LuaSnip: snippet engine (replaces UltiSnips)
+  -- LuaSnip: snippet engine
   {
     "L3MON4D3/LuaSnip",
     event = "InsertEnter",
@@ -180,7 +251,7 @@ require("lazy").setup({
   "navarasu/onedark.nvim",
   "junegunn/goyo.vim",
   "junegunn/vim-easy-align",
-  -- telescope.nvim: fuzzy finder (replaces ctrlp.vim)
+  -- telescope.nvim: fuzzy finder
   {
     "nvim-telescope/telescope.nvim",
     tag = "0.1.8",
@@ -211,7 +282,7 @@ require("lazy").setup({
     },
   },
   "mbbill/undotree",
-  -- aerial.nvim: symbol outline (replaces tagbar)
+  -- aerial.nvim: symbol outline
   {
     "stevearc/aerial.nvim",
     lazy = false,
@@ -229,7 +300,7 @@ require("lazy").setup({
     lazy = false,
     opts = { auto_restore = true, auto_save = true },
   },
-  -- oil.nvim: file explorer as a buffer (replaces NERDTree)
+  -- oil.nvim: file explorer as a buffer
   {
     "stevearc/oil.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -275,7 +346,7 @@ require("lazy").setup({
     end,
   },
   { "vim-airline/vim-airline-themes", lazy = false },
-  -- other.nvim: open alternative files (replaces a.vim)
+  -- other.nvim: open alternative files
   {
     "rgroli/other.nvim",
     keys = {
@@ -290,8 +361,117 @@ require("lazy").setup({
 })
 EOF
 
-" ── Source shared vim config (keymaps, options — vim-plug runs in _vimrc only) ──
-source ~/.vim/shared.vim
+" ── Mappings and plugin config ────────────────────────────────────────
+
+" quick nohighlight
+nnoremap <silent> \\ :nohlsearch<CR>
+" save one keystroke for typing commands
+noremap ; :
+noremap : ;
+
+" Y yanks to end of line (same as yy)
+nnoremap Y yy
+
+" Yank to system clipboard
+nnoremap <leader>y :%y+<CR>
+vnoremap <leader>y "+y
+
+" Window navigation (via tmux-navigator)
+noremap <silent> <C-J> :TmuxNavigateDown<CR>
+noremap <silent> <C-K> :TmuxNavigateUp<CR>
+noremap <silent> <C-H> :TmuxNavigateLeft<CR>
+noremap <silent> <C-L> :TmuxNavigateRight<CR>
+
+" Terminal: escape to normal mode
+if has('terminal')
+    tnoremap <Esc> <C-\><C-n>
+endif
+
+" jk → escape
+inoremap jk <ESC>
+
+" Delete key helpers
+imap <C-BS> <C-W>
+imap <C-DEL> <ESC>lcw
+
+" Store relative line number jumps in the jumplist
+nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '') . 'k'
+nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
+
+" ── Window management ──
+nnoremap <silent> <Leader>ww :ChooseWin<CR>
+nnoremap <silent> <Leader>w= <C-w>=
+" Preview tag under cursor
+nnoremap <silent> <Leader>tp <C-w>}
+
+" Distraction-free reading
+nnoremap <silent> <Leader>R :Goyo<CR>
+
+" ── Undotree ──
+let g:undotree_SplitWidth = 35
+noremap <F4> :UndotreeToggle<CR>
+
+if has("persistent_undo")
+    set undofile
+endif
+
+function g:Undotree_CustomMap()
+    nmap <buffer> J <plug>UndotreeGoNextState
+    nmap <buffer> K <plug>UndotreeGoPreviousState
+endfunc
+
+" ── Airline tab navigation ──
+nmap <Leader>1 <Plug>AirlineSelectTab1
+nmap <Leader>2 <Plug>AirlineSelectTab2
+nmap <Leader>3 <Plug>AirlineSelectTab3
+nmap <Leader>4 <Plug>AirlineSelectTab4
+nmap <Leader>5 <Plug>AirlineSelectTab5
+nmap <Leader>6 <Plug>AirlineSelectTab6
+nmap <Leader>7 <Plug>AirlineSelectTab7
+nmap <Leader>8 <Plug>AirlineSelectTab8
+nmap <Leader>9 <Plug>AirlineSelectTab9
+nmap <Leader>- <Plug>AirlineSelectPrevTab
+nmap <Leader>+ <Plug>AirlineSelectNextTab
+
+" ── Easy align ──
+vmap <CR> <Plug>(EasyAlign)
+
+" ── Toggle functions ──
+function! ToggleSpellCheck()
+    if &spell == 1
+        setlocal nospell
+    else
+        setlocal spell spelllang=en
+    endif
+endfunc
+nnoremap <Leader>S :call ToggleSpellCheck()<CR>
+
+function! ToggleUnnamedClipboard()
+    if stridx(&clipboard, 'unnamedplus') != -1
+        setlocal clipboard-=unnamedplus,unnamed
+    else
+        setlocal clipboard+=unnamedplus,unnamed
+    endif
+endfunc
+nnoremap <Leader>P :call ToggleUnnamedClipboard()<CR>
+
+" ── Go-specific mappings ──
+au FileType go nnoremap <silent> <F1> :GoDoc<CR>
+au FileType go nnoremap <silent> <F2> :GoRename<CR>
+au FileType go nnoremap <silent> <F7> :GoBuild<CR>
+
+" ── Caps lock indicator ──
+for c in range(char2nr('A'), char2nr('Z'))
+  execute 'lnoremap ' . nr2char(c+32) . ' ' . nr2char(c)
+  execute 'lnoremap ' . nr2char(c) . ' ' . nr2char(c+32)
+endfor
+autocmd InsertLeave * set iminsert=0
+let b:keymap_name = "CAPS"
+
+" ── Unmap default mappings that cause input delay ──
+autocmd VimEnter * silent! iunmap <Leader>ihn
+autocmd VimEnter * silent! iunmap <Leader>is
+autocmd VimEnter * silent! iunmap <Leader>ih
 
 " ── Neovim backup/swap/undo directories ──
 let s:state = stdpath("state")
@@ -303,7 +483,7 @@ let &backupdir = s:state . "/backup/"
 let &directory = s:state . "/swap/"
 let &undodir = s:state . "/undo/"
 
-" ── Neovim-specific LSP keymaps (replaces YCM GoTo* mappings) ──
+" ── Neovim-specific LSP keymaps ──
 lua << EOF
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("nvim-lsp-attach", { clear = true }),
@@ -323,9 +503,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
--- Enable vim-go LSP features in Neovim (use gopls instead of vim-go's built-in)
+-- Enable vim-go LSP features in Neovim
 vim.g.go_fmt_command = "gopls"
 
--- Setup sourcekit-lsp for Swift (already available from Xcode toolchain)
+-- Setup sourcekit-lsp for Swift
 vim.lsp.enable("sourcekit")
 EOF

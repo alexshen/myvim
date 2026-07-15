@@ -2,7 +2,7 @@
 
 vim_dir=$(cd $(dirname "$0") && pwd)
 
-echo "Uninstalling Vim config..."
+echo "Uninstalling Neovim config..."
 echo ""
 
 reverse_symlink() {
@@ -20,20 +20,11 @@ reverse_symlink() {
     fi
 }
 
-# Vim: .vimrc
-reverse_symlink ~/.vimrc
-
-# Vim: .gvimrc
-reverse_symlink ~/.gvimrc
-
-# Vim: .vim -> vimfiles
-reverse_symlink ~/.vim
-
-echo ""
-echo "Uninstalling Neovim config..."
-
 # Neovim: init.vim
 reverse_symlink ~/.config/nvim/init.vim
+
+# Runtime files
+reverse_symlink ~/.vim
 
 echo ""
 echo "Done."

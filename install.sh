@@ -14,16 +14,15 @@ prompt_overwrite() {
     echo "  $path -> $vim_dir/$2"
 }
 
-echo "Installing Vim config..."
+echo "Installing Neovim config..."
 echo ""
 
-# Vim: .vimrc
-prompt_overwrite ~/.vimrc ".vimrc"
+# Neovim: init.vim
+nvim_init_dir=~/.config/nvim
+mkdir -p "$nvim_init_dir"
+prompt_overwrite "$nvim_init_dir/init.vim" "init.vim"
 
-# Vim: .gvimrc
-prompt_overwrite ~/.gvimrc ".gvimrc"
-
-# Vim: vimfiles -> .vim
+# Runtime files: vimfiles -> ~/.vim
 if [ -d ~/.vim ] && [ ! -L ~/.vim ]; then
     echo "  .vim is a directory, skipping (remove manually if you want to replace it)"
 else
@@ -31,9 +30,4 @@ else
 fi
 
 echo ""
-echo "Installing Neovim config..."
-
-# Neovim: init.vim
-nvim_init_dir=~/.config/nvim
-mkdir -p "$nvim_init_dir"
-prompt_overwrite "$nvim_init_dir/init.vim" "init.vim"
+echo "Done."
