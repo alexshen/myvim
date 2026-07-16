@@ -95,9 +95,6 @@ require("lazy").setup({
       local install = require("nvim-treesitter.install")
       install.ts_generate_args = { "generate", "--abi", vim.treesitter.language_version }
       require("nvim-treesitter.configs").setup({
-          ensure_installed = { "c", "cpp", "go", "haskell", "javascript",
-                               "python", "rust", "lua", "vim", "typescript",
-                               "swift" },
           auto_install = true,
           highlight = { enable = true },
           indent = { enable = true },
