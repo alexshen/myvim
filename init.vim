@@ -16,8 +16,6 @@ set hlsearch
 syntax on
 set langmenu=en_US
 let $LANG='en_US'
-source $VIMRUNTIME/delmenu.vim
-source $VIMRUNTIME/menu.vim
 
 if has('unix') || has('macunix')
     set ffs=unix
@@ -29,13 +27,6 @@ set shiftwidth=4
 set expandtab
 
 au FileType haskell setlocal shiftwidth=2 tabstop=2
-
-if $VIM_COLORSCHEME != ''
-    colorscheme $VIM_COLORSCHEME
-endif
-if $VIM_GUIFONT != ''
-    exec "set guifont=" . $VIM_GUIFONT
-endif
 
 set noerrorbells visualbell t_vb=
 set ignorecase smartcase
@@ -509,3 +500,13 @@ vim.g.go_fmt_command = "gopls"
 -- Setup sourcekit-lsp for Swift
 vim.lsp.enable("sourcekit")
 EOF
+
+if $VIM_COLORSCHEME != ''
+    exec "colorscheme " . $VIM_COLORSCHEME
+else
+    colorscheme onedark
+endif
+if $VIM_GUIFONT != ''
+    exec "set guifont=" . $VIM_GUIFONT
+endif
+
