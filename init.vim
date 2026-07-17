@@ -50,6 +50,7 @@ set laststatus=2
 set showtabline=2
 set ttimeoutlen=0 timeoutlen=1000
 set showcmd
+set sessionoptions+=localoptions
 
 " use i-beam cursor in insert mode (iTerm2)
 if empty($TMUX)
@@ -125,12 +126,13 @@ require("lazy").setup({
   },
   "neovim/nvim-lspconfig",
 
-  -- blink.cmp: completion engine
+  -- blink.cmp: completion engine (with LuaSnip)
   {
     "saghen/blink.cmp",
     version = "1.*",
-    dependencies = { "rafamadriz/friendly-snippets" },
+    dependencies = { "L3MON4D3/LuaSnip", "rafamadriz/friendly-snippets" },
     opts = {
+      snippets = { preset = "luasnip" },
       keymap = {
         preset = "default",
         ["<Tab>"] = { "select_and_accept", "fallback" },
@@ -194,19 +196,21 @@ require("lazy").setup({
     event = "InsertEnter",
     keys = {
       {
-        "<C-l>",
+        "<C-]>",
         function()
           return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-forward" or ""
         end,
         expr = true,
+        mode = { "i", "s" },
         desc = "Jump forward in snippet",
       },
       {
-        "<C-h>",
+        "<C-\\>",
         function()
           return require("luasnip").jumpable(-1) and "<Plug>luasnip-jump-backward" or ""
         end,
         expr = true,
+        mode = { "i", "s" },
         desc = "Jump backward in snippet",
       },
     },
@@ -225,17 +229,13 @@ require("lazy").setup({
       },
       jump = { autojump = true },
     },
-    keys = function()
-      local flash = require("flash")
-      return {
-        { "s", mode = { "n", "x", "o" }, flash.jump, desc = "Flash" },
-        { "S", mode = { "n", "x", "o" }, flash.treesitter, desc = "Flash Treesitter" },
-        { "r", mode = "o", flash.remote, desc = "Remote Flash" },
-        { "R", mode = { "o", "x" }, flash.treesitter_search, desc = "Treesitter Search" },
-      }
-    end,
+    keys = {
+      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+      { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+      { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+      { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+    },
   },
-  "fatih/vim-go",
   "navarasu/onedark.nvim",
   "junegunn/goyo.vim",
   "junegunn/vim-easy-align",
@@ -244,21 +244,18 @@ require("lazy").setup({
     "nvim-telescope/telescope.nvim",
     tag = "0.1.8",
     dependencies = { "nvim-lua/plenary.nvim" },
-    keys = function()
-      local builtin = require("telescope.builtin")
-      return {
-        { "<Leader>ff", builtin.find_files, desc = "Find files" },
-        { "<Leader>fg", builtin.live_grep, desc = "Live grep" },
-        { "<Leader>fb", builtin.buffers, desc = "Buffers" },
-        { "<Leader>fh", builtin.help_tags, desc = "Help tags" },
-        { "<Leader>fr", builtin.oldfiles, desc = "Recent files" },
-        { "<Leader>fc", builtin.commands, desc = "Commands" },
-        { "<Leader>fk", builtin.keymaps, desc = "Keymaps" },
-        { "<Leader>fd", builtin.diagnostics, desc = "Diagnostics" },
-        { "<Leader>fs", builtin.lsp_document_symbols, desc = "Document symbols" },
-        { "<Leader>fS", builtin.lsp_workspace_symbols, desc = "Workspace symbols" },
-      }
-    end,
+    keys = {
+      { "<Leader>ff", function() require("telescope.builtin").find_files() end, desc = "Find files" },
+      { "<Leader>fg", function() require("telescope.builtin").live_grep() end, desc = "Live grep" },
+      { "<Leader>fb", function() require("telescope.builtin").buffers() end, desc = "Buffers" },
+      { "<Leader>fh", function() require("telescope.builtin").help_tags() end, desc = "Help tags" },
+      { "<Leader>fr", function() require("telescope.builtin").oldfiles() end, desc = "Recent files" },
+      { "<Leader>fc", function() require("telescope.builtin").commands() end, desc = "Commands" },
+      { "<Leader>fk", function() require("telescope.builtin").keymaps() end, desc = "Keymaps" },
+      { "<Leader>fd", function() require("telescope.builtin").diagnostics() end, desc = "Diagnostics" },
+      { "<Leader>fs", function() require("telescope.builtin").lsp_document_symbols() end, desc = "Document symbols" },
+      { "<Leader>fS", function() require("telescope.builtin").lsp_workspace_symbols() end, desc = "Workspace symbols" },
+    },
     opts = {
       defaults = {
         file_ignore_patterns = {
@@ -443,10 +440,6 @@ function! ToggleUnnamedClipboard()
 endfunc
 nnoremap <Leader>P :call ToggleUnnamedClipboard()<CR>
 
-" ── Go-specific mappings ──
-au FileType go nnoremap <silent> <F1> :GoDoc<CR>
-au FileType go nnoremap <silent> <F2> :GoRename<CR>
-au FileType go nnoremap <silent> <F7> :GoBuild<CR>
 
 " ── Caps lock indicator ──
 for c in range(char2nr('A'), char2nr('Z'))
@@ -490,9 +483,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("<Leader>yd", vim.diagnostic.open_float, "Line Diagnostics")
   end,
 })
-
--- Enable vim-go LSP features in Neovim
-vim.g.go_fmt_command = "gopls"
 
 -- Setup sourcekit-lsp for Swift
 vim.lsp.enable("sourcekit")
