@@ -244,7 +244,7 @@ require("lazy").setup({
   -- telescope.nvim: fuzzy finder
   {
     "nvim-telescope/telescope.nvim",
-    tag = "0.1.8",
+    tag = "v0.2.2",
     dependencies = { "nvim-lua/plenary.nvim" },
     keys = {
       { "<Leader>ff", function() require("telescope.builtin").find_files() end, desc = "Find files" },
@@ -281,7 +281,6 @@ require("lazy").setup({
       { "<Leader>tt", "<Cmd>AerialToggle<CR>", desc = "Toggle Aerial" },
     },
   },
-  "rhysd/vim-clang-format",
   {
     "rmagatti/auto-session",
     lazy = false,
@@ -319,20 +318,36 @@ require("lazy").setup({
       })
     end,
   },
+  -- lualine.nvim: statusline & tabline
   {
-    "vim-airline/vim-airline",
+    "nvim-lualine/lualine.nvim",
     lazy = false,
-    init = function()
-      -- Must be set before airline loads
-      vim.g["airline#extensions#tabline#enabled"] = 1
-      vim.g["airline#extensions#tabline#buffer_idx_mode"] = 1
-      vim.g["airline#extensions#tabline#buffer_nr_show"] = 1
-      vim.g["airline#extensions#tabline#exclude_preview"] = 1
-      vim.g.airline_detect_iminsert = 1
-      vim.g.airline_solarized_bg = 'dark'
-    end,
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {
+      options = {
+        theme = "auto",
+        component_separators = { left = "", right = "" },
+        section_separators = { left = "", right = "" },
+      },
+      sections = {
+        lualine_a = { "mode" },
+        lualine_b = { "branch", "diff", "diagnostics" },
+        lualine_c = { { "filename", path = 1 } },
+        lualine_x = { "filetype" },
+        lualine_y = { "progress" },
+        lualine_z = { "location" },
+      },
+      tabline = {
+        lualine_a = { "buffers" },
+        lualine_b = {},
+        lualine_c = {},
+        lualine_x = {},
+        lualine_y = {},
+        lualine_z = { "tabs" },
+      },
+      extensions = { "fugitive" },
+    },
   },
-  { "vim-airline/vim-airline-themes", lazy = false },
   -- other.nvim: open alternative files
   {
     "rgroli/other.nvim",
@@ -407,18 +422,18 @@ function g:Undotree_CustomMap()
     nmap <buffer> K <plug>UndotreeGoPreviousState
 endfunc
 
-" ── Airline tab navigation ──
-nmap <Leader>1 <Plug>AirlineSelectTab1
-nmap <Leader>2 <Plug>AirlineSelectTab2
-nmap <Leader>3 <Plug>AirlineSelectTab3
-nmap <Leader>4 <Plug>AirlineSelectTab4
-nmap <Leader>5 <Plug>AirlineSelectTab5
-nmap <Leader>6 <Plug>AirlineSelectTab6
-nmap <Leader>7 <Plug>AirlineSelectTab7
-nmap <Leader>8 <Plug>AirlineSelectTab8
-nmap <Leader>9 <Plug>AirlineSelectTab9
-nmap <Leader>- <Plug>AirlineSelectPrevTab
-nmap <Leader>+ <Plug>AirlineSelectNextTab
+" ── Buffer navigation (lualine tabline) ──
+nmap <Leader>1 :1b<CR>
+nmap <Leader>2 :2b<CR>
+nmap <Leader>3 :3b<CR>
+nmap <Leader>4 :4b<CR>
+nmap <Leader>5 :5b<CR>
+nmap <Leader>6 :6b<CR>
+nmap <Leader>7 :7b<CR>
+nmap <Leader>8 :8b<CR>
+nmap <Leader>9 :9b<CR>
+nmap <Leader>- :bprevious<CR>
+nmap <Leader>+ :bnext<CR>
 
 " ── Easy align ──
 vmap <CR> <Plug>(EasyAlign)
