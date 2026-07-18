@@ -318,7 +318,7 @@ require("lazy").setup({
       })
     end,
   },
-  -- lualine.nvim: statusline & tabline
+  -- lualine.nvim: statusline (bufferline handles the tabline now)
   {
     "nvim-lualine/lualine.nvim",
     lazy = false,
@@ -337,15 +337,35 @@ require("lazy").setup({
         lualine_y = { "progress" },
         lualine_z = { "location" },
       },
-      tabline = {
-        lualine_a = { "buffers" },
-        lualine_b = {},
-        lualine_c = {},
-        lualine_x = {},
-        lualine_y = {},
-        lualine_z = { "tabs" },
-      },
       extensions = { "fugitive" },
+    },
+  },
+  -- bufferline.nvim: buffer tabline
+  {
+    "akinsho/bufferline.nvim",
+    lazy = false,
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {
+      options = {
+        numbers = "ordinal",
+        close_command = "bdelete! %d",
+        right_mouse_command = "bdelete! %d",
+        left_mouse_command = "buffer %d",
+        indicator = { icon = "▎", style = "icon" },
+        modified_icon = "*",
+        buffer_close_icon = "x",
+        close_icon = "X",
+        max_name_length = 10,
+        max_prefix_length = 0,
+        tab_size = 10,
+        show_buffer_icons = false,
+        show_buffer_close_icons = true,
+        show_close_icon = false,
+        show_tab_indicators = true,
+        separator_style = "thin",
+        always_show_bufferline = true,
+        sort_by = "id",
+      },
     },
   },
   -- other.nvim: open alternative files
@@ -422,18 +442,17 @@ function g:Undotree_CustomMap()
     nmap <buffer> K <plug>UndotreeGoPreviousState
 endfunc
 
-" ── Buffer navigation (lualine tabline) ──
-nmap <Leader>1 :1b<CR>
-nmap <Leader>2 :2b<CR>
-nmap <Leader>3 :3b<CR>
-nmap <Leader>4 :4b<CR>
-nmap <Leader>5 :5b<CR>
-nmap <Leader>6 :6b<CR>
-nmap <Leader>7 :7b<CR>
-nmap <Leader>8 :8b<CR>
-nmap <Leader>9 :9b<CR>
-nmap <Leader>- :bprevious<CR>
-nmap <Leader>+ :bnext<CR>
+" ── Buffer navigation ──
+nnoremap <Leader>1 <Cmd>BufferLineGoToBuffer 1<CR>
+nnoremap <Leader>2 <Cmd>BufferLineGoToBuffer 2<CR>
+nnoremap <Leader>3 <Cmd>BufferLineGoToBuffer 3<CR>
+nnoremap <Leader>4 <Cmd>BufferLineGoToBuffer 4<CR>
+nnoremap <Leader>5 <Cmd>BufferLineGoToBuffer 5<CR>
+nnoremap <Leader>6 <Cmd>BufferLineGoToBuffer 6<CR>
+nnoremap <Leader>7 <Cmd>BufferLineGoToBuffer 7<CR>
+nnoremap <Leader>8 <Cmd>BufferLineGoToBuffer 8<CR>
+nnoremap <Leader>9 <Cmd>BufferLineGoToBuffer 9<CR>
+nnoremap <Leader>bb <Cmd>BufferLinePick<CR>
 
 " ── Easy align ──
 vmap <CR> <Plug>(EasyAlign)
