@@ -88,18 +88,20 @@ require("lazy").setup({
   -- Treesitter: better syntax highlighting and parsing
   {
     "nvim-treesitter/nvim-treesitter",
-    branch = "master",
+    lazy = false,
+    branch = "main",
     build = ":TSUpdate",
-    event = { "BufReadPost", "BufNewFile" },
     config = function()
-      -- Fix tree-sitter generate args for CLI >=0.25 (--no-bindings was removed)
-      local install = require("nvim-treesitter.install")
-      install.ts_generate_args = { "generate", "--abi", vim.treesitter.language_version }
-      require("nvim-treesitter.configs").setup({
-          auto_install = true,
-          highlight = { enable = true },
-          indent = { enable = true },
-      })
+        require("nvim-treesitter").setup()
+        vim.api.nvim_create_autocmd("FileType", {
+            callback = function(args)
+                local lang = vim.treesitter.language.get_lang(vim.bo[args.buf].filetype)
+
+                if lang and vim.treesitter.language.add(lang) then
+                    vim.treesitter.start(args.buf, lang)
+                end
+            end,
+        })
     end,
   },
 
