@@ -357,7 +357,7 @@ require("lazy").setup({
         close_icon = "X",
         max_name_length = 10,
         max_prefix_length = 0,
-        tab_size = 10,
+        tab_size = 0,
         show_buffer_icons = false,
         show_buffer_close_icons = true,
         show_close_icon = false,
