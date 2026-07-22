@@ -450,6 +450,9 @@ nnoremap <Leader>7 <Cmd>BufferLineGoToBuffer 7<CR>
 nnoremap <Leader>8 <Cmd>BufferLineGoToBuffer 8<CR>
 nnoremap <Leader>9 <Cmd>BufferLineGoToBuffer 9<CR>
 nnoremap <Leader>bb <Cmd>BufferLinePick<CR>
+nnoremap <Leader>br <Cmd>BufferLineCloseRight<CR>
+nnoremap <Leader>bl <Cmd>BufferLineCloseLeft<CR>
+nnoremap <Leader>bo <Cmd>BufferLineCloseOthers<CR>
 
 " ── Easy align ──
 vmap <CR> <Plug>(EasyAlign)
