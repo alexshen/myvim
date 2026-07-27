@@ -265,6 +265,24 @@ require("lazy").setup({
           "dist/",
           "%.o$", "%.obj$", "%.class$", "%.swp$",
         },
+        hidden = false,
+        mappings = {
+          i = {
+            ["<C-h>"] = function(prompt_bufnr)
+              local actions = require("telescope.actions")
+              local action_state = require("telescope.actions.state")
+              local current_picker = action_state.get_current_picker(prompt_bufnr)
+              local current_prompt = current_picker:_get_prompt()
+              -- toggle hidden; nil → true → false → true ...
+              vim.g.telescope_hidden = not vim.g.telescope_hidden
+              actions.close(prompt_bufnr)
+              require("telescope.builtin").find_files({
+                hidden = vim.g.telescope_hidden,
+                default_text = current_prompt,
+              })
+            end,
+          },
+        },
       },
     },
   },
