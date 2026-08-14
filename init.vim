@@ -117,12 +117,83 @@ require("lazy").setup({
     dependencies = { "williamboman/mason.nvim", "neovim/nvim-lspconfig" },
     event = "VeryLazy",
     config = function()
+      -- Core servers pre-installed at startup; the rest are installed
+      -- on-demand when a matching filetype is opened (see autocmd below).
+      local ensure_installed = {
+        "clangd",  -- C / C++
+        "ts_ls",   -- TypeScript / JavaScript
+        "pyright", -- Python
+        "lua_ls",  -- Lua
+      }
       require("mason-lspconfig").setup({
-          handlers = {
-            function(server_name)
-              vim.lsp.enable(server_name)
-            end,
-          },
+        ensure_installed = ensure_installed,
+        -- automatic_enable defaults to true: installed servers are started
+        -- automatically via vim.lsp.enable() once the install finishes.
+      })
+
+      -- Preferred server per filetype for on-demand installs. Add more
+      -- entries here as needed. Only used when no server for the filetype
+      -- is installed or pending. Filetypes not listed are skipped, so
+      -- auxiliary tools (harper_ls, snyk_ls, ...) are never auto-installed.
+      local preferred = {
+        go = "gopls",
+        rust = "rust_analyzer",
+        haskell = "hls",
+        json = "jsonls",
+        jsonc = "jsonls",
+        bash = "bashls",
+        markdown = "marksman",
+        yaml = "yamlls",
+        dockerfile = "dockerls",
+        cmake = "cmake",
+        sql = "sqlls",
+      }
+
+      -- On-demand install: when a filetype is opened and none of its LSP
+      -- servers is installed or pending, install the preferred one.
+      -- automatic_enable then starts it via vim.lsp.enable() once the
+      -- install finishes.
+      vim.api.nvim_create_autocmd("FileType", {
+        callback = function(args)
+          local ft = vim.bo[args.buf].filetype
+          local ok, servers = pcall(
+            require("mason-lspconfig").get_available_servers,
+            { filetype = ft }
+          )
+          if not ok or not servers[1] then
+            return
+          end
+          local registry = require("mason-registry")
+          local pkg_for = require("mason-lspconfig").get_mappings().lspconfig_to_package
+          local pending = {}
+          for _, name in ipairs(ensure_installed) do
+            pending[name] = true
+          end
+          for _, server_name in ipairs(servers) do
+            local pkg_name = pkg_for[server_name]
+            if pkg_name then
+              local ok_pkg, pkg = pcall(registry.get_package, pkg_name)
+              if ok_pkg and (pkg:is_installed() or pkg:is_installing()) then
+                return -- a server for this filetype is already present
+              end
+            end
+            if pending[server_name] then
+              return -- a server for this filetype is installing at startup
+            end
+          end
+          local target = preferred[ft]
+          if not target then
+            return
+          end
+          local pkg_name = pkg_for[target]
+          if not pkg_name then
+            return
+          end
+          local ok_pkg, pkg = pcall(registry.get_package, pkg_name)
+          if ok_pkg and not pkg:is_installed() and not pkg:is_installing() then
+            require("mason-lspconfig.install").install(pkg)
+          end
+        end,
       })
     end,
   },
