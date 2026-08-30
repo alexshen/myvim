@@ -327,7 +327,7 @@ require("lazy").setup({
       { "<Leader>fk", function() require("telescope.builtin").keymaps() end, desc = "Keymaps" },
       { "<Leader>fd", function() require("telescope.builtin").diagnostics() end, desc = "Diagnostics" },
       { "<Leader>fs", function() require("telescope.builtin").lsp_document_symbols() end, desc = "Document symbols" },
-      { "<Leader>fS", function() require("telescope.builtin").lsp_workspace_symbols() end, desc = "Workspace symbols" },
+      { "<Leader>fw", function() require("telescope.builtin").lsp_dynamic_workspace_symbols() end, desc = "Workspace symbols" },
     },
     opts = {
       defaults = {
@@ -356,6 +356,20 @@ require("lazy").setup({
         },
       },
     },
+  },
+  -- trouble.nvim: diagnostics list
+  {
+    "folke/trouble.nvim",
+    cmd = { "Trouble" },
+    keys = {
+      { "<Leader>xx", "<Cmd>Trouble diagnostics toggle<CR>", desc = "Diagnostics (Trouble)" },
+      { "<Leader>xb", "<Cmd>Trouble diagnostics toggle filter.buf=0<CR>", desc = "Buffer Diagnostics (Trouble)" },
+      { "<Leader>xq", "<Cmd>Trouble qflist toggle<CR>", desc = "Quickfix List (Trouble)" },
+      { "<Leader>xl", "<Cmd>Trouble loclist toggle<CR>", desc = "Location List (Trouble)" },
+      { "<Leader>xs", "<Cmd>Trouble symbols toggle focus=false<CR>", desc = "Symbols (Trouble)" },
+      { "<Leader>xr", "<Cmd>Trouble lsp_references toggle<CR>", desc = "LSP References (Trouble)" },
+    },
+    opts = {},
   },
   "mbbill/undotree",
   -- aerial.nvim: symbol outline
@@ -484,6 +498,9 @@ nnoremap Y yy
 nnoremap <leader>y :%y+<CR>
 vnoremap <leader>y "+y
 
+" Paste from system clipboard
+nnoremap <leader>p gg"_dG"+P
+
 " Window navigation (via tmux-navigator)
 noremap <silent> <C-J> :TmuxNavigateDown<CR>
 noremap <silent> <C-K> :TmuxNavigateUp<CR>
@@ -611,6 +628,25 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 -- Setup sourcekit-lsp for Swift
 vim.lsp.enable("sourcekit")
+
+vim.opt.updatetime = 500
+vim.api.nvim_create_autocmd("CursorHold", {
+  callback = function()
+    local diagnostics = vim.diagnostic.get(0, {
+      lnum = vim.fn.line(".") - 1,
+    })
+
+    if #diagnostics > 0 then
+      vim.diagnostic.open_float(nil, {
+        scope = "line",
+        focusable = false,
+        border = "rounded",
+        source = "if_many",
+      })
+    end
+  end,
+})
+
 EOF
 
 if $VIM_COLORSCHEME != ''
