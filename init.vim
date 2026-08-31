@@ -629,6 +629,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 -- Setup sourcekit-lsp for Swift
 vim.lsp.enable("sourcekit")
 
+vim.g.python_indent = {
+    disable_parentheses_indenting = true
+}
+
 vim.opt.updatetime = 500
 vim.api.nvim_create_autocmd("CursorHold", {
   callback = function()
